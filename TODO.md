@@ -6,8 +6,8 @@
 
 - [x] Draft README with purpose, commitments, planned features, development status and license.
 - [x] Add complete official AGPL-3.0 license and Git/Docker ignore rules.
-- [ ] Verify ignored sensitive artifacts and preserved safe environment examples/lockfiles/migrations/source fixtures.
-- [ ] Review exact first-commit files, initialize the fresh repository, commit and push to the new public remote.
+- [x] Verify ignored sensitive artifacts and preserved safe environment examples/lockfiles/migrations/source fixtures.
+- [x] Review exact first-commit files, initialize the fresh repository, commit and push to the new public remote.
 
 > “Okay, make the scope the goals.The allowed file change areas and the to-do list and get this all together.Make a plan to put this all together”
 
@@ -18,10 +18,10 @@
 >
 > “all.prkcisers put keep the paridy  change the name”
 
-- [ ] Reuse actual source header/nav/carousel/three-column/footer composition and typography in the new project.
-- [ ] Apply TransProxy rename and dark trans-blue/pink palette without unrelated redesign.
-- [ ] Add prominent source-backed founder purpose/story and clearly labelled planned features.
-- [ ] Show new visible wording before committing.
+- [x] Reuse actual source header/nav/carousel/three-column/footer composition and typography in the new project.
+- [x] Apply TransProxy rename and dark trans-blue/pink palette without unrelated redesign.
+- [x] Add prominent source-backed founder purpose/story and clearly labelled planned features.
+- [x] Show new visible wording before committing.
 
 > “Make s figma build use the desjgn skill”
 
@@ -33,11 +33,11 @@
 >
 > “Yea new project reaource self host coolfiy all that shit same server”
 
-- [ ] Build landing page and email-only encrypted waiting list with adult/consent enforcement.
-- [ ] Verify encryption, duplicates, validation, origin checks, rate limiting and safe responses/logging.
-- [ ] Verify actual desktop/mobile form success/error and affected neighbors.
-- [ ] Obtain separate scope review of the complete task-owned UI diff.
-- [ ] List environment-variable changes before deployment.
+- [x] Build landing page and email-only encrypted waiting list with adult/consent enforcement.
+- [x] Verify encryption, duplicates, validation, origin checks, rate limiting and safe responses/logging.
+- [x] Verify actual desktop/mobile form success/error and affected neighbors.
+- [x] Obtain separate scope review of the complete task-owned UI diff.
+- [x] List environment-variable changes before deployment.
 - [ ] Create a new isolated Coolify project and separate frontend/API/private Postgres on the existing server.
 - [ ] Configure `transproxy.org` / same-origin private `/api`, HTTPS and allowed origins without touching old resources.
 - [ ] Verify live health and actual browser submission/persistence using synthetic data; record any unresolved blocker as unverified.

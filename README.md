@@ -6,7 +6,7 @@ Julien's experience and account of why he created TransProxy will be prominent. 
 
 ## Development status
 
-**Early development.** This first commit contains the project documentation, license and ignore rules. A React/TypeScript landing page and an encrypted, adult-only waiting list are being built next. The complete member platform described below is **planned**, not implemented or available at launch.
+**Waiting-list launch.** The React/TypeScript landing page and dedicated encrypted, adult-only waiting-list API are implemented and checked locally. See [deployment notes](docs/DEPLOYMENT.md) for the verified hosting state. The complete member platform described below is **planned**, not implemented or available at launch. The first commit established the documentation, AGPL-3.0 license and ignore rules.
 
 The landing-page launch uses a new isolated self-hosted Coolify project with separate frontend, API and private Postgres resources. Existing Cruush and Mount Sinai projects, resources and data are outside this repository's deployment scope. Implementation, deployment and live verification are separate milestones; documentation is not evidence that a feature works.
 
@@ -60,3 +60,9 @@ Local secret files, uploads, patient records, database exports, backups, logs, d
 ## License
 
 Licensed under the **GNU Affero General Public License, version 3 (AGPL-3.0)**. See [LICENSE](LICENSE) for the complete license. The license covers this repository's code and documentation; private patient content is not contributed to this repository.
+
+## Local development
+
+Install frontend dependencies with `npm ci` and run `npm run dev` (port 5328). Install API dependencies in `server/` with `npm ci`, build with `npm run build`, then start with `npm start`. For local development set API `PORT=3028`; Vite forwards `/api` there. Configure a separate local Postgres database and the private variables shown in `.env.example`; placeholders are not usable keys. Migrations run before the API listens.
+
+Frontend build: `npm run build`. API build/checks: `cd server && npm run build && npm test`. Set `TEST_DATABASE_URL` to a dedicated disposable database to include the real database integration check; that check deletes its own synthetic test rows. Never point it at production.
