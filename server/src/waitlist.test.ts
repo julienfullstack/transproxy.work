@@ -1,16 +1,17 @@
 import assert from 'node:assert/strict'
 import { randomBytes, randomUUID } from 'node:crypto'
 import { spawn } from 'node:child_process'
-import { readFile } from 'node:fs/promises'
 import { test } from 'node:test'
 import { Pool } from 'pg'
 import { CONSENT_VERSION, createApp, postgresStore, type EncryptedEntry, type WaitlistStore } from './app.js'
 import { decryptEmail, emailDigest, encryptEmail, readKey } from './crypto.js'
+import { ageFromDateOfBirth } from './age.js'
+import { migrate } from './migrate.js'
 
 const origin = 'https://transproxy.org'
 const encryptionKey = randomBytes(32)
 const lookupKey = randomBytes(32)
-const body = { email: 'test@example.invalid', adult: true, consent: true, website: '' }
+const body = { email: 'test@example.invalid', dateOfBirth: '1990-03-14', adult: true, consent: true, website: '' }
 const headers = { origin, 'content-type': 'application/json' }
 
 function memoryStore() {
@@ -18,13 +19,14 @@ function memoryStore() {
   const store: WaitlistStore = {
     health: async () => {},
     insert: async (entry) => { if (!entries.has(entry.emailDigest)) entries.set(entry.emailDigest, entry) },
+    removeById: async (id) => { for (const [digest, entry] of entries) if (entry.id === id) entries.delete(digest) },
   }
   return { store, entries }
 }
 
 function fixture(overrides: Partial<Parameters<typeof createApp>[0]> = {}) {
   const { store, entries } = memoryStore()
-  const app = createApp({ store, encryptionKey, lookupKey, allowedOrigins: [origin], ...overrides })
+  const app = createApp({ store, encryptionKey, lookupKey, allowedOrigins: [origin], clock: () => Date.UTC(2026, 10, 10), ...overrides })
   return { app, entries }
 }
 
@@ -77,6 +79,23 @@ test('age and consent must be literal true and email must validate', async (t) =
   assert.equal(entries.size, 0)
 })
 
+test('DOB checks real UTC birthdays and rejects incomplete, future and impossible dates without saving DOB', async (t) => {
+  const { app, entries } = fixture({ rateLimit: 30 })
+  t.after(() => app.close())
+  const { dateOfBirth: _date, ...missing } = body
+  for (const payload of [missing, ...['', '2008-11-11', '2027-01-01', '2008-02-30', '2007-02-29', '2000-13-01', '2000-00-10', '2000-01-00', '2000-1-01', '1905-11-09'].map(dateOfBirth => ({ ...body, dateOfBirth }))]) {
+    const response = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload })
+    assert.equal(response.statusCode, 400)
+  }
+  assert.equal(entries.size, 0)
+  const exact = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, dateOfBirth: '2008-11-10' } })
+  assert.equal(exact.statusCode, 200)
+  assert.ok(!JSON.stringify([...entries.values()]).includes('2008-11-10'))
+  assert.equal(ageFromDateOfBirth('2008-02-29', new Date('2026-02-28T23:59:59Z')), 17)
+  assert.equal(ageFromDateOfBirth('2008-02-29', new Date('2026-03-01T00:00:00Z')), 18)
+  assert.equal(ageFromDateOfBirth('2007-02-29', new Date('2026-03-01T00:00:00Z')), null)
+})
+
 test('CORS preflight allows only configured origins and JSON is mandatory', async (t) => {
   const { app, entries } = fixture()
   t.after(() => app.close())
@@ -96,7 +115,7 @@ test('CORS preflight allows only configured origins and JSON is mandatory', asyn
 })
 
 test('rate limiting has expiry and ignores untrusted forwarding headers', async (t) => {
-  let time = 1000
+  let time = Date.UTC(2026, 10, 10)
   const { app } = fixture({ rateLimit: 1, clock: () => time })
   t.after(() => app.close())
   const first = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
@@ -128,7 +147,7 @@ test('honeypot is accepted generically without saving; database failures reveal 
   assert.equal(bot.statusCode, 200)
   assert.equal(entries.size, 0)
   const failing = createApp({
-    store: { health: async () => { throw new Error('PRIVATE DATABASE DETAILS') }, insert: async () => { throw new Error(`PRIVATE ${body.email}`) } },
+    store: { health: async () => { throw new Error('PRIVATE DATABASE DETAILS') }, insert: async () => { throw new Error(`PRIVATE ${body.email}`) }, removeById: async () => {} },
     encryptionKey, lookupKey, allowedOrigins: [origin],
   })
   t.after(() => failing.close())
@@ -147,9 +166,8 @@ test('Postgres migration, concurrent deduplication and encrypted persistence', {
   await pool.query(`CREATE SCHEMA ${schema}`)
   const scoped = new Pool({ connectionString: process.env.TEST_DATABASE_URL, max: 4, options: `-c search_path=${schema}` })
   t.after(async () => { await scoped.end(); await pool.query(`DROP SCHEMA ${schema} CASCADE`); await pool.end() })
-  const sql = await readFile(new URL('../sql/001_waitlist.sql', import.meta.url), 'utf8')
-  await scoped.query(sql)
-  await scoped.query(sql)
+  await migrate(scoped)
+  await migrate(scoped)
   const app = createApp({ store: postgresStore(scoped), encryptionKey, lookupKey, allowedOrigins: [origin], rateLimit: 30 })
   t.after(() => app.close())
   const results = await Promise.all(Array.from({ length: 10 }, () => app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })))

@@ -22,7 +22,7 @@ The selected license is AGPL-3.0. The repository name uses `.work`; the purchase
 1. Documentation-first public commit with README, full license, Git/Docker ignores, design decisions, scope, goals, build plan and TODO.
 2. Landing page preserving the real hospital-parody composition and typography, renamed TransProxy with the requested dark trans-blue/pink palette.
 3. Prominent source-backed founder story/purpose and clearly labelled planned features.
-4. Email-only private waiting list with server-validated adult eligibility and consent, encrypted contact persistence, duplicate-safe responses, rate limiting and accurate browser success/error behavior.
+4. Private waiting list with a discarded DOB eligibility check, server-validated adult eligibility and consent, encrypted contact persistence, duplicate-safe responses, rate limiting and accurate browser success/error behavior.
 5. New isolated frontend, API and private Postgres resources in a new self-hosted Coolify project on the existing server. Serve `transproxy.org` over HTTPS; proxy `/api` to the private API resource without a public API hostname.
 6. Editable desktop/mobile Figma launch screens and planned core-product screens, with synthetic representative data and screenshot review.
 7. Publication review, environment-change listing before deployment, focused functional/security checks and actual desktop/mobile/live browser verification.
@@ -120,3 +120,7 @@ Only task-owned changes within these areas are authorized. A listed area does no
 - Preserve actual source composition and typography apart from requested rename/theme and new launch content/behavior.
 - Do not publish member-product claims as available until implemented and verified.
 - No unsolicited messages, campaigns, purchases, domain transfers, existing-resource deletion or privacy/age-rule relaxation.
+
+## DOB and welcome email update —2026-11-10
+
+The requested date-of-birth field is required for server-side18+ validation. The full date is discarded and never stored, logged or sent to the email provider. Existing email/adult/consent controls and all unrelated presentation remain. Same-Cruush waiting-list email setup means one transactional welcome for a new consenting signup, backed by a self-hosted Postgres queue and safe retries, with signed unsubscribe. Resend handles delivery using the existing approved account. This update does not add member accounts, password reset, contact synchronization or campaigns. Existing entries are not backfilled or emailed by this release.

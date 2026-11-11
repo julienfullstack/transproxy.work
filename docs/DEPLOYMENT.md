@@ -149,3 +149,30 @@ member account was created. Temporary deployment token count was zero after the
 release checks. Local unavailable-service behavior and both TypeScript builds
 also passed; the real PostgreSQL integration covered encryption, concurrent
 deduplication and private operator removal.
+
+## DOB and welcome-email update
+
+New required runtime configuration: `RESEND_API_KEY`, `WAITLIST_FROM_EMAIL` and
+`SITE_URL`. Store these runtime-only (`is_buildtime=false`), with Dockerfile ARG
+injection disabled. Keep all existing database and encryption/lookup keys intact.
+The app/API/Postgres and durable mail queue/worker stay self-hosted; Resend is
+the external delivery service used by Cruush. The full DOB is used only for a
+real-calendar18+ check and discarded. No account or password-reset flow is added.
+
+Migration002 adds welcome delivery state without changing existing encrypted
+contacts. Existing rows default to`none`; only a new signup while delivery is
+configured becomes`pending`. Duplicate signups do not create another message.
+Leases, stable provider idempotency keys and bounded retries survive restarts.
+Signup success depends on saving the entry, not on provider availability.
+
+Resend sending-domain verification uses its issued DKIM and sending-subdomain
+records. Preserve the existing PrivateEmail apex MX and SPF exactly; a separate
+sending-subdomain MX does not replace inbound mail routing. Tracking and receiving
+are disabled for this integration. Do not change Cruush mail settings.
+
+Welcome email links contain a random record ID, expiry and context-separated HMAC,
+with no contact data. GET opens a nonmutating confirmation page; explicit form POST
+or an authenticated email-client one-click request removes the active entry and
+its pending mail. A bounded send that already started may complete before removal;
+no new send starts after the removal transaction commits. Operator removal stays
+available. No bulk delivery or campaign send is part of this release.

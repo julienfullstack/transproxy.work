@@ -45,7 +45,7 @@ Stream.io is the selected moderation provider for the planned community/publicat
 
 Public visitors can read the founder story and, when implemented and reviewed, approved reports, the public feed and reference directories. Invitations are required for accounts, posting, replies, reactions and personal tracking. The main support community is members-only; private groups need separate invitations. Anonymous surgery results default to invited members unless the contributor explicitly chooses public access.
 
-The waiting list stores an email privately and encrypted. Joining does not create an account or grant access. Invitations must not bypass age eligibility.
+The waiting list checks a complete date of birth against the actual18th birthday and discards that date. It stores the email privately and encrypted. New signups queue one welcome email when delivery is configured; duplicates do not send another. The queue and worker run on our self-hosted API/Postgres; Resend handles external email delivery. Email links support removal from the list. Joining does not create an account or grant access. Invitations must not bypass age eligibility.
 
 ## Project documents
 

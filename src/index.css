@@ -254,7 +254,7 @@ mark { background: var(--mark); color: inherit; }
 .status-label { color: var(--magenta); font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
 .waitlist-form { background: var(--surface); border-top: 4px solid var(--sky); padding: 24px; }
 .waitlist-form label { display: block; margin-bottom: 10px; }
-.waitlist-form input[type=email] { width: 100%; font: inherit; background: var(--page); color: var(--text); border: 1px solid var(--border); padding: 14px 12px; margin-bottom: 20px; border-radius: 0; }
+.waitlist-form input[type=email], .waitlist-form input[type=date] { width: 100%; font: inherit; background: var(--page); color: var(--text); border: 1px solid var(--border); padding: 14px 12px; margin-bottom: 20px; border-radius: 0; }
 .waitlist-form .check { display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; font-size: .9rem; margin-bottom: 14px; }
 .waitlist-form input[type=checkbox] { margin-top: 5px; accent-color: var(--sky); width: 16px; height: 16px; flex-shrink: 0; }
 .submit-button { display: block; width: 100%; border: 0; border-radius: 0; background: var(--sky); color: #0b0d16; padding: 14px; margin-top: 24px; font: inherit; font-weight: 700; cursor: pointer; }

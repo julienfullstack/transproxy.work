@@ -3,8 +3,10 @@ import { fileURLToPath } from 'node:url'
 import { Pool } from 'pg'
 
 export async function migrate(pool: Pool): Promise<void> {
-  const sql = await readFile(fileURLToPath(new URL('../sql/001_waitlist.sql', import.meta.url)), 'utf8')
-  await pool.query(sql)
+  for (const filename of ['001_waitlist.sql', '002_waitlist_mail.sql']) {
+    const sql = await readFile(fileURLToPath(new URL(`../sql/${filename}`, import.meta.url)), 'utf8')
+    await pool.query(sql)
+  }
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

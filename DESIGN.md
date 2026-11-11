@@ -41,7 +41,7 @@ Use readable text contrast and retain the original source's square-button and ho
 
 The public launch contains a founder/story section based on approved public material, an explicitly planned-feature overview, an adult-only waiting list and privacy information. Keep status honest: waiting-list submission is the working action; member features remain labelled planned. Show new visible wording before committing it.
 
-The waiting-list form requests only an email and the necessary age/consent confirmations. Saving must produce an accurate success or error state. A waiting-list entry must not expose email addresses publicly, create an account, send invitations or grant member access.
+The waiting-list form requests an email, DOB for an eligibility check only, and the existing age/consent confirmations. Saving must produce an accurate success or error state. A waiting-list entry must not expose email addresses publicly, create an account, send invitations or grant member access. New signups may receive the requested transactional welcome email; this does not grant membership.
 
 ## Figma
 
@@ -54,3 +54,7 @@ Prototype data must be synthetic. Do not import private records, medical images,
 Private records are not public posts. Private sharing, public posting, report publication, anonymous-gallery contribution and pattern contribution are separate choices. Show selected snapshots and exact versions before sharing. Graphic public medical images require a warning and deliberate reveal; their presence must not expand access to private originals.
 
 Future incapacity/death delivery and human advocacy must be labelled planned. The interface must not imply that an app entry alone establishes consent, appoints a proxy or makes a diagnosis.
+
+## DOB waiting-list update —2026-11-10
+
+Julien: “I want a waiting list out as soon as possible.So make the API and the reset and all the bullshit we use for that same thing as crush.I want to do everything stuff hosted possible.Come on , please tell me you're killing me ask for dob”. Add a required Date of birth field to the existing waiting list and validate18+ on the API. Preserve all existing unrequested presentation and controls. Exact DOB is used only to check eligibility and discarded; it must not enter storage, logs or email delivery. This supersedes the earlier email-only input wording. The app/API/database remain self-hosted; inspect actual Cruush mail setup rather than inventing a different service.
