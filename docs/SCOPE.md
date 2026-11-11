@@ -20,7 +20,7 @@ The selected license is AGPL-3.0. The repository name uses `.work`; the purchase
 ## Launch deliverables
 
 1. Documentation-first public commit with README, full license, Git/Docker ignores, design decisions, scope, goals, build plan and TODO.
-2. Landing page preserving the real hospital-parody composition and typography, renamed TransProxy with the requested dark trans-blue/pink palette.
+2. Own-brand feature-first landing page with dark frosted glass, medical/queer identity, neon trans-blue/pink Y2K window accents, Matrix and butterflies; the latest selected design replaces the earlier hospital parody.
 3. Prominent source-backed founder story/purpose and clearly labelled planned features.
 4. Private waiting list with a discarded DOB eligibility check, server-validated adult eligibility and consent, encrypted contact persistence, duplicate-safe responses, rate limiting and accurate browser success/error behavior.
 5. New isolated frontend, API and private Postgres resources in a new self-hosted Coolify project on the existing server. Serve `transproxy.org` over HTTPS; proxy `/api` to the private API resource without a public API hostname.
@@ -57,7 +57,7 @@ No email, invitation or campaign send is included in this delivery.
 - Separate private original records from the selected publication snapshot, with exact text, attribution, names and images previewed before submission.
 - Anonymous public attribution by default or an explicit chosen display name. Moderation queues, requested redactions, decisions, corrections, withdrawal and re-review after edits.
 - Complaint status: submitted, acknowledged, substantive response and communicated corrective action.
-- Public chronological Confessional with selected experiences/healing updates, pictures, replies, editing/deletion and emoji reactions. Anonymous posts must not link to a public profile. Reaction counts do not reveal account identities or change visibility.
+- Public chronological Shared Experiences with selected experiences/healing updates, pictures, replies, editing/deletion and emoji reactions. Anonymous posts must not link to a public profile. Reaction counts do not reveal account identities or change visibility.
 - Patterns from reviewed public reports plus separately opted-in limited private contributions. Explain fields contributed; exclude private narrative, images, exact dates and identity.
 - Deduplicate incidents and distinguish report counts from contributing-account counts. Suppress small cohorts and revealing filter combinations. The planned initial rule is weekly count bands with at least five distinct contributing accounts.
 - Reviewed provider identity normalization; never merge names alone. Label counts as submitted-report patterns, not automated findings of wrongdoing.
@@ -85,7 +85,7 @@ No email, invitation or campaign send is included in this delivery.
 
 - Main member community with channels for general support, surgery, healing and volunteering; separately invited private subgroups by procedure, hospital, location or experience.
 - Text, threads, reactions, pins and notification controls. Volunteer facilitators moderate only assigned groups; that role grants no access to private records.
-- Selected sharing, graphic-image reveal, leaving/muting, blocking and reporting. The public Confessional remains a separate surface.
+- Selected sharing, graphic-image reveal, leaving/muting, blocking and reporting. The public Shared Experiences remains a separate surface.
 - Optional fundraiser cards on profiles, updates and group posts, linking to public external donation pages. Display destination, allow correction/closure/reporting and require deliberate inclusion on anonymous posts because links may reveal identity.
 
 ## Future service, separately planned

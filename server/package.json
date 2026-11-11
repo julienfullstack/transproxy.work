@@ -8,9 +8,10 @@
   "scripts": {
     "dev": "tsx watch src/index.ts",
     "build": "tsc",
-    "test": "tsx --test src/waitlist.test.ts src/mail.test.ts",
+    "test": "tsx --test src/waitlist.test.ts src/mail.test.ts src/legalRequests.test.ts",
     "migrate": "node dist/migrate.js",
     "waitlist:remove": "node dist/remove.js",
+    "legal:requests": "node dist/legalRequestsOperator.js",
     "start": "node dist/index.js"
   },
   "dependencies": {

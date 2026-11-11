@@ -24,12 +24,16 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 Adaptation notes:
-The original character-trail functions and CRT shaders are retained. The
+The original falling-code character set, randomization, positions, speeds,
+30 trails and fade behavior are retained. Trail colors are interpolated
+between trans blue (#5BCEFA) and pink (#F5A9B8). The original vertex shader is
+retained; the fragment shader is replaced with flat texture sampling on black.
+TV distortion, static, scanlines, glitch, phosphor accumulation, and the
 unrequested demo banners, icon images and full-screen color flashes are omitted.
 The ReGL draw wrapper is replaced with direct WebGL calls because ReGL 1.3.9
 uses runtime Function code generation, which conflicts with this site's CSP.
-The fixed colors match the original onecolor/gl-matrix results; those unused
-libraries are not bundled. Original randomization credit is retained in source:
+The unused onecolor/gl-matrix libraries are not bundled. Original
+randomization credit is retained in source:
 https://gist.github.com/blixt/f17b47c62508be59987b
 
 The Inconsolata font is self-hosted separately under the SIL Open Font License;

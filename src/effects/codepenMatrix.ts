@@ -17,7 +17,7 @@ export function loadCodepenMatrixFont(): Promise<void> {
   return fontReady
 }
 
-/** The Pen's commands in native WebGL; shaders/trails retain upstream source. */
+/** The Pen's falling-code commands in native WebGL with a flat, clean output. */
 export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRenderer {
   const gl = canvas.getContext('webgl', { antialias: true, alpha: false, preserveDrawingBuffer: true })
   if (!gl) throw new Error('WebGL is unavailable')
@@ -32,7 +32,7 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
       gl!.compileShader(shader)
       if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
         gl!.deleteShader(shader)
-        throw new Error('CRT shader compilation failed')
+        throw new Error('Matrix shader compilation failed')
       }
       return shader
     }
@@ -45,7 +45,7 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
     gl.linkProgram(program)
     gl.deleteShader(vertex)
     gl.deleteShader(fragment)
-    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('CRT shader linking failed')
+    if (!gl.getProgramParameter(program, gl.LINK_STATUS)) throw new Error('Matrix shader linking failed')
     gl.useProgram(program)
     const position = gl.createBuffer()
     if (!position) throw new Error('Quad allocation failed')
@@ -65,27 +65,22 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE)
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false)
-    const timeUniform = gl.getUniformLocation(program, 'time')
     gl.uniform1i(gl.getUniformLocation(program, 'sprite'), 0)
-    // Exact normalized Float32 equivalents of upstream hex2vector constants.
-    gl.uniform3fv(gl.getUniformLocation(program, 'fgColor'), new Float32Array([1, 238 / 255, 238 / 255]))
-    gl.uniform3fv(gl.getUniformLocation(program, 'bgColor'), new Float32Array([0, 42 / 255, 42 / 255]))
+    gl.uniform3fv(gl.getUniformLocation(program, 'bgColor'), new Float32Array([0, 0, 0]))
     gl.disable(gl.DEPTH_TEST)
-    gl.enable(gl.BLEND)
-    gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
+    gl.disable(gl.BLEND)
     gl.clearColor(0, 0, 0, 1)
     gl.clearDepth(1)
     gl.viewport(0, 0, canvas.width, canvas.height)
     gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT)
     return {
-      frame(delta, time) {
+      frame(delta, _time) {
         if (destroyed || gl.isContextLost()) return
         world.updateWorld(delta)
         world.renderWorld(delta)
         gl.bindTexture(gl.TEXTURE_2D, texture)
         gl.texSubImage2D(gl.TEXTURE_2D, 0, matrixDimensions.consolePad, matrixDimensions.consolePad, gl.RGBA, gl.UNSIGNED_BYTE, world.bufferCanvas)
-        gl.uniform1f(timeUniform, time)
-        // Preserve the original alpha-.2 accumulation; never clear each frame.
+        // The source buffer retains its trails; output has no CRT accumulation.
         gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
       },
       resize(width, height) {

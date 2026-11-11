@@ -4,7 +4,7 @@ import type { AsyncGssScene } from 'gss-lang'
 // Visual source: LukyVj's GSS galaxy button, inspected 2026-11-10.
 // https://codepen.io/editor/LukyVj/pen/01a13f4f-03a2-7912-b810-f80a101db33b
 // Keep its two spiral arms, 60 emissive stars, core and slow galaxy rotation;
-// use TransProxy's mint/cyan/violet/pink palette and a much lower pixel density.
+// use TransProxy's blue/pink palette and a much lower pixel density.
 const STARS = Array.from({ length: 60 }, (_, index) => {
   const progress = Math.floor(index / 2) / 29
   const radius = 0.22 + progress * 1.88
@@ -15,7 +15,7 @@ const STARS = Array.from({ length: 60 }, (_, index) => {
     z: Math.sin(angle) * radius - jitter,
     y: Math.sin(index * 43.7) * 0.025,
     radius: 0.018 + (Math.sin(index * 17.3) + 1) * 0.006,
-    hue: 135 + progress * 165,
+    hue: 195 + progress * 135,
   }
 })
 
@@ -32,7 +32,7 @@ scene {
   dpr: 0.75;
 }
 #galaxy { animation: orbit 40s linear infinite; }
-#core { radius: 0.15; color: #f4fff9; material: emissive(1.6); }
+#core { radius: 0.15; color: #f7f7fc; material: emissive(1.6); }
 ${STARS.map((star, index) => `#star${index} { translate: ${star.x.toFixed(4)} ${star.y.toFixed(4)} ${star.z.toFixed(4)}; radius: ${star.radius.toFixed(4)}; color: hsl(${star.hue.toFixed(1)} 90% 72%); material: emissive(1.25); }`).join('\n')}
 @keyframes orbit { from { rotate-y: 0deg; } to { rotate-y: -360deg; } }
 `
@@ -82,7 +82,7 @@ export function NeonBackdrop() {
       const unit = height * 0.68
       const rotation = -elapsed * Math.PI / 20
       const core = context!.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, height * 0.7)
-      core.addColorStop(0, 'rgba(244,255,249,0.38)')
+      core.addColorStop(0, 'rgba(247,247,252,0.38)')
       core.addColorStop(0.22, 'rgba(255,139,203,0.18)')
       core.addColorStop(1, 'rgba(173,140,255,0)')
       context!.fillStyle = core

@@ -114,3 +114,31 @@ id_rsa
 id_ed25519
 secrets.*
 *.secret
+
+# Private data at any nesting depth, including local operator exports.
+**/private/
+**/private-records/
+**/patient-records/
+**/uploads/
+**/.local/records/
+**/.local/storage/
+**/.local/data/
+**/dumps/
+**/database-dumps/
+**/backups/
+
+# Local key material/configuration, never the public crypto implementation.
+**/.keys/
+**/key-material/
+**/runtime-secrets/
+encryption-key.*
+encryption-keys.*
+lookup-key.*
+lookup-keys.*
+key-material.*
+encryption-config.local.*
+crypto-config.local.*
+key-config.local.*
+
+# Local design-review evidence; private session artifacts.
+/design-qa.md

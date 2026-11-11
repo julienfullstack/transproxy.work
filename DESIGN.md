@@ -106,3 +106,81 @@ Julien: “I gave you a codepen for it and use it”.
 Julien: “Bruh use the codepena i send thats the point”.
 
 Use the supplied working unframework/pqorjJ falling-code and WebGL CRT/TV effect itself, rather than a newly drawn imitation. Keep the actual locally bundled GSS button reference. Self-host runtime files and retain source/license notices; preserve all current content and controls. Make the requested background clearly visible and finish the website before updating Figma.
+
+## Original hospital parody, black/trans palette — 2026-11-10
+
+Julien: “Use a design skill and make a better u I this looks like ass”. “I want to go back to the original idea where it looks like a parody amounts on his website , but in dark theme and transgender neon colors”. “So I wanted to look at like mountaineer's website , like I did before , but in a dark theme with neon transgender colors”.
+
+Julien: “Keep it subtly in blue and pink”. “Maybe remove the t v static effect and just keep the matrix stuff”. “Yes, sounds sexy.So no green , dark black , or something similar color background”.
+
+These latest instructions supersede the earlier green/teal palette and CRT direction. Restore the selected original hospital composition: compact utility header, divided navigation, modest hero caption, continuous three-column service band and square glossy controls. Use near-black foundations with trans-blue/pink accents. Keep the actual supplied falling-code logic subtly behind the interface; remove TV static, scanlines, distortion and glitch. Preserve existing content, all controls and backend behavior.
+
+Julien supplied https://codepen.io/yoksel/pen/BZwWOO: “Maybe also, this in the background as a shader, just some cool butterfly things to represent healing, but we color them, I guess to match the themes of the website.I guess”. Inspect and reuse that actual effect as restrained blue/pink decorative motion; keep content legible, clicks unobstructed, and reduced motion supported.
+
+Julien: “So put the butterflies on top of the matrix effect , and then put this stuff on top of that”. Required layer order: Matrix at the back, butterflies above Matrix, website UI above both; decoration remains inert and click-through.
+
+## Own medical/queer identity — 2026-11-10
+
+Julien: “Remove the mount sinai kind of accents and make it our own”.
+
+Julien: “Yes, remove them”.
+
+Julien: “Make the headers and cards in content glass , black , clear glass or frosted glass with neon styling”.
+
+Julien: “I'm still not feeling to say you.I.We have a different direction from the original plan.With the amount signing website, look at our new plan and design AU.I, that is elegant, dignified.That feels medical, but in a fun queer way.Butterfly accents are preferred , as well as the symbol with the snake that doctors use in medicine do no harm”.
+
+Julien: “I want a dark seam, though, with transgender colors as the primary accents, it might be a dark blue as opposed to a black theme, but I want it to be AD theme that's opposed to light themed for sure.I want the matrix accents and butterfly accents somewhere I want the u I to feel easy to use and fit the features that will have”.
+
+Julien: “Use the design decode or whatever fuck you use to design the flash feature.Initially, you use a skill that made a good result, use it again.I want something that feels medital.Queer and dignified all the same time , but also transformative”.
+
+Latest direction replaces hospital imitation as the design target. Remove the hospital jokes, fake phone, parody disclaimers and hospital-specific visual accents. Use own TransProxy brand: elegant and dignified, medical and queer, transformative; deep midnight blue/black rather than light, trans blue/pink primary accents, frosted/clear dark glass headers and cards with restrained neon. Retain Matrix and butterfly accents in the requested layer order; add the requested single-snake medical staff symbol. Preserve actual feature content, privacy/eligibility and backend behavior; keep legacy route URLs while using straightforward Reports/Advocacy labels.
+
+Julien: “So you can rename things like the wall of shame.I want it to better fit the features we discussed”.
+
+Julien: “But i need a tab up top about my story too and why i made this”.
+
+Julien: “I like the idea of individual complaints being kind of like post notes on a wall like you had before though that looked nice.That could be like artificial or something like that.I don't want the holiday confessional , call something else”.
+
+Use clear feature-led labels: Reports & patterns, Correspondence, Records & timeline, Advocacy, and Shared Experiences (replaces Confessional). Keep Julien’s Story top-level, including why TransProxy was created. Individual complaint reports retain the note-on-a-wall visual metaphor. These future member capabilities remain labelled planned.
+
+## Feature-first techno refinement — 2026-11-10
+
+Julien: “You made a very random quote for the like things about my story.You talked about me talking about the correspondence, but that is so out of place.I want the features that we're going to build to be the main point and I want to make sure the waiting list is encrypted.And I'll put in rescent and all in the database , and correct in dns etc
+
+Make sure you're putting the right stuff and getting ignored anything that would reveal our secrets as well as the type of encryption we use should be in git ignore”.
+
+Julien: “I'm still not feeling this u I i want a complete redesign based on the features we'll have”.
+
+Julien: “Pretty good , but no a I generated illustrations , please , and can we pick a different font”.
+
+Julien: “Let's do something techno”.
+
+Julien: “This one, but can you make it more original?Let me show you some references”.
+
+Julien: “And why are the emails?So that's when people sign up for the emailing list , they'll get a email in the right theme to match the website , confirming them”.
+
+Julien: “Techno vibes”.
+
+The attached6693.jpg selects the third displayed concept as the base, then requests greater originality and additional references before refinement. Feature information leads, story remains in its dedicated topnav/tab with purpose summary; remove the out-of-context homepage quotation blocks. Use techno typography and no AI-generated illustration assets: the actual supplied CodePen butterfly/Matrix effects and licensed icon assets remain. Transactional signup confirmation emails must follow the final dark trans-blue/pink website theme; Correspondence is the separate planned records feature.
+
+Julien supplied https://codepen.io/BlurSoulx/pen/PoVRBaz and clarified: “That if I but neon and trans colors , so neon pick and neon blue”. Blend that actual Y2K window/technical-type visual reference with the selected feature-first design, neon pink and neon blue. Do not carry over its unrelated mascots, personal branding, social links or external textures.
+
+## Implemented selected refinement — 2026-11-10
+
+Julien: “Like that but also glass”. The selected feature-first mock plus BlurSoulx Y2K reference were combined and shown before implementation. Use Chakra Petch headings and Inter body, neon blue/pink glass window bars, six planned feature categories, a note-wall preview and a wide encrypted-email signup panel. The complete redesign replaces the earlier hospital utility bar, hero carousel and service band. Legacy routes remain reachable through primary navigation, More and footer; on phones Reports is a shorter visual label with the full accessible name. Actual source butterflies use one original six-face cube and omit the dark-matter inset shadow; original wing and group motion remain. No AI-generated illustration is shipped. The medical-staff favicon reuses the licensed source icon.
+
+## Signup-first patient journey — 2026-11-11
+
+Julien: “The number one thing should be the waiting list and then the features right below it”. Julien: “Trying to sell a thing, make it attractive.Use a design skill that makes you think like a natural designer to sell something”. This supersedes the earlier feature-grid-first ordering. The complete actual signup form leads in one purposeful glass opening section; features follow immediately in three different patient-journey scenes (before care, recovery, reports/support), with honest planned product previews. Keep the story tab, techno/trans/glass/source-effect direction and all privacy/eligibility controls. New wording was shown in the combined revision before implementation. No fake live patient records, clinical outcomes or window controls; no AI illustrations. Legal policy research/implementation is also requested, without cure, compliance or legal-immunity claims.
+
+## Approved design and button-only refinement — 2026-11-11
+
+Julien: “I like it but lets amke the buttons better”. Julien supplied https://codepen.io/simeydotme/pen/NPxaprq and confirmed “This for buttons”. Use this corrected actual reference for existing primary glass buttons in the current trans blue/pink theme. Preserve approved layout, sizes, typography, labels, actions, validation and disabled states; no unrelated redesign.
+
+Julien corrected the earlier references: “Aorru wrong onrs”. He then cancelled the separate blur request: “Sorry dont use the blur my bad”. Do not use a blur wipe anywhere; do not apply the two retracted references as button targets.
+
+## Feature scrolling sequence — 2026-11-11
+
+Julien supplied https://codepen.io/editor/powen-cs/pen/01a1c63d-0e3b-76e5-9fa6-a1d8dc6fc008: “Maybe some of this cool scrolling down shit for like the features I don't know should serve with the features and then end with a wait list or vice versa”.
+
+Use the actual Animation Timeline reference by Phil Owen for the existing home feature sequence: scroll-filled left rail, restrained hinged product-preview entrances and drawn neon borders. Keep the previously explicit waiting-list-first priority and finish the feature sequence with a button back to that form. Retain View all features. Keep feature text stable and all content available in unsupported/reduced-motion browsers. No blur wipe, original demo hero/year counter, new fonts/background, scroll capture or exaggerated full-screen spacers. Preserve the approved gel buttons, source backgrounds, story/legal content and form behavior.

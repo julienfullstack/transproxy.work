@@ -4,8 +4,9 @@ import type { Pool } from 'pg'
 import { emailDigest, encryptEmail } from './crypto.js'
 import { isAdultDateOfBirth } from './age.js'
 import { unsubscribePage, verifyUnsubscribeToken } from './mail.js'
+import { registerLegalRequestRoutes, type LegalRequestStore } from './legalRequests.js'
 
-export const CONSENT_VERSION = 'waitlist-dob-2026-11-10'
+export const CONSENT_VERSION = 'waitlist-terms-2026-11-11-v1'
 const accepted = { ok: true, message: 'Your waiting-list request has been received.' } as const
 
 export type EncryptedEntry = {
@@ -47,9 +48,12 @@ type AppOptions = {
   rateWindowMs?: number
   clock?: () => number
   queueWelcome?: boolean
+  legalRequestStore?: LegalRequestStore
+  legalRequestRateLimit?: number
+  legalRequestRateWindowMs?: number
 }
 
-type SignupBody = { email: string; dateOfBirth: string; adult: boolean; consent: boolean; website?: string }
+type SignupBody = { email: string; dateOfBirth: string; adult: boolean; consent: boolean; termsAccepted: boolean; website?: string }
 
 export function createApp(options: AppOptions) {
   if (options.encryptionKey.length !== 32 || options.lookupKey.length !== 32) throw new Error('Waitlist keys must be 32 bytes')
@@ -122,13 +126,16 @@ export function createApp(options: AppOptions) {
     }
   })
 
-  app.setErrorHandler((error, _request, reply) => {
+  app.setErrorHandler((error, request, reply) => {
     // Do not return validation values, database details, request bodies or errors
     // to logs. Only fixed text leaves this boundary.
-    const failure = error as { statusCode?: number; validation?: unknown }
+    const failure = error as { statusCode?: number; validation?: { keyword?: string; params?: { missingProperty?: string } }[] }
     if (failure.statusCode === 413) return reply.code(413).send({ ok: false, message: 'This request is too large.' })
     if (failure.statusCode === 415) return reply.code(415).send({ ok: false, message: 'Send this request as JSON.' })
-    if (failure.validation || failure.statusCode === 400) return reply.code(400).send({ ok: false, message: 'Enter a valid email, complete date of birth and confirm both choices.' })
+    if (request.routeOptions.url === '/api/waitlist' && failure.validation?.some((issue) => issue.keyword === 'required' && issue.params?.missingProperty === 'termsAccepted')) {
+      return reply.code(400).send({ ok: false, message: 'This page has been updated. Reload it and review the current terms before joining.' })
+    }
+    if (failure.validation || failure.statusCode === 400) return reply.code(400).send({ ok: false, message: 'Enter a valid email and date of birth, confirm your age and email consent, and accept the terms.' })
     return reply.code(503).send({ ok: false, message: 'The waiting list is temporarily unavailable. Please try again.' })
   })
 
@@ -143,12 +150,13 @@ export function createApp(options: AppOptions) {
     schema: {
       body: {
         type: 'object', additionalProperties: false,
-        required: ['email', 'dateOfBirth', 'adult', 'consent'],
+        required: ['email', 'dateOfBirth', 'adult', 'consent', 'termsAccepted'],
         properties: {
           email: { type: 'string', minLength: 3, maxLength: 254 },
           dateOfBirth: { type: 'string', pattern: '^\\d{4}-\\d{2}-\\d{2}$', minLength: 10, maxLength: 10 },
           adult: { type: 'boolean', const: true },
           consent: { type: 'boolean', const: true },
+          termsAccepted: { type: 'boolean', const: true },
           website: { type: 'string', maxLength: 512 },
         },
       },
@@ -197,5 +205,10 @@ export function createApp(options: AppOptions) {
     return reply.headers(unsubscribeHeaders).type('text/html; charset=utf-8').send(unsubscribePage(undefined, 'removed'))
   })
 
+  registerLegalRequestRoutes(app, {
+    store: options.legalRequestStore, encryptionKey: options.encryptionKey, lookupKey: options.lookupKey,
+    allowedOrigins: options.allowedOrigins, clock: options.clock,
+    rateLimit: options.legalRequestRateLimit, rateWindowMs: options.legalRequestRateWindowMs,
+  })
   return app
 }

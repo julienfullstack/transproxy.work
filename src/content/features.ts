@@ -62,7 +62,7 @@ export const PLANNED_FEATURES: readonly FeatureItem[] = [
     text: 'Explore reviewed reports and separately opted-in contributions, with incident deduplication and protection for small groups.',
   },
   {
-    title: 'Anonymous Confessional',
+    title: 'Anonymous Shared Experiences',
     text: 'Share chronological experiences and healing updates anonymously by default, with optional display names, pictures, replies and emoji reactions.',
   },
   {

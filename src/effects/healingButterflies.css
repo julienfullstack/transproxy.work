@@ -1,0 +1,118 @@
+/*
+ * Actual CSS 3D effect from yoksel's “Butterflies drink dark matter”.
+ * https://codepen.io/yoksel/pen/BZwWOO
+ * MIT code; exact Freepik/Flaticon wing mask under CC BY 3.0.
+ * Changes: scoped selectors, expanded SCSS values, blue/pink gradients,
+ * local SVG mask and motion-pause controls. See /licenses/codepen-butterflies.txt.
+ */
+.healing-butterflies {
+  perspective: 1000px;
+  perspective-origin: center center;
+  font-size: 14px;
+  pointer-events: none;
+}
+.healing-butterflies * { pointer-events: none; }
+.healing-butterflies .container {
+  width: 15em;
+  height: 15em;
+  transform-style: preserve-3d;
+  animation: healing-butterflies-rotate 15s infinite linear;
+}
+.healing-butterflies .cube {
+  position: absolute;
+  width: 15em;
+  height: 15em;
+  transform-style: preserve-3d;
+}
+.healing-butterflies .cube--2 { transform: rotateX(135deg) rotateY(135deg); }
+.healing-butterflies .cube--3 { transform: rotateX(135deg) rotateZ(135deg); }
+.healing-butterflies .side {
+  position: absolute;
+  width: 15em;
+  height: 15em;
+  transform-style: preserve-3d;
+}
+.healing-butterflies .spot {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 45%;
+  height: 45%;
+  box-shadow: 0 0 35px 25px black inset;
+  border-radius: 50%;
+  transform-style: preserve-3d;
+}
+.healing-butterflies .spot::before,
+.healing-butterflies .spot::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -3em;
+  margin-left: -6em;
+  width: 12em;
+  height: 6em;
+  box-sizing: border-box;
+  -webkit-mask-image: url('/graphics/butterfly-wing.svg');
+  mask-image: url('/graphics/butterfly-wing.svg');
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center bottom;
+  mask-position: center bottom;
+  animation: healing-butterflies-wing .7s infinite;
+}
+.healing-butterflies .spot::before { transform: rotateX(-50deg) translateY(-50%); color: #5bcefa; }
+.healing-butterflies .spot::after { transform: rotateX(-130deg) translateY(-50%); color: #f5a9b8; }
+.healing-butterflies .spot--top::before,
+.healing-butterflies .spot--top::after {
+  background: linear-gradient(to bottom, #f5a9b8 10%, #5bcefa, #f7f7fc, #f5a9b8);
+  animation-delay: -.1166666667s;
+}
+.healing-butterflies .spot--bottom::before,
+.healing-butterflies .spot--bottom::after {
+  background: linear-gradient(to top, #f5a9b8 10%, #5bcefa, #f7f7fc, #f5a9b8);
+  animation-delay: -.2333333333s;
+}
+.healing-butterflies .spot--left::before,
+.healing-butterflies .spot--left::after {
+  background: linear-gradient(to bottom, #5bcefa 10%, #f5a9b8, #f7f7fc, #5bcefa, #f5a9b8);
+  animation-delay: -.35s;
+}
+.healing-butterflies .spot--right::before,
+.healing-butterflies .spot--right::after {
+  background: linear-gradient(to top, #5bcefa, #f5a9b8, #f7f7fc, #5bcefa, #f5a9b8 90%);
+  animation-delay: -.4666666667s;
+}
+.healing-butterflies .spot--back::before,
+.healing-butterflies .spot--back::after {
+  background: linear-gradient(to top, #5bcefa, #f5a9b8, #5bcefa, #f7f7fc, #f5a9b8, #f5a9b8 90%);
+  animation-delay: -.5833333333s;
+}
+.healing-butterflies .spot--front::before,
+.healing-butterflies .spot--front::after {
+  background: linear-gradient(to bottom, #5bcefa 10%, #f5a9b8, #5bcefa, #f7f7fc, #f5a9b8, #f5a9b8);
+  animation-delay: -.7s;
+}
+.healing-butterflies .side--back { transform: translateZ(-7.5em) rotateY(180deg); }
+.healing-butterflies .side--left { transform: translateX(-7.5em) rotateY(-90deg); }
+.healing-butterflies .side--right { transform: translateX(7.5em) rotateY(90deg); }
+.healing-butterflies .side--top { transform: translateY(-7.5em) rotateX(90deg); }
+.healing-butterflies .side--bottom { transform: translateY(7.5em) rotateX(-90deg); }
+.healing-butterflies .side--front { transform: translateZ(7.5em); }
+@keyframes healing-butterflies-rotate {
+  100% { transform: rotateX(360deg) rotateY(720deg) rotateZ(360deg); }
+}
+@keyframes healing-butterflies-wing {
+  50% { transform: rotateX(-90deg) translateY(-50%); }
+}
+.healing-butterflies[data-paused='true'] .container,
+.healing-butterflies[data-paused='true'] .spot::before,
+.healing-butterflies[data-paused='true'] .spot::after { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) {
+  .healing-butterflies .container,
+  .healing-butterflies .spot::before,
+  .healing-butterflies .spot::after { animation-play-state: paused; }
+}

@@ -2,10 +2,10 @@
 .git
 .git/**
 # Secrets and local environment configuration
-.env
-.env.*
-*.env
-*.env.*
+**/.env
+**/.env.*
+**/*.env
+**/*.env.*
 !.env.example
 !**/.env.example
 !*.env.example
@@ -14,16 +14,16 @@
 **/secrets/
 /credentials/
 **/credentials/
-credentials.json
-service-account*.json
-serviceAccount*.json
-*.pem
-*.key
-*.p12
-*.pfx
-*.keystore
-*.jks
-.npmrc.local
+**/credentials.json
+**/service-account*.json
+**/serviceAccount*.json
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+**/*.keystore
+**/*.jks
+**/.npmrc.local
 
 # Private records, user uploads and local storage (never source fixtures)
 /private/
@@ -48,28 +48,28 @@ serviceAccount*.json
 /server/dumps/
 /server/database-dumps/
 /server/backups/
-*.dump
-*.sql.gz
-*.sql.bz2
-*.sql.xz
-*.sqlite
-*.sqlite3
-*.sqlite-*
-*.sqlite3-*
-*.db
-*.db-*
-*.backup
-*.bak
-*~
+**/*.dump
+**/*.sql.gz
+**/*.sql.bz2
+**/*.sql.xz
+**/*.sqlite
+**/*.sqlite3
+**/*.sqlite-*
+**/*.sqlite3-*
+**/*.db
+**/*.db-*
+**/*.backup
+**/*.bak
+**/*~
 
 # Logs and runtime process state
-*.log
+**/*.log
 logs/
-*.pid
-*.pid.lock
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+**/*.pid
+**/*.pid.lock
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
 
 # Dependencies, generated output and caches
 node_modules/
@@ -107,13 +107,41 @@ Thumbs.db
 # Never place real patient material or secrets in an allowlisted example/fixture.
 
 # Plain SQL exports are private; numbered migrations and synthetic SQL fixtures stay source.
-*.sql
+**/*.sql
 !server/sql/*.sql
 !server/src/fixtures/*.sql
-.npmrc
-.netrc
-.pgpass
-id_rsa
-id_ed25519
-secrets.*
-*.secret
+**/.npmrc
+**/.netrc
+**/.pgpass
+**/id_rsa
+**/id_ed25519
+**/secrets.*
+**/*.secret
+
+# Private data at any nesting depth, including local operator exports.
+**/private/
+**/private-records/
+**/patient-records/
+**/uploads/
+**/.local/records/
+**/.local/storage/
+**/.local/data/
+**/dumps/
+**/database-dumps/
+**/backups/
+
+# Local key material/configuration, never the public crypto implementation.
+**/.keys/
+**/key-material/
+**/runtime-secrets/
+**/encryption-key.*
+**/encryption-keys.*
+**/lookup-key.*
+**/lookup-keys.*
+**/key-material.*
+**/encryption-config.local.*
+**/crypto-config.local.*
+**/key-config.local.*
+
+# Local design-review evidence; private session artifacts.
+/design-qa.md

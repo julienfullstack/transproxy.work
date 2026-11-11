@@ -4,7 +4,7 @@ import { createCodepenMatrix, loadCodepenMatrixFont, type CodepenMatrixRenderer 
 const FRAME_INTERVAL = 1000 / 30
 const MAX_PIXELS = 1_800_000
 
-/** Nick Matantsev's actual CRT/Matrix Pen, with lifecycle-only React adaptation. */
+/** Nick Matantsev's actual falling-code logic, with flat blue/pink rendering. */
 export function MatrixBackground() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [renderer, setRenderer] = useState<'loading' | 'webgl' | 'unavailable'>('loading')
@@ -48,8 +48,8 @@ export function MatrixBackground() {
 
     function drawFrozen() {
       if (!effect || disposed) return
-      // Settle upstream alpha-.2 phosphor without advancing glyphs or TV time.
-      for (let index = 0; index < 12; index += 1) effect.frame(0, elapsed)
+      // Render the existing glyphs without advancing their source simulation.
+      effect.frame(0, elapsed)
     }
 
     function resize() {

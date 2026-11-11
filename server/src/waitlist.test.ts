@@ -11,7 +11,7 @@ import { migrate } from './migrate.js'
 const origin = 'https://transproxy.org'
 const encryptionKey = randomBytes(32)
 const lookupKey = randomBytes(32)
-const body = { email: 'test@example.invalid', dateOfBirth: '1990-03-14', adult: true, consent: true, website: '' }
+const body = { email: 'test@example.invalid', dateOfBirth: '1990-03-14', adult: true, consent: true, termsAccepted: true, website: '' }
 const headers = { origin, 'content-type': 'application/json' }
 
 function memoryStore() {
@@ -63,12 +63,14 @@ test('signup stores only encrypted normalized contact, keyed digest and consent 
   assert.equal(first.headers['cache-control'], 'no-store')
 })
 
-test('age and consent must be literal true and email must validate', async (t) => {
+test('age, email consent and separate terms acceptance must be literal true and email must validate', async (t) => {
   const { app, entries } = fixture({ rateLimit: 30 })
   t.after(() => app.close())
   for (const payload of [
     { ...body, adult: false }, { ...body, consent: false },
     { ...body, adult: 'true' }, { ...body, consent: 1 },
+    { ...body, termsAccepted: false }, { ...body, termsAccepted: 'true' }, { ...body, termsAccepted: 1 },
+    Object.fromEntries(Object.entries(body).filter(([key]) => key !== 'termsAccepted')),
     { email: body.email, adult: true }, { ...body, email: 'missing-at' },
     { ...body, email: 'a@b.invalid\nheader' }, { ...body, email: 'a'.repeat(255) },
     { ...body, medicalRecord: 'must not accept unrelated fields' },
@@ -77,6 +79,24 @@ test('age and consent must be literal true and email must validate', async (t) =
     assert.equal(result.statusCode, 400)
   }
   assert.equal(entries.size, 0)
+})
+
+test('old pages missing terms acceptance receive a reload notice without attempting storage; false remains rejected', async (t) => {
+  let inserts = 0
+  const { app } = fixture({ store: {
+    health: async () => {},
+    insert: async () => { inserts += 1 },
+    removeById: async () => {},
+  } })
+  t.after(() => app.close())
+  const { termsAccepted: _terms, ...oldPageBody } = body
+  const oldPage = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: oldPageBody })
+  assert.equal(oldPage.statusCode, 400)
+  assert.deepEqual(oldPage.json(), { ok: false, message: 'This page has been updated. Reload it and review the current terms before joining.' })
+  const declined = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, termsAccepted: false } })
+  assert.equal(declined.statusCode, 400)
+  assert.deepEqual(declined.json(), { ok: false, message: 'Enter a valid email and date of birth, confirm your age and email consent, and accept the terms.' })
+  assert.equal(inserts, 0)
 })
 
 test('DOB checks real UTC birthdays and rejects incomplete, future and impossible dates without saving DOB', async (t) => {

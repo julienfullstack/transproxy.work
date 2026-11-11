@@ -30,7 +30,7 @@ Add read-only selected snapshots, recipient account invitations and expiring rev
 
 ## 5. Reports, publication and respectful public exchange — planned
 
-Add private reporting and a publication moderation queue, reviewed staff/provider identity matching, exact publication previews, correction/withdrawal and complaint follow-up. Build the public Confessional, replies and emoji reactions with anonymous-by-default attribution choices.
+Add private reporting and a publication moderation queue, reviewed staff/provider identity matching, exact publication previews, correction/withdrawal and complaint follow-up. Build the public Shared Experiences, replies and emoji reactions with anonymous-by-default attribution choices.
 
 Integrate Stream.io through a separate TransProxy policy permitting gore; never change Cruush's policy. Retain encrypted originals, screen selected metadata-stripped copies only with explicit submission, and keep incomplete checks pending. Put approved graphic images behind deliberate reveal controls.
 

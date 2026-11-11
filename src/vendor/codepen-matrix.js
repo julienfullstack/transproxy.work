@@ -1,10 +1,11 @@
 /*
- * WebGL CRT Neon Matrix Effect by Nick Matantsev (unframework).
+ * Falling-code source from Nick Matantsev's WebGL CRT Neon Matrix Effect.
  * https://codepen.io/unframework/pen/pqorjJ
  * Public CodePen source under MIT; see /licenses/codepen-matrix.txt.
- * Original character-trail functions and vertex/fragment shader retained.
+ * Original falling-code logic retained; blue/pink colors and a flat shader.
  * Adapter changes: factory scope; no demo banner icons/full-screen flashes;
- * direct WebGL replaces ReGL runtime code generation for strict CSP.
+ * direct WebGL replaces ReGL runtime code generation for strict CSP;
+ * TV distortion, scanlines, glitch and phosphor effects are removed.
  */
 const charW = 6;
 const charH = 10;
@@ -115,7 +116,7 @@ function renderWorld(delta) {
 
     const char = characterSet[Math.floor(getRandomizedFraction(outSeed) * characterSet.length)];
 
-    bufferContext.fillStyle = `hsl(${180 + k * 120}, 100%, 60%)`;
+    bufferContext.fillStyle = `rgb(${91 + (245 - 91) * k}, ${206 + (169 - 206) * k}, ${250 + (184 - 250) * k})`;
     bufferContext.fillText(
       char,
       (trail[0] + 0.5) * charW, // center inside character box
@@ -151,69 +152,18 @@ export const matrixFragmentShader = `
 
         varying vec2 uvPosition;
         uniform sampler2D sprite;
-        uniform float time;
         uniform vec3 bgColor;
-        uniform vec3 fgColor;
 
         #define textureW ${textureW + '.0'}
         #define textureH ${textureH + '.0'}
-        #define consoleW ${consoleW + '.0'}
-        #define consoleH ${consoleH + '.0'}
-        #define consolePadUVW ${consolePad / consoleW}
-        #define consolePadUVH ${consolePad / consoleH}
-        #define charUVW ${charW / consoleW}
-        #define charUVH ${charH / consoleH}
+        #define bufferW ${bufferW + '.0'}
+        #define bufferH ${bufferH + '.0'}
+        #define consolePad ${consolePad + '.0'}
 
         void main() {
-            // @todo use uniform
-            vec2 consoleWH = vec2(consoleW, consoleH);
-
-            // @todo use uniforms
-            float glitchLine = mod(0.8 + time * 0.07, 1.0);
-            float glitchFlutter = mod(time * 40.0, 1.0); // timed to be slightly out of sync from main frame rate
-            float glitchAmount = 0.06 + glitchFlutter * 0.01;
-            float glitchDistance = 0.04 + glitchFlutter * 0.15;
-
-            vec2 center = uvPosition - vec2(0.5);
-            float factor = dot(center, center) * 0.2;
-            vec2 distortedUVPosition = uvPosition + center * (1.0 - factor) * factor;
-
-            vec2 fromEdge = vec2(0.5, 0.5) - abs(distortedUVPosition - vec2(0.5, 0.5));
-
-            if (fromEdge.x > 0.0 && fromEdge.y > 0.0) {
-                vec2 fromEdgePixel = min(0.2 * consoleWH * fromEdge, vec2(1.0, 1.0));
-
-                // simulate 2x virtual pixel size, for crisp display on low-res
-                vec2 inTexel = mod(distortedUVPosition * consoleWH * 0.5, vec2(1.0));
-
-                float distToGlitch = glitchLine - (distortedUVPosition.y - inTexel.y / consoleH);
-                float glitchOffsetLinear = step(0.0, distToGlitch) * max(0.0, glitchDistance - distToGlitch) / glitchDistance;
-                float glitchOffset = glitchOffsetLinear * glitchOffsetLinear;
-
-                vec2 inTexelOffset = inTexel - 0.5;
-                float scanlineAmount = inTexelOffset.y * inTexelOffset.y / 0.25;
-                float intensity = 8.0 - scanlineAmount * 5.0 + glitchOffset * 2.0; // ray intensity is over-amped by default
-                vec2 uvAdjustment = inTexelOffset * vec2(0.0, .5 / consoleH); // remove vertical texel interpolation
-
-                distortedUVPosition.x -= glitchOffset * glitchAmount + 0.011 * (glitchFlutter * glitchFlutter * glitchFlutter);
-
-                vec4 sourcePixel = texture2D(
-                    sprite,
-                    (distortedUVPosition - uvAdjustment) * consoleWH / vec2(textureW, textureH)
-                );
-
-                vec3 pixelRGB = sourcePixel.rgb * sourcePixel.a;
-
-                // multiply by source alpha as well
-                float screenFade = 1.0 - dot(center, center) * 1.8;
-                float edgeFade = fromEdgePixel.x * fromEdgePixel.y;
-                gl_FragColor = vec4(edgeFade * screenFade * mix(
-                    bgColor,
-                    fgColor,
-                    intensity * pixelRGB + glitchOffset * 1.5
-                ) * (1.0 - 0.2 * scanlineAmount), 0.2);
-            } else {
-                gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
-            }
+            vec2 sourceUV = (vec2(consolePad) + uvPosition * vec2(bufferW, bufferH))
+                / vec2(textureW, textureH);
+            vec4 sourcePixel = texture2D(sprite, sourceUV);
+            gl_FragColor = vec4(bgColor + sourcePixel.rgb * sourcePixel.a * 0.5, 1.0);
         }
     `;

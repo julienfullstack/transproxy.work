@@ -50,9 +50,26 @@ function escapeHtml(value: string) {
 
 export function welcomeEmail(config: MailConfig, email: string, token: string): WelcomeEmail {
   const unsubscribeUrl = `${config.siteUrl}/api/waitlist/unsubscribe?token=${encodeURIComponent(token)}`
-  const paragraphs = WELCOME_TEXT.split('\n\n').map((paragraph) => `<p style="margin:0 0 18px;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.55;">${escapeHtml(paragraph)}</p>`).join('')
-  // Reuse cruush's fallback dark table layout, without its offers or launch dates.
-  const html = `<!doctype html><html><head><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head><body bgcolor="#0b0d16" style="margin:0;padding:0;background-color:#0b0d16;color:#f7f7fc;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#0b0d16" style="width:100%;background-color:#0b0d16;margin:0;padding:0;"><tr><td align="center" bgcolor="#0b0d16" style="background-color:#0b0d16;padding:40px 18px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:560px;"><tr><td style="padding:0;"><h1 style="margin:0 0 22px;color:#f5a9b8;font-family:Georgia,'Times New Roman',serif;font-size:30px;line-height:1.15;font-weight:400;">${escapeHtml(WELCOME_SUBJECT)}</h1>${paragraphs}<p style="margin:22px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:1.5;"><a href="${escapeHtml(unsubscribeUrl)}" style="color:#5bcefa;">Leave the TransProxy waiting list</a></p></td></tr></table></td></tr></table></body></html>`
+  const paragraphs = WELCOME_TEXT.split('\n\n').map((paragraph) => `<p style="margin:0 0 20px;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.6;">${escapeHtml(paragraph)}</p>`).join('')
+  // Solid dark fallbacks and table geometry remain usable without gradients.
+  const html = `<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="dark"><meta name="supported-color-schemes" content="dark"></head>
+<body bgcolor="#080d19" style="margin:0;padding:0;background-color:#080d19;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#080d19" style="width:100%;background-color:#080d19;margin:0;padding:0;"><tr><td align="center" style="padding:40px 16px;">
+<!--[if mso]><table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#101827" style="width:100%;max-width:560px;background-color:#101827;background-image:linear-gradient(135deg,#172437 0%,#101827 52%,#241b30 100%);border:1px solid #5bcefa;border-right-color:#f5a9b8;border-bottom-color:#f5a9b8;border-radius:8px;box-shadow:0 0 24px #5bcefa20,0 0 36px #ff79c61a;border-spacing:0;">
+<tr><td style="padding:16px 24px;border-bottom:1px solid #5bcefa55;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;font-weight:700;letter-spacing:2px;">TransProxy</td><td align="right" width="48" style="color:#5bcefa;font-size:15px;line-height:18px;letter-spacing:4px;"><span aria-hidden="true">&#9632;<span style="color:#ff79c6;">&#9632;</span></span></td></tr></table>
+</td></tr>
+<tr><td style="padding:28px 24px 8px;">
+<h1 style="margin:0 0 26px;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-0.6px;">${escapeHtml(WELCOME_SUBJECT)}</h1>
+${paragraphs}
+</td></tr>
+<tr><td bgcolor="#0c1423" style="padding:20px 24px;background-color:#0c1423;border-top:1px solid #f5a9b844;">
+<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;"><a href="${escapeHtml(unsubscribeUrl)}" style="color:#5bcefa;text-decoration:underline;">Leave the TransProxy waiting list</a></p>
+</td></tr></table>
+<!--[if mso]></td></tr></table><![endif]-->
+</td></tr></table></body></html>`
   return {
     from: config.from, to: [email], subject: WELCOME_SUBJECT,
     text: `${WELCOME_TEXT}\n\nLeave the TransProxy waiting list: ${unsubscribeUrl}`,

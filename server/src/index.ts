@@ -3,6 +3,7 @@ import { createApp, postgresStore } from './app.js'
 import { readKey } from './crypto.js'
 import { migrate } from './migrate.js'
 import { createMailWorker, readMailConfig } from './mail.js'
+import { createLegalRequestMaintenance, postgresLegalRequestStore } from './legalRequests.js'
 
 async function main() {
   if (!process.env.DATABASE_URL) throw new Error('DATABASE_URL is required')
@@ -28,20 +29,24 @@ async function main() {
     // Set the exact ingress chain length only when API ports are not public.
     trustProxy: trustedHops || false,
     queueWelcome: !!mailConfig,
+    legalRequestStore: postgresLegalRequestStore(pool),
   })
   const worker = mailConfig ? createMailWorker({ pool, encryptionKey, lookupKey, config: mailConfig }) : undefined
+  const legalMaintenance = createLegalRequestMaintenance(pool)
   let stopping = false
   const stop = async () => {
     if (stopping) return
     stopping = true
     await app.close()
     await worker?.stop()
+    await legalMaintenance.stop()
     await pool.end()
   }
   process.on('SIGTERM', () => { void stop().catch(() => { process.exitCode = 1 }) })
   process.on('SIGINT', () => { void stop().catch(() => { process.exitCode = 1 }) })
   const port = Number(process.env.PORT ?? 3001)
   if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error('PORT is invalid')
+  await legalMaintenance.start()
   await app.listen({ port, host: '0.0.0.0' })
   worker?.start()
   process.stdout.write('TransProxy waiting-list API is listening.\n')

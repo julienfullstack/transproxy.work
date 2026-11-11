@@ -1,0 +1,80 @@
+/* Adapted from Phil Owen's Animation Timeline (MIT).
+   https://codepen.io/editor/powen-cs/pen/01a1c63d-0e3b-76e5-9fa6-a1d8dc6fc008
+   Source mechanisms: view timelines, grow-y, hinge and conic border sweep.
+   Keep the existing page composition and stable, readable feature copy. */
+@property --journey-sweep {
+  syntax: '<angle>';
+  inherits: false;
+  initial-value: 360deg;
+}
+
+.feature-journey .journey-chapters { isolation: isolate; view-timeline: --feature-sequence block; }
+.feature-journey .journey-chapters::after {
+  content: '';
+  position: absolute;
+  top: 22px;
+  bottom: 48px;
+  left: 23px;
+  width: 2px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(var(--sky), var(--magenta));
+  box-shadow: 0 0 14px #5bcefa70;
+  transform-origin: 50% 0;
+}
+.feature-journey .journey-step { z-index: 1; view-timeline: --feature-step block; }
+.feature-journey .product-preview { --journey-swing: -26deg; transform-origin: 50% 50%; }
+.feature-journey .during-recovery .product-preview { --journey-swing: 26deg; }
+.feature-journey .preview-window { position: relative; }
+.feature-journey .preview-window::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  padding: 1px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: conic-gradient(from 200deg, var(--sky), var(--magenta) var(--journey-sweep), transparent var(--journey-sweep));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.feature-journey .journey-actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 24px; margin: 24px 0 0 74px; }
+.feature-journey .journey-actions .all-features-link { margin: 0; }
+
+/* The finished state above stays visible without scroll-animation support.
+   All new motion, including the rail, stops under reduced motion. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .feature-journey .journey-chapters::after {
+      animation: journey-grow-y linear both;
+      animation-timeline: --feature-sequence;
+      animation-range: cover 50vh cover calc(100% - 50vh);
+    }
+    .feature-journey .product-preview {
+      animation: journey-hinge linear both;
+      animation-timeline: --feature-step;
+      animation-range: cover;
+    }
+    .feature-journey .preview-window::after {
+      animation: journey-border-sweep linear both;
+      animation-timeline: --feature-step;
+      animation-range: cover 15% cover 48%;
+    }
+  }
+}
+
+@keyframes journey-grow-y { from { scale: 1 0; } }
+@keyframes journey-border-sweep { from { --journey-sweep: 0deg; } }
+@keyframes journey-hinge {
+  0% { opacity: 0; transform: perspective(1600px) rotateY(var(--journey-swing)) translateZ(-60px); }
+  34%, 66% { opacity: 1; transform: perspective(1600px) rotateY(0) translateZ(0); }
+  100% { opacity: 0; transform: perspective(1600px) rotateY(calc(var(--journey-swing) * -.55)) translateZ(-45px); }
+}
+
+@media (max-width: 720px) {
+  .feature-journey .journey-chapters::after { left: 17px; }
+  .feature-journey .product-preview, .feature-journey .during-recovery .product-preview { --journey-swing: -14deg; }
+  .feature-journey .journey-actions { margin-left: 54px; }
+}

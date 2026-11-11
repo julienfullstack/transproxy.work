@@ -13,7 +13,7 @@ const lookupKey = randomBytes(32)
 const origin = 'https://transproxy.org'
 const config = { apiKey: 'synthetic-test-key', from: 'TransProxy <waitlist@example.invalid>', siteUrl: origin }
 const headers = { origin, 'content-type': 'application/json' }
-const body = { email: 'mail-test@example.invalid', dateOfBirth: '1990-03-14', adult: true, consent: true }
+const body = { email: 'mail-test@example.invalid', dateOfBirth: '1990-03-14', adult: true, consent: true, termsAccepted: true }
 
 test('unsubscribe capabilities contain only opaque ID and expiry, validate signatures, and expire', () => {
   const id = randomUUID()
