@@ -73,7 +73,7 @@ No email, invitation or campaign send is included in this delivery.
 
 ### Directories, reference and advocacy
 
-- Provider directory imports from official sources, beginning with NYC hospitals across all five boroughs and relevant departments/surgeons; major international cities in the first expansion.
+- Provider directory imports from official sources, beginning with NYC hospitals across all five boroughs and the surrounding tri-state area, including relevant departments/surgeons; expansion across the United States afterward.
 - NYC tri-state coverage first, followed by planned United States expansion. Retain country/city/local identifiers and original-language names from the data-model stage. Keep facility, system, department, clinician and affiliation distinct; reviewed community additions/corrections, provenance and last-checked dates.
 - Professional patient advocacy/relations, directors and escalation contacts with published emails/phones/hours, sources and freshness. Use the department contact when a director's direct details are not published.
 - Quick call/email/copy/save actions and a complaint composer: selected hospital, recipients, exact message, chosen attachments, final review, then deliberate send. Track case numbers, replies and follow-up.

@@ -38,7 +38,7 @@ Add anonymous surgery-result contributions from selected journal items, procedur
 
 ## 6. Directories, reference, community and advocacy — planned
 
-Build sourced provider imports and reviewed corrections, NYC first and major international cities in the first expansion. Separate systems, facilities, departments, clinicians and affiliation history. Add professional advocacy contacts and state/jurisdiction legal listings with sources and last-checked dates.
+Build sourced provider imports and reviewed corrections, the NYC tri-state area first and expansion across the United States afterward. Separate systems, facilities, departments, clinicians and affiliation history. Add professional advocacy contacts and state/jurisdiction legal listings with sources and last-checked dates.
 
 Build a source-cited healthcare encyclopedia and procedure guides with editions, revision history, permissioned illustrations and explicit review status. Commission and record the required clinical review rather than presenting unsourced generated content as reviewed guidance.
 
