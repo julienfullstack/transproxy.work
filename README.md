@@ -1,6 +1,6 @@
 # TransProxy
 
-TransProxy is an open-source project for transgender patients to record what they understand and want before care, document their experiences afterward, and choose what to share. It covers hospitals, departments, staff and independent providers worldwide. The website domain is **transproxy.org**; the source repository is **julienfullstack/transproxy.work**.
+TransProxy is an open-source project for transgender patients to record what they understand and want before care, document their experiences afterward, and choose what to share. Its initial focus is hospitals, departments, staff and independent providers in the NYC tri-state area (New York, New Jersey and Connecticut), with expansion across the United States planned afterward. The website domain is **transproxy.org**; the source repository is **julienfullstack/transproxy.work**.
 
 Julien's experience and account of why he created TransProxy will be prominent. Personal testimony, documentary evidence, provider responses and verified facts must remain distinguishable. No patient records or private correspondence belong in this public repository.
 
@@ -20,7 +20,7 @@ The site includes a dedicated **Julien’s Story** page and a feature list separ
 - **Recorded understanding:** preserve dated versions of expectations, questions, agreements and refusals. Distinguish when an event happened from when it was recorded. Silence is never clinician agreement.
 - **Dignity:** allow medical and graphic recovery images with controlled access and reveal controls. Use respectful, requested feedback rather than attractiveness rankings or medical-safety scores.
 - **Accountability:** retain source links, dates, corrections, provider responses and review history. An allegation, moderation verdict or pattern count is not an automatic finding of wrongdoing.
-- **Bounded access:** launch for adults aged 18 and over, worldwide, with a waiting list and invitation-only membership. Public reading and private membership have separate access rules.
+- **Bounded access:** launch for adults aged 18 and over in the NYC tri-state area first, followed by planned expansion across the United States, with a waiting list and invitation-only membership. Public reading and private membership have separate access rules.
 
 ## Planned features
 

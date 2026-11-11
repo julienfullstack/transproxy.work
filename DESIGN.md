@@ -189,3 +189,8 @@ Use the actual Animation Timeline reference by Phil Owen for the existing home f
 ## Preferred palette and overlap correction — 2026-11-11
 
 Julien: “I liked thos color scheme better”, with6698.png. Julien clarified: “I like those colors but fix the overlap”. Keep the reference midnight navy, bright trans cyan `#5BCEFA` and soft trans pink `#F5A9B8`, with cooler steel navy `#161E2D` surfaces and brighter cyan/pink planned-preview and note fills. Use dark ink on those bright fills for readable contrast. Retain the corrected current layout, typography, copy, control geometry and source animations; repair overlapping imported Figma text/containers rather than restoring that screenshot’s layout errors. This is a color preference and overlap correction, not another redesign.
+
+
+## Regional launch scope — 2026-11-11
+
+Julien: “Not work wide uodate github tristste nyc then usa”. Confirmed: “Yes update readme”. Launch in the NYC tri-state area (New York, New Jersey and Connecticut) first, then expand across the United States. Replace worldwide launch wording; preserve 18+ and invitation-only access. This is a rollout plan, not an implemented location-verification gate.

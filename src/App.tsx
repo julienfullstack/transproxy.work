@@ -26,7 +26,7 @@ function ReportNotes({ full = false }: { full?: boolean }) {
 function Home() {
   return <>
     <section className="waitlist-layout glass-panel signup-first" id="waitlist-section" aria-labelledby="waitlist-title">
-      <div className="waitlist-meta"><h1 id="waitlist-title">Join the TransProxy waiting list</h1><p className="opening-purpose">For transgender patients to record what they want before care, document their experiences afterward, and choose what to share.</p><p>Invite-only · Worldwide · 18+</p><p className="encryption-label"><UiIcon name="lock" />Encrypted email storage</p></div>
+      <div className="waitlist-meta"><h1 id="waitlist-title">Join the TransProxy waiting list</h1><p className="opening-purpose">For transgender patients to record what they want before care, document their experiences afterward, and choose what to share.</p><p>Invite-only · NYC tri-state first · USA expansion planned · 18+</p><p className="encryption-label"><UiIcon name="lock" />Encrypted email storage</p></div>
       <WaitlistForm />
     </section>
     <FeatureJourney />

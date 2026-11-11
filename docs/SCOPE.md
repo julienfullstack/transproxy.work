@@ -74,7 +74,7 @@ No email, invitation or campaign send is included in this delivery.
 ### Directories, reference and advocacy
 
 - Provider directory imports from official sources, beginning with NYC hospitals across all five boroughs and relevant departments/surgeons; major international cities in the first expansion.
-- Worldwide country/city/local identifiers and original-language names from the data-model stage. Keep facility, system, department, clinician and affiliation distinct; reviewed community additions/corrections, provenance and last-checked dates.
+- NYC tri-state coverage first, followed by planned United States expansion. Retain country/city/local identifiers and original-language names from the data-model stage. Keep facility, system, department, clinician and affiliation distinct; reviewed community additions/corrections, provenance and last-checked dates.
 - Professional patient advocacy/relations, directors and escalation contacts with published emails/phones/hours, sources and freshness. Use the department contact when a director's direct details are not published.
 - Quick call/email/copy/save actions and a complaint composer: selected hospital, recipients, exact message, chosen attachments, final review, then deliberate send. Track case numbers, replies and follow-up.
 - Queer/trans-friendly lawyer directory by state/jurisdiction and legal need; sourced experience, registry/licensing details, costs/languages/remote availability where verified, corrections and optional selected-case sharing.
@@ -94,7 +94,7 @@ Verified incapacity/death delivery of selected wishes and records, named trusted
 
 ## Access decisions
 
-- Worldwide audience, **18+ launch**. The waiting list and membership must enforce eligibility; invitations do not bypass it.
+- NYC tri-state audience first (New York, New Jersey and Connecticut), followed by planned United States expansion; **18+ launch**. The waiting list and membership must enforce eligibility; invitations do not bypass it.
 - Public reading of the founder story, approved reports and public feed, plus reviewed reference/directories when built.
 - Invite-only accounts, posting, replies, reactions and private tools. Initial invitations planned as single-use, email-bound and expiring after seven days.
 - Main support community restricted to members; private groups require separate invitations.
