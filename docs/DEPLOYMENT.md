@@ -35,7 +35,10 @@ forwarded addresses.
 
 Store secret values in the new resources' private Coolify environment settings.
 Do not place real values in Git, Docker build arguments, deployment logs or public
-documentation. `.env.example` contains local placeholders only.
+documentation. `.env.example` contains local placeholders only. Set the custom
+variables to runtime-only (`is_runtime=true`, `is_buildtime=false` in the API),
+and disable Coolify's `inject_build_args_to_dockerfile` setting on both new apps.
+Check the saved flags after creation; runtime secrets must never become build ARGs.
 
 | Resource | Runtime variable | Purpose |
 | --- | --- | --- |
@@ -116,3 +119,33 @@ unset transproxy_contact
 Do not substitute the email directly into a command. If the removal fails, inspect
 private runtime configuration without logging the contact value. Removal here
 covers the active database; no unverified backup-deletion claim is made.
+
+## Verified waiting-list release — 2026-11-10
+
+Application source `7f3f02654cef48b99388e69eda1854163846e148` is deployed in the new
+TransProxy project. Frontend, private API and private Postgres were all healthy
+and both application deployments finished. Automatic deployments remain disabled.
+Later documentation-only commits do not change that pinned application revision.
+
+Valid HTTPS was checked for the apex, API health and the `www` redirect; HTTP
+redirects to HTTPS. Namecheap has the new apex A record and `www` CNAME. Google and
+Cloudflare public resolvers returned the new address. The verification computer's
+default resolver still held the old parking address, so direct browser navigation
+there remained unverified while DNS caches updated.
+
+Desktop and 390px mobile browser signup used the actual deployed HTML, assets and
+API through a temporary loopback-only QA transport. That transport changed only
+its own DNS lookup and translated its local browser Origin to the production
+Origin; it validated the real domain's TLS certificate and did not change page
+bytes or styles. Required age/consent controls, signup success and repeated signup
+were observed. The production database contained exactly one matching synthetic
+entry after both submissions, with an authenticated encrypted email and the exact
+consent version. That entry was then removed using the private operator helper;
+its matching count became zero and unrelated subscriber counts did not change.
+No contact, key, ciphertext or private log content was printed.
+
+The public contact-list route is absent. No email or invitation was sent and no
+member account was created. Temporary deployment token count was zero after the
+release checks. Local unavailable-service behavior and both TypeScript builds
+also passed; the real PostgreSQL integration covered encryption, concurrent
+deduplication and private operator removal.

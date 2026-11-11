@@ -6,7 +6,7 @@ Julien's experience and account of why he created TransProxy will be prominent. 
 
 ## Development status
 
-**Waiting-list launch.** The React/TypeScript landing page and dedicated encrypted, adult-only waiting-list API are implemented and checked locally. See [deployment notes](docs/DEPLOYMENT.md) for the verified hosting state. The complete member platform described below is **planned**, not implemented or available at launch. The first commit established the documentation, AGPL-3.0 license and ignore rules.
+**Waiting-list launch.** The React/TypeScript landing page and dedicated encrypted, adult-only waiting-list API are deployed on **[transproxy.org](https://transproxy.org)** and checked with desktop/mobile production signups. DNS caches may still show the former parking page during propagation. See [deployment notes](docs/DEPLOYMENT.md) for the verification method and hosting state. The complete member platform described below is **planned**, not implemented or available at launch. The first commit established the documentation, AGPL-3.0 license and ignore rules.
 
 The landing-page launch uses a new isolated self-hosted Coolify project with separate frontend, API and private Postgres resources. Existing Cruush and Mount Sinai projects, resources and data are outside this repository's deployment scope. Implementation, deployment and live verification are separate milestones; documentation is not evidence that a feature works.
 
@@ -54,6 +54,8 @@ The waiting list stores an email privately and encrypted. Joining does not creat
 - [Build plan](docs/BUILD_PLAN.md)
 - [Design decisions and source instructions](DESIGN.md)
 - [Build checklist](TODO.md)
+- [Editable Figma designs and font limitation](docs/FIGMA.md)
+- [Deployment and verification evidence](docs/DEPLOYMENT.md)
 
 Local secret files, uploads, patient records, database exports, backups, logs, dependencies, generated builds and agent queues are excluded by `.gitignore` and `.dockerignore`. Safe `.env.example` files, lockfiles, migrations and synthetic source fixtures remain publishable. Ignore rules do not remove already tracked data; every publication still needs a staged-file review.
 

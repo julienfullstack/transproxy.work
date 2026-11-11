@@ -12,7 +12,7 @@
 > “Okay, make the scope the goals.The allowed file change areas and the to-do list and get this all together.Make a plan to put this all together”
 
 - [x] Write scope, goals, allowed change areas, design decisions and build plan.
-- [ ] Keep local, committed, pushed, deployed and live-verified status separate as work proceeds.
+- [x] Keep local, committed, pushed, deployed and live-verified status separate as work proceeds.
 
 > “Give js cool trans colors and dark theme”
 >
@@ -25,9 +25,9 @@
 
 > “Make s figma build use the desjgn skill”
 
-- [ ] Create editable desktop/mobile landing and waiting-list screens.
-- [ ] Create labelled planned wishes/understanding, appointments, healing, reports, sharing and patterns screens; include expanded roadmap navigation.
-- [ ] Verify editable hierarchy and screenshots with synthetic data only.
+- [x] Create editable desktop/mobile landing and waiting-list screens.
+- [x] Create labelled planned wishes/understanding, appointments, healing, reports, sharing and patterns screens; include expanded roadmap navigation.
+- [x] Verify editable hierarchy and screenshots with synthetic data only.
 
 > “and also lets put it up with awaitling list com eon”
 >
@@ -38,9 +38,9 @@
 - [x] Verify actual desktop/mobile form success/error and affected neighbors.
 - [x] Obtain separate scope review of the complete task-owned UI diff.
 - [x] List environment-variable changes before deployment.
-- [ ] Create a new isolated Coolify project and separate frontend/API/private Postgres on the existing server.
-- [ ] Configure `transproxy.org` / same-origin private `/api`, HTTPS and allowed origins without touching old resources.
-- [ ] Verify live health and actual browser submission/persistence using synthetic data; record any unresolved blocker as unverified.
+- [x] Create a new isolated Coolify project and separate frontend/API/private Postgres on the existing server.
+- [x] Configure `transproxy.org` / same-origin private `/api`, HTTPS and allowed origins without touching old resources.
+- [x] Verify live health and actual browser submission/persistence using synthetic data; record any unresolved blocker as unverified.
 
 ## Planned member platform
 
@@ -104,3 +104,7 @@
 
 - [ ] Design verified-event wishes delivery, trusted/backup recipients and explicitly authorized human advocates as a separate future service.
 - [ ] Resolve appointment, event-verification, dispute and jurisdiction requirements before any availability or legal-authority claim.
+
+Release: application7f3f026 is deployed and verified using the production QA transport described in docs/DEPLOYMENT.md. Direct browser navigation on the verification computer remained unverified because its default DNS resolver cached the old address; public Google/Cloudflare DNS resolved correctly. Exact Figma typography is tracked separately in docs/FIGMA.md.
+
+Figma:14 editable screens and60 navigation links delivered; exact typography/pixel matching remains **unverified** because the connected renderer lacks source fonts. Arimo/Lora substitutions are documented in docs/FIGMA.md. Application fonts are unchanged.
