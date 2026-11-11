@@ -41,7 +41,7 @@ Current storage encrypts email and request payloads before database persistence.
 
 [Hetzner’s Terms §6.2](https://www.hetzner.com/legal/terms-and-conditions/) require customer acceptance of a data-processing agreement through the account, with the relevant selected categories. The terms describe a supplement for third-country products. Acceptance for this account is **unverified**. Two targeted email searches found no supporting message; that is not proof that acceptance is absent. Check the actual account/contract record. Do not publish a claim that this hosting DPA/SCC arrangement has been verified before doing so.
 
-International availability remains the user’s worldwide scope. The controller’s establishment, targeting and any representative, special-category condition, consumer-health or transfer duties need fact-specific review; a general checkbox is not an exemption.
+The planned launch scope is the NYC tri-state area (New York, New Jersey and Connecticut), followed by expansion across the United States; worldwide availability is not the launch plan. The controller’s establishment, targeting and any representative, special-category condition, consumer-health or transfer duties need fact-specific review; a general checkbox is not an exemption.
 
 ## Primary-source findings
 

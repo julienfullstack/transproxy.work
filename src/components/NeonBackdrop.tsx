@@ -15,7 +15,7 @@ const STARS = Array.from({ length: 60 }, (_, index) => {
     z: Math.sin(angle) * radius - jitter,
     y: Math.sin(index * 43.7) * 0.025,
     radius: 0.018 + (Math.sin(index * 17.3) + 1) * 0.006,
-    hue: 195 + progress * 135,
+    color: index % 2 === 0 ? '#00e5ff' : '#ff3fc8',
   }
 })
 
@@ -33,7 +33,7 @@ scene {
 }
 #galaxy { animation: orbit 40s linear infinite; }
 #core { radius: 0.15; color: #f7f7fc; material: emissive(1.6); }
-${STARS.map((star, index) => `#star${index} { translate: ${star.x.toFixed(4)} ${star.y.toFixed(4)} ${star.z.toFixed(4)}; radius: ${star.radius.toFixed(4)}; color: hsl(${star.hue.toFixed(1)} 90% 72%); material: emissive(1.25); }`).join('\n')}
+${STARS.map((star, index) => `#star${index} { translate: ${star.x.toFixed(4)} ${star.y.toFixed(4)} ${star.z.toFixed(4)}; radius: ${star.radius.toFixed(4)}; color: ${star.color}; material: emissive(1.25); }`).join('\n')}
 @keyframes orbit { from { rotate-y: 0deg; } to { rotate-y: -360deg; } }
 `
 
@@ -83,15 +83,15 @@ export function NeonBackdrop() {
       const rotation = -elapsed * Math.PI / 20
       const core = context!.createRadialGradient(width / 2, height / 2, 0, width / 2, height / 2, height * 0.7)
       core.addColorStop(0, 'rgba(247,247,252,0.38)')
-      core.addColorStop(0.22, 'rgba(255,139,203,0.18)')
-      core.addColorStop(1, 'rgba(173,140,255,0)')
+      core.addColorStop(0.22, 'rgba(255,63,200,0.18)')
+      core.addColorStop(1, 'rgba(0,229,255,0)')
       context!.fillStyle = core
       context!.fillRect(0, 0, width, height)
       context!.globalAlpha = 0.72
       for (const star of STARS) {
         const x = star.x * Math.cos(rotation) - star.z * Math.sin(rotation)
         const z = star.x * Math.sin(rotation) + star.z * Math.cos(rotation)
-        const color = `hsl(${star.hue} 90% 75%)`
+        const color = star.color
         context!.fillStyle = color
         context!.shadowColor = color
         context!.shadowBlur = 5

@@ -116,7 +116,7 @@ function renderWorld(delta) {
 
     const char = characterSet[Math.floor(getRandomizedFraction(outSeed) * characterSet.length)];
 
-    bufferContext.fillStyle = `rgb(${91 + (245 - 91) * k}, ${206 + (169 - 206) * k}, ${250 + (184 - 250) * k})`;
+    bufferContext.fillStyle = `rgb(${0 + (255 - 0) * k}, ${229 + (63 - 229) * k}, ${255 + (200 - 255) * k})`;
     bufferContext.fillText(
       char,
       (trail[0] + 0.5) * charW, // center inside character box
@@ -164,6 +164,6 @@ export const matrixFragmentShader = `
             vec2 sourceUV = (vec2(consolePad) + uvPosition * vec2(bufferW, bufferH))
                 / vec2(textureW, textureH);
             vec4 sourcePixel = texture2D(sprite, sourceUV);
-            gl_FragColor = vec4(bgColor + sourcePixel.rgb * sourcePixel.a * 0.5, 1.0);
+            gl_FragColor = vec4(bgColor + sourcePixel.rgb * sourcePixel.a, 1.0);
         }
     `;

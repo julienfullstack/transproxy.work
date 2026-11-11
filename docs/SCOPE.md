@@ -20,7 +20,7 @@ The selected license is AGPL-3.0. The repository name uses `.work`; the purchase
 ## Launch deliverables
 
 1. Documentation-first public commit with README, full license, Git/Docker ignores, design decisions, scope, goals, build plan and TODO.
-2. Own-brand feature-first landing page with dark frosted glass, medical/queer identity, neon trans-blue/pink Y2K window accents, Matrix and butterflies; the latest selected design replaces the earlier hospital parody.
+2. Own-brand landing page with dark frosted glass, medical/queer identity, neon trans-blue/pink Y2K window accents and Matrix. The latest background instruction removes decorative butterflies while preserving brand/content butterfly icons; the selected design replaces the earlier hospital parody.
 3. Prominent source-backed founder story/purpose and clearly labelled planned features.
 4. Private waiting list with a discarded DOB eligibility check, server-validated adult eligibility and consent, encrypted contact persistence, duplicate-safe responses, rate limiting and accurate browser success/error behavior.
 5. New isolated frontend, API and private Postgres resources in a new self-hosted Coolify project on the existing server. Serve `transproxy.org` over HTTPS; proxy `/api` to the private API resource without a public API hostname.
@@ -43,7 +43,8 @@ No email, invitation or campaign send is included in this delivery.
 
 ### Encryption, ownership and sharing
 
-- Private by default, with a user-selected end-to-end or server-managed encryption mode. Explain recovery behavior before selection; mode changes require deliberate re-encryption.
+- Private by default, with planned choices for a local-only encrypted vault, end-to-end encrypted sync or server-managed encrypted storage. Explain recovery behavior before selection; mode changes require a deliberate migration and sharing choice.
+- Local-only vaults would encrypt records before saving on the user's device, without synchronization by default. Explain encrypted backups, browser-data cleanup, device loss and recovery-material limits before use. This option is planned; the current website does not implement a member vault.
 - Browser-side end-to-end encryption with a separate vault unlock/recovery secret; private content and keys must not appear in server plaintext, logs or moderation calls.
 - Server-managed content encryption with versioned keys outside Postgres and role-gated audited access; user-granted support access.
 - Selected read-only snapshots shared with account invitations or expiring revocable links; exports and printable packets tied to exact versions.
@@ -73,8 +74,8 @@ No email, invitation or campaign send is included in this delivery.
 
 ### Directories, reference and advocacy
 
-- Provider directory imports from official sources, beginning with NYC hospitals across all five boroughs and relevant departments/surgeons; major international cities in the first expansion.
-- Worldwide country/city/local identifiers and original-language names from the data-model stage. Keep facility, system, department, clinician and affiliation distinct; reviewed community additions/corrections, provenance and last-checked dates.
+- Provider directory imports from official sources, beginning with NYC hospitals across all five boroughs and the surrounding tri-state area, including relevant departments/surgeons; expansion across the United States afterward.
+- NYC tri-state coverage first, followed by planned United States expansion. Retain country/city/local identifiers and original-language names from the data-model stage. Keep facility, system, department, clinician and affiliation distinct; reviewed community additions/corrections, provenance and last-checked dates.
 - Professional patient advocacy/relations, directors and escalation contacts with published emails/phones/hours, sources and freshness. Use the department contact when a director's direct details are not published.
 - Quick call/email/copy/save actions and a complaint composer: selected hospital, recipients, exact message, chosen attachments, final review, then deliberate send. Track case numbers, replies and follow-up.
 - Queer/trans-friendly lawyer directory by state/jurisdiction and legal need; sourced experience, registry/licensing details, costs/languages/remote availability where verified, corrections and optional selected-case sharing.
@@ -94,7 +95,7 @@ Verified incapacity/death delivery of selected wishes and records, named trusted
 
 ## Access decisions
 
-- Worldwide audience, **18+ launch**. The waiting list and membership must enforce eligibility; invitations do not bypass it.
+- NYC tri-state audience first (New York, New Jersey and Connecticut), followed by planned United States expansion; **18+ launch**. The waiting list and membership must enforce eligibility; invitations do not bypass it.
 - Public reading of the founder story, approved reports and public feed, plus reviewed reference/directories when built.
 - Invite-only accounts, posting, replies, reactions and private tools. Initial invitations planned as single-use, email-bound and expiring after seven days.
 - Main support community restricted to members; private groups require separate invitations.

@@ -189,3 +189,63 @@ Use the actual Animation Timeline reference by Phil Owen for the existing home f
 ## Preferred palette and overlap correction — 2026-11-11
 
 Julien: “I liked thos color scheme better”, with6698.png. Julien clarified: “I like those colors but fix the overlap”. Keep the reference midnight navy, bright trans cyan `#5BCEFA` and soft trans pink `#F5A9B8`, with cooler steel navy `#161E2D` surfaces and brighter cyan/pink planned-preview and note fills. Use dark ink on those bright fills for readable contrast. Retain the corrected current layout, typography, copy, control geometry and source animations; repair overlapping imported Figma text/containers rather than restoring that screenshot’s layout errors. This is a color preference and overlap correction, not another redesign.
+
+
+## Neon accents and gel — 2026-11-11
+
+Julien: “Can we get neon colors instead”. Julien added: “Same for the gel”. Replace the soft cyan/pink accents with electric cyan `#00E5FF` and hot pink `#FF3FC8`, including the gel buttons’ colored gradient and glow. Keep the dark navy glass surfaces, corrected layout, typography, content, control geometry, gel material and source animations. Dark ink stays on bright preview/note fills. The latest neon choice supersedes the preceding soft palette.
+
+
+## Explicit gallery and complete feature catalog — 2026-11-11
+
+Julien: “I think you forgot to put a few features like the gallery like trans bucket”. Give the planned anonymous surgery-results gallery a clear name and a separate homepage feature link. Its approved scope includes selected journal photos, surgery/procedure/surgeon search, healing stages, member-only defaults, explicit public opt-in and optional guided feedback. Also make the approved invite-only adult accounts and private records/correspondence timeline explicit in the planned catalog. Include the existing privacy/contact request form among available capabilities. Keep gallery/member tools planned, with no implication that photo uploads, member accounts or clinical advice are live. Preserve the current neon/glass design and all unrelated controls.
+
+
+## Complete planned pages, storage choices and background — 2026-11-11
+
+Julien: “Okay can fill out the other pages? No butterfly in the back.
+
+
+Talk about local and encrypted storage options.” Fill the existing Reports & patterns, Correspondence, Records & timeline and Advocacy pages using the approved member roadmap. Remove the decorative background butterfly layer; keep the Matrix and the existing brand/content butterfly icons. Explain local-only encrypted vaults, end-to-end encrypted sync and server-managed encryption as planned choices, including who can read content, recovery and local-backup tradeoffs. Distinguish these future vaults from the current server-managed waiting-list/contact storage. Keep the present neon/glass/gel design, all routes and adult/private boundaries. No member storage or gallery implementation is implied by these content pages.
+
+
+## Dark refractive glass and data commitment — 2026-11-11
+
+Julien: “I want the glass to actually be like a glass effect like a refractive effect.But dark”. “I like the more dramatic dark neon theme.I want it to be real glass effect.Like, use my glass cycling from crush and such.I want to look like glass”. Corrections: “You like changed the theme beu”; “This is not cruush”. Preserve TransProxy’s own dark navy, neon cyan and hot-pink theme and existing composition. Change glass material only: translucent dark surfaces refract the background while foreground text and controls remain sharp. No Cruush branding or theme changes.
+
+Julien: “Can you also like add A?We won't ever sell your data or use it to train a I thine when they sign up for the wait list and in our policies and such”. Show the first-party commitment at signup and in the policies: “We will never sell your data or use it to train AI models.” Preserve truthful operational provider/access disclosures, legal draft status and all existing consent/age boundaries.
+
+
+## Actual CodePen glass material — 2026-11-11
+
+Julien: “Make of look like real glass we got codepen for this”. Apply the actual NPxaprq Glass/Gel source material layers to existing panels: curved bottom reflection, diagonal gleam, clear coating and inset lighting, adapted to dark neon TransProxy. Preserve all layout, typography, content and controls. Do not substitute broad painted diagonal stripes for glass.
+
+
+## Larger Matrix background — 2026-11-11
+
+Julien: “Make the mateix stuff in the back larger”. Enlarge the falling-code background 50%, preserving its neon colors, opacity and source animation timing and all foreground presentation.
+
+
+## Matrix visibility — 2026-11-11
+
+Julien: “I barely see it still”. Make the existing enlarged Matrix clearly visible: remove shader half-brightness attenuation and raise canvas opacity to .85. Preserve its cyan/pink colors, size, motion and foreground design.
+
+
+## Clear neon-lit buttons — 2026-11-11
+
+Julien: “https://codepen.io/katarzynamarta/pen/rNdbbVq this vibe”. Use that reference’s translucent button coating, skewed reflection and expanding edge light on the existing primary buttons. Adapt light to cyan/pink, preserve geometry, typography, labels and actions; include keyboard focus and reduced motion. Panels and Matrix remain unchanged.
+
+
+## Single-color button press — 2026-11-11
+
+Julien: “I like the button effect where it's like, press it and it's blue or pink.I don't like how you did”. Each button uses one light color rather than blended blue/pink: signup blue, glass links pink. Press fills and lights the button in its color, with dark readable text. Preserve geometry, labels, actions and the glass reflection.
+
+
+## Regional launch scope — 2026-11-11
+
+Julien: “Not work wide uodate github tristste nyc then usa”. Confirmed: “Yes update readme”. Launch in the NYC tri-state area (New York, New Jersey and Connecticut) first, then expand across the United States. Replace worldwide launch wording; preserve 18+ and invitation-only access. This is a rollout plan, not an implemented location-verification gate.
+
+
+## Personal story voice — 2026-11-11
+
+Julien: “Please make my story on trans proxy  like an actual story.And not like a request of my asks, and don't quote things directly like that.It sounds like AI make it sound.Human make it sound like me”. Tell the existing factual story in natural first person, with lived chronology and why TransProxy grew from it. Avoid request-list framing, quoted dialogue and references to Julien’s prompts. Preserve uncertainty, dated facts and the distinction between recollection and provider explanations.

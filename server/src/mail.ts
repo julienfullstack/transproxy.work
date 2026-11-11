@@ -57,16 +57,16 @@ export function welcomeEmail(config: MailConfig, email: string, token: string): 
 <body bgcolor="#080d19" style="margin:0;padding:0;background-color:#080d19;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;">
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#080d19" style="width:100%;background-color:#080d19;margin:0;padding:0;"><tr><td align="center" style="padding:40px 16px;">
 <!--[if mso]><table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0"><tr><td><![endif]-->
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#161e2d" style="width:100%;max-width:560px;background-color:#161e2d;background-image:linear-gradient(135deg,#1a2433 0%,#161e2d 52%,#2e2335 100%);border:1px solid #5bcefa;border-right-color:#f5a9b8;border-bottom-color:#f5a9b8;border-radius:8px;box-shadow:0 0 24px #5bcefa20,0 0 36px #f5a9b81a;border-spacing:0;">
-<tr><td style="padding:16px 24px;border-bottom:1px solid #5bcefa55;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;font-weight:700;letter-spacing:2px;">TransProxy</td><td align="right" width="48" style="color:#5bcefa;font-size:15px;line-height:18px;letter-spacing:4px;"><span aria-hidden="true">&#9632;<span style="color:#f5a9b8;">&#9632;</span></span></td></tr></table>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#161e2d" style="width:100%;max-width:560px;background-color:#161e2d;background-image:linear-gradient(135deg,#1a2433 0%,#161e2d 52%,#2e2335 100%);border:1px solid #00e5ff;border-right-color:#ff3fc8;border-bottom-color:#ff3fc8;border-radius:8px;box-shadow:0 0 24px #00e5ff20,0 0 36px #ff3fc81a;border-spacing:0;">
+<tr><td style="padding:16px 24px;border-bottom:1px solid #00e5ff55;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0"><tr><td style="color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:18px;font-weight:700;letter-spacing:2px;">TransProxy</td><td align="right" width="48" style="color:#00e5ff;font-size:15px;line-height:18px;letter-spacing:4px;"><span aria-hidden="true">&#9632;<span style="color:#ff3fc8;">&#9632;</span></span></td></tr></table>
 </td></tr>
 <tr><td style="padding:28px 24px 8px;">
 <h1 style="margin:0 0 26px;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:1.15;font-weight:700;letter-spacing:-0.6px;">${escapeHtml(WELCOME_SUBJECT)}</h1>
 ${paragraphs}
 </td></tr>
-<tr><td bgcolor="#0f1724" style="padding:20px 24px;background-color:#0f1724;border-top:1px solid #f5a9b844;">
-<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;"><a href="${escapeHtml(unsubscribeUrl)}" style="color:#5bcefa;text-decoration:underline;">Leave the TransProxy waiting list</a></p>
+<tr><td bgcolor="#0f1724" style="padding:20px 24px;background-color:#0f1724;border-top:1px solid #ff3fc844;">
+<p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;"><a href="${escapeHtml(unsubscribeUrl)}" style="color:#00e5ff;text-decoration:underline;">Leave the TransProxy waiting list</a></p>
 </td></tr></table>
 <!--[if mso]></td></tr></table><![endif]-->
 </td></tr></table></body></html>`
@@ -188,5 +188,5 @@ export function unsubscribePage(token: string | undefined, state: 'confirm' | 'r
   const title = state === 'confirm' ? 'Leave the TransProxy waiting list' : state === 'removed' ? 'Waiting-list removal complete' : 'This link is invalid or expired'
   const form = state === 'confirm' && token
     ? `<form method="post" action="/api/waitlist/unsubscribe?token=${encodeURIComponent(token)}"><button type="submit" name="confirm" value="remove">Remove me from the waiting list</button></form>` : ''
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${title}</title><style>body{margin:0;background:#0b0d16;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif}main{max-width:560px;margin:64px auto;padding:24px}h1{font-weight:400;line-height:1.2}button{border:0;background:#5bcefa;color:#0b0d16;padding:14px;font:inherit;cursor:pointer}a{color:#5bcefa}</style></head><body><main><h1>${title}</h1>${form}<p><a href="/">TransProxy</a></p></main></body></html>`
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>${title}</title><style>body{margin:0;background:#0b0d16;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif}main{max-width:560px;margin:64px auto;padding:24px}h1{font-weight:400;line-height:1.2}button{border:0;background:#00e5ff;color:#0b0d16;padding:14px;font:inherit;cursor:pointer}a{color:#00e5ff}</style></head><body><main><h1>${title}</h1>${form}<p><a href="/">TransProxy</a></p></main></body></html>`
 }

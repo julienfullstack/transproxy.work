@@ -30,9 +30,17 @@ export const AVAILABLE_FEATURES: readonly FeatureItem[] = [
     title: 'Open source and self-hosted',
     text: 'Application source is published under AGPL-3.0. The website, API and database are self-hosted; Resend handles email delivery.',
   },
+  {
+    title: 'Privacy and contact requests',
+    text: 'Send privacy, correction, removal or general contact requests without creating an account. Receive a reference for private operator review; submission does not automatically release or delete information.',
+  },
 ]
 
 export const PLANNED_FEATURES: readonly FeatureItem[] = [
+  {
+    title: 'Invite-only adult accounts',
+    text: 'Join through controlled invitations, with adult-only membership and revocable sessions. Joining the waiting list does not create a member account.',
+  },
   {
     title: 'Wishes and informed understanding',
     text: 'Record goals, boundaries, questions, agreements and refusals in dated versions. Compare your understanding with the documented plan, operative record and later experience.',
@@ -42,12 +50,16 @@ export const PLANNED_FEATURES: readonly FeatureItem[] = [
     text: 'Keep care-team contacts, appointment notes, explanations, promises, unanswered questions and follow-up together.',
   },
   {
+    title: 'Private records and correspondence',
+    text: 'Keep documents, attachments and selected correspondence on a dated timeline. Compare wishes, care plans, operative records and your later experience using exact record versions.',
+  },
+  {
     title: 'Healing journal',
     text: 'Document recovery with private photo timelines, milestones and comfort, pain, sensation and function notes. Track drain and fluid measurements by time, unit and side.',
   },
   {
-    title: 'Encryption choices',
-    text: 'Choose end-to-end or server-managed encryption, with clear unlock, recovery and authorized-access controls.',
+    title: 'Local and encrypted storage',
+    text: 'Choose a local-only encrypted vault, end-to-end encrypted sync or server-managed encrypted storage, with clear unlock, recovery and sharing controls.',
   },
   {
     title: 'Private sharing and exports',
@@ -66,8 +78,8 @@ export const PLANNED_FEATURES: readonly FeatureItem[] = [
     text: 'Share chronological experiences and healing updates anonymously by default, with optional display names, pictures, replies and emoji reactions.',
   },
   {
-    title: 'Anonymous surgery results',
-    text: 'Browse results by surgery, procedure, surgeon, hospital and healing stage. Contributors control visibility, selected photographs and optional guided feedback.',
+    title: 'Anonymous surgery-results gallery',
+    text: 'Browse contributor-shared photos and healing timelines by surgery, procedure, surgeon, hospital and healing stage. Share selected journal photos anonymously; members-only by default, with explicit public opt-in and optional guided feedback.',
   },
   {
     title: 'Provider directory',

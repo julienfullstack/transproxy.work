@@ -52,6 +52,7 @@ export function WaitlistForm() {
     <label className="check"><input type="checkbox" name="adult" required disabled={state === 'sending'} /><span>I am 18 or older.</span></label>
     <label className="check"><input type="checkbox" name="consent" required disabled={state === 'sending'} /><span>I explicitly consent to TransProxy using my email and interest in this health-related project for waiting-list administration, invitations and launch updates. <a href="#/privacy">Privacy</a> · <a href="#/health-privacy">Health data privacy</a></span></label>
     <label className="check"><input type="checkbox" name="termsAccepted" required disabled={state === 'sending'} /><span>I agree to the <a href="#/terms">Website &amp; Waiting-list Terms</a>.</span></label>
+    <p className="data-promise">We will never sell your data or use it to train AI models.</p>
     <button className="submit-button" type="submit" disabled={state === 'sending'}><NeonBackdrop /><span>{state === 'sending' ? 'Joining…' : 'Join waiting list'}</span></button>
     <p className={`form-result ${state === 'error' ? 'error' : ''}`} role={state === 'error' ? 'alert' : 'status'} aria-live="polite">{message}</p>
   </form>

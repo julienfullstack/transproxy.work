@@ -1,8 +1,9 @@
+import { GlassMaterial } from './components/GlassMaterial'
 import { useEffect, useState } from 'react'
 import { WaitlistForm } from './components/WaitlistForm'
 import { MatrixBackground } from './components/MatrixBackground'
-import { HealingButterflies } from './components/HealingButterflies'
 import { UiIcon } from './components/UiIcon'
+import { PlannedStorageOptions, PlannedToolContent } from './components/PlannedToolContent'
 import { BeforeCarePreview, RecoveryPreview, ReportsPreview } from './components/PlannedPreviews'
 import { JulienStory } from './views/JulienStory'
 import { Features } from './views/Features'
@@ -26,7 +27,7 @@ function ReportNotes({ full = false }: { full?: boolean }) {
 function Home() {
   return <>
     <section className="waitlist-layout glass-panel signup-first" id="waitlist-section" aria-labelledby="waitlist-title">
-      <div className="waitlist-meta"><h1 id="waitlist-title">Join the TransProxy waiting list</h1><p className="opening-purpose">For transgender patients to record what they want before care, document their experiences afterward, and choose what to share.</p><p>Invite-only · Worldwide · 18+</p><p className="encryption-label"><UiIcon name="lock" />Encrypted email storage</p></div>
+      <div className="waitlist-meta"><h1 id="waitlist-title">Join the TransProxy waiting list</h1><p className="opening-purpose">For transgender patients to record what they want before care, document their experiences afterward, and choose what to share.</p><p>Invite-only · NYC tri-state first · USA expansion planned · 18+</p><p className="encryption-label"><UiIcon name="lock" />Encrypted email storage</p></div>
       <WaitlistForm />
     </section>
     <FeatureJourney />
@@ -40,7 +41,7 @@ function FeatureJourney() {
     <header className="page-heading"><h2 id="planned-title">Planned member tools</h2><p>In development · Not available yet</p></header>
     <div className="journey-chapters">
       <section className="journey-step before-care"><span className="journey-number" aria-hidden="true">01</span><div className="journey-copy"><h3>Before care</h3><p>Record goals, boundaries, questions, agreements and refusals in dated versions.</p><a href="#/features">Wishes, appointments & records <UiIcon name="arrow-up-right" /></a><a href="#/features">Private sharing <UiIcon name="arrow-up-right" /></a></div><BeforeCarePreview /></section>
-      <section className="journey-step during-recovery"><span className="journey-number" aria-hidden="true">02</span><div className="journey-copy"><h3>During recovery</h3><p>Keep recovery notes, selected photos and drain measurements together.</p><a href="#/features">Healing journal & results <UiIcon name="arrow-up-right" /></a></div><RecoveryPreview /></section>
+      <section className="journey-step during-recovery"><span className="journey-number" aria-hidden="true">02</span><div className="journey-copy"><h3>During recovery</h3><p>Keep recovery notes, selected photos and drain measurements together.</p><a href="#/features">Healing journal <UiIcon name="arrow-up-right" /></a><a href="#/features">Surgery results gallery <UiIcon name="arrow-up-right" /></a></div><RecoveryPreview /></section>
       <section className="journey-step answers-support"><span className="journey-number" aria-hidden="true">03</span><div className="journey-copy"><h3>Reports & support</h3><p>Choose records to share, prepare a report and track responses.</p><a href="#/features"><UiIcon name="users" />Shared Experiences <UiIcon name="arrow-up-right" /></a><a href="#/department-of-sludge"><UiIcon name="shield-plus" />Directories & advocacy <UiIcon name="arrow-up-right" /></a></div><ReportsPreview /></section>
     </div><div className="journey-actions"><a className="all-features-link" href="#/features">View all features <UiIcon name="arrow-up-right" /></a><a className="glass-link" href="#waitlist">Join waiting list <UiIcon name="arrow-up-right" /></a></div>
   </section>
@@ -49,17 +50,17 @@ function FeatureJourney() {
 function PreservedHomeSections() {
   return <>
     <section className="content-section" id="commitment"><h2>Our commitment</h2><ul><li>Open-source software under AGPL-3.0.</li><li>Self-hosted, with a separate API and private database.</li><li>Private records by default; sharing and publication require an explicit choice.</li><li>Separate patient accounts, documentary evidence, provider responses and verified facts.</li><li>Member control over sharing, export and withdrawal.</li></ul><a href={REPO + '/blob/main/docs/BUILD_PLAN.md'}>Read the build plan ›</a></section>
-    <section className="content-section" id="privacy"><h2>Waiting-list privacy</h2><p>Your email is encrypted before storage in our private database. Your complete date of birth is checked for adult eligibility and then discarded. Joining does not create an account or guarantee access.</p><p>We use Resend to deliver the requested confirmation, invitations and launch updates; it receives your email and message, not your date of birth. Authorized operators can access information to administer the service. This is server-managed encryption.</p><p>Our notices explain website logs, provider history, retention, rights and the separate privacy/contact request form. Do not send medical records, identity documents or photos through these forms.</p><div className="privacy-links"><a href="#/privacy">Privacy Notice</a><a href="#/health-privacy">Consumer Health Privacy Policy</a><a href="#/legal-requests">Make a privacy or removal request</a></div></section>
+    <section className="content-section" id="privacy"><h2>Waiting-list privacy</h2><p>We will never sell your data or use it to train AI models.</p><p>Your email is encrypted before storage in our private database. Your complete date of birth is checked for adult eligibility and then discarded. Joining does not create an account or guarantee access.</p><p>We use Resend to deliver the requested confirmation, invitations and launch updates; it receives your email and message, not your date of birth. Authorized operators can access information to administer the service. This is server-managed encryption.</p><p>Our notices explain website logs, provider history, retention, rights and the separate privacy/contact request form. Do not send medical records, identity documents or photos through these forms.</p><div className="privacy-links"><a href="#/privacy">Privacy Notice</a><a href="#/health-privacy">Consumer Health Privacy Policy</a><a href="#/legal-requests">Make a privacy or removal request</a></div></section>
   </>
 }
 
 function PlannedPage({ title, children }: { title: string; children: React.ReactNode }) {
   return <section className="planned-page glass-panel"><p className="planned-label">Planned · Not available yet</p><h2>{title}</h2>{children}<a className="glass-link" href="#waitlist">Join waiting list <UiIcon name="arrow-up-right" /></a></section>
 }
-function Reports() { return <PlannedPage title="Reports & patterns"><p>Reports across hospitals, departments and providers, with explicit publication review, response tracking and separate evidence types.</p><ReportNotes full /></PlannedPage> }
-function Correspondence() { return <PlannedPage title="Correspondence"><p>Selected correspondence connected to appointments, complaints and responses. Private records stay private unless the author chooses to share.</p></PlannedPage> }
-function RecordsTimeline() { return <PlannedPage title="Records & timeline"><p>Compare selected medical records and correspondence on a dated timeline.</p></PlannedPage> }
-function Advocacy() { return <PlannedPage title="Advocacy"><p>Patient advocacy, complaint handling and response timelines.</p></PlannedPage> }
+function Reports() { return <PlannedPage title="Reports & patterns"><p>Reports across hospitals, departments and providers, with explicit publication review, response tracking and separate evidence types.</p><ReportNotes full /><PlannedToolContent page="reports" /></PlannedPage> }
+function Correspondence() { return <PlannedPage title="Correspondence"><p>Selected correspondence connected to appointments, complaints and responses. Private records stay private unless the author chooses to share.</p><PlannedToolContent page="correspondence" /></PlannedPage> }
+function RecordsTimeline() { return <PlannedPage title="Records & timeline"><p>Compare selected medical records and correspondence on a dated timeline.</p><PlannedToolContent page="records" /><PlannedStorageOptions /></PlannedPage> }
+function Advocacy() { return <PlannedPage title="Advocacy"><p>Patient advocacy, complaint handling and response timelines.</p><PlannedToolContent page="advocacy" /></PlannedPage> }
 
 const ROUTES = [
   { path: 'my-story', label: 'Home', view: Home },
@@ -98,7 +99,8 @@ export default function App() {
   const moreActive = Boolean(legalDocument || isLegalRequest) || ROUTES.slice(4).some(item => item.path === route?.path)
 
   return <>
-    <MatrixBackground /><HealingButterflies />
+    <GlassMaterial />
+    <MatrixBackground />
     <header className="site-header">
       <a className="wordmark" href="#/my-story"><span className="medical-staff" aria-hidden="true" /><span className="wordmark-name">TransProxy</span><UiIcon name="butterfly" /></a>
       <nav className="main-nav" aria-label="Main navigation">

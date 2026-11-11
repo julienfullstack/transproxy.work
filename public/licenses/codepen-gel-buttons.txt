@@ -29,3 +29,7 @@ translucent coating, inset lighting and layered shadow. Names/selectors,
 blue/pink palette and opacity are scoped to the existing site. The gleam
 runs once on hover or keyboard focus and stops under reduced motion.
 Original slider behavior, demo controls, fonts and library are not imported.
+
+The same rangeBar bottom radial reflection, 96-degree gleam, translucent
+coating and inset-lighting layers also supply the dark glass panel material.
+Panel geometry, neon tint and static gleam are TransProxy adaptations.

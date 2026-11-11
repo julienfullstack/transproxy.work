@@ -64,36 +64,36 @@
   mask-position: center bottom;
   animation: healing-butterflies-wing .7s infinite;
 }
-.healing-butterflies .spot::before { transform: rotateX(-50deg) translateY(-50%); color: #5bcefa; }
-.healing-butterflies .spot::after { transform: rotateX(-130deg) translateY(-50%); color: #f5a9b8; }
+.healing-butterflies .spot::before { transform: rotateX(-50deg) translateY(-50%); color: #00e5ff; }
+.healing-butterflies .spot::after { transform: rotateX(-130deg) translateY(-50%); color: #ff3fc8; }
 .healing-butterflies .spot--top::before,
 .healing-butterflies .spot--top::after {
-  background: linear-gradient(to bottom, #f5a9b8 10%, #5bcefa, #f7f7fc, #f5a9b8);
+  background: linear-gradient(to bottom, #ff3fc8 10%, #00e5ff, #f7f7fc, #ff3fc8);
   animation-delay: -.1166666667s;
 }
 .healing-butterflies .spot--bottom::before,
 .healing-butterflies .spot--bottom::after {
-  background: linear-gradient(to top, #f5a9b8 10%, #5bcefa, #f7f7fc, #f5a9b8);
+  background: linear-gradient(to top, #ff3fc8 10%, #00e5ff, #f7f7fc, #ff3fc8);
   animation-delay: -.2333333333s;
 }
 .healing-butterflies .spot--left::before,
 .healing-butterflies .spot--left::after {
-  background: linear-gradient(to bottom, #5bcefa 10%, #f5a9b8, #f7f7fc, #5bcefa, #f5a9b8);
+  background: linear-gradient(to bottom, #00e5ff 10%, #ff3fc8, #f7f7fc, #00e5ff, #ff3fc8);
   animation-delay: -.35s;
 }
 .healing-butterflies .spot--right::before,
 .healing-butterflies .spot--right::after {
-  background: linear-gradient(to top, #5bcefa, #f5a9b8, #f7f7fc, #5bcefa, #f5a9b8 90%);
+  background: linear-gradient(to top, #00e5ff, #ff3fc8, #f7f7fc, #00e5ff, #ff3fc8 90%);
   animation-delay: -.4666666667s;
 }
 .healing-butterflies .spot--back::before,
 .healing-butterflies .spot--back::after {
-  background: linear-gradient(to top, #5bcefa, #f5a9b8, #5bcefa, #f7f7fc, #f5a9b8, #f5a9b8 90%);
+  background: linear-gradient(to top, #00e5ff, #ff3fc8, #00e5ff, #f7f7fc, #ff3fc8, #ff3fc8 90%);
   animation-delay: -.5833333333s;
 }
 .healing-butterflies .spot--front::before,
 .healing-butterflies .spot--front::after {
-  background: linear-gradient(to bottom, #5bcefa 10%, #f5a9b8, #5bcefa, #f7f7fc, #f5a9b8, #f5a9b8);
+  background: linear-gradient(to bottom, #00e5ff 10%, #ff3fc8, #00e5ff, #f7f7fc, #ff3fc8, #ff3fc8);
   animation-delay: -.7s;
 }
 .healing-butterflies .side--back { transform: translateZ(-7.5em) rotateY(180deg); }

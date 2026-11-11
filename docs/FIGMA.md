@@ -6,7 +6,7 @@ This editable design file contains **26 screen views**: six current signup-first
 
 ## Current website views — signup-first v3
 
-Added **2026-11-11** on the [v3 page](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-5). The six current views use the own-brand medical/queer design, Chakra Petch headings and Inter body text, dark navy glass, cyan `#5BCEFA` and soft pink `#F5A9B8`. The brighter preview/note fills follow Julien’s selected 6698 reference; its overlapping layout is corrected.
+Added **2026-11-11** on the [v3 page](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-5). The six current views use the own-brand medical/queer design, Chakra Petch headings and Inter body text, dark navy glass, neon cyan `#00E5FF` and hot pink `#FF3FC8`. The brighter preview/note fills follow Julien’s selected 6698 reference; its overlapping layout is corrected.
 
 | View | Desktop · 1440 px | Mobile · 390 px |
 | --- | --- | --- |
@@ -14,13 +14,13 @@ Added **2026-11-11** on the [v3 page](https://www.figma.com/design/02pSNpXxS6TQl
 | Julien’s Story | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-143) | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-144) |
 | Features | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-145) | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-146) |
 
-Home starts with the complete adult waiting-list form and its three unchecked confirmations, followed by the three planned-tool journey scenes. The dedicated Story views preserve all nine approved sections and 24 article paragraphs; Features preserves all 22 entries, distinguished as 5 available, 16 planned and 1 future. No member capability is made available by its design preview.
+Home starts with the complete adult waiting-list form and its three unchecked confirmations, followed by the three planned-tool journey scenes and an explicit surgery-results gallery link. The dedicated Story views preserve all nine approved sections and 24 article paragraphs; Features contains 25 entries, distinguished as 6 available, 18 planned and 1 future. The gallery, invite-only accounts, private records and local/encrypted storage choices remain planned. No member capability is made available by its design preview.
 
-The six views contain 661 editable text layers and 164 component instances, with no image-filled UI or flattened interface. Actual licensed source SVG icons and reusable controls remain editable. Cross-view navigation and links to the live website are supplied. All twenty historic screen views remain in the file; the v3 work targets a separate page and its local components. Historic IDs, names and bounds were compared with the baseline; no deep before/after content-hash comparison is claimed.
+The six views contain 681 editable text layers and 158 component instances, with no image-filled UI or flattened interface. Actual licensed source SVG icons and reusable controls remain editable. Cross-view navigation and links to the website are supplied. All twenty historic screen views remain in the file; the v3 work targets a separate page and its local components. Historic IDs, names and bounds were compared with the baseline; no deep before/after historic content-hash comparison is claimed. The newly filled Reports, Correspondence, Records/timeline and Advocacy website pages do not have additional current v3 Figma frames.
 
 Both current font families are available and loaded in Figma. Complete renders, normal-scale opening details and structural reads were checked for text wrapping, horizontal overflow and overlapping imported layout. The v2 font substitutions described below apply only to historic views.
 
-**Motion limitation:** Matrix glyphs and source butterfly vectors are editable static representations. The live website is authoritative for falling-code, butterfly, GSS, gel-button and scrolling motion, native form behavior and reduced-motion support. These Figma views are not a pixel-for-pixel browser capture or a live application.
+**Motion limitation:** Matrix glyphs are editable static representations. The latest background instruction removes the decorative butterfly layers while preserving the small brand/content icons. The website is authoritative for falling-code, GSS, gel-button and scrolling motion, native form behavior and reduced-motion support. These Figma views are not a pixel-for-pixel browser capture or a live application.
 
 The public founder narrative is approved source content. No raw private records, emails, contact lists, credentials, identity documents or medical images were imported. The twelve original planned-member views remain historic concepts rather than a claim that every future flow has been rebuilt in v3.
 
@@ -102,3 +102,5 @@ All fourteen original final full-view screenshots were captured and visually ins
 Screenshot evidence remains in the ignored session queue, not the public repository: `figma-launch-desktop.png`, `figma-launch-mobile.png`, and corresponding `figma-{care,healing,sharing,reports,community,directory}-{desktop,mobile}.png` files under `/Volumes/good/ai-queues/01a1c822-f16e-7d11-805e-0cd5cabac8da/`.
 
 Figma file key: `02pSNpXxS6TQldcA5jbCWc`. Work session: `ddd14bf9-0483-40c4-bc79-2bad3a4f3ab9`. This document records design evidence only; live deployment and API validation are recorded separately.
+
+The later website glass/button refinements, enlarged/brighter Matrix, regional launch wording and rewritten story are not yet reflected in these Figma views.
