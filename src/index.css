@@ -281,11 +281,11 @@ blockquote p { margin-top: 0; }
 
 /* Matrix glass: retain the hospital composition beneath the requested finish. */
 #root { position: relative; isolation: isolate; }
-.matrix-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #02100d; }
+.matrix-background { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; background: #000; }
 .matrix-rain, .matrix-scanlines, .matrix-vignette { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
-.matrix-scanlines { opacity: .2; background: repeating-linear-gradient(0deg, transparent 0 2px, #00140e 2px 3px); }
+.matrix-scanlines { display: none; }
 .matrix-scanlines::after { content: ''; position: absolute; inset: -100% 0 0; background: linear-gradient(transparent 45%, #baffdd08 50%, transparent 55%); animation: crt-sweep 15s linear infinite; }
-.matrix-vignette { background: radial-gradient(ellipse at 50% 25%, transparent 15%, #010b0866 80%, #010805b3); }
+.matrix-vignette { display: none; }
 @keyframes crt-sweep { to { transform: translateY(50%); } }
 
 .site-header { background: linear-gradient(110deg, #051c18ed, #082326d9); border-top: 3px solid var(--mint); border-bottom: 1px solid #92ffda26; backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px); }
@@ -305,7 +305,7 @@ blockquote p { margin-top: 0; }
 .nav-search { background: #063e3355; }
 .nav-search a { padding: 7px 25px; font-size: .7rem; }
 
-.hero { min-height: 440px; padding: 0 clamp(56px, 8.5vw, 128px) 92px; border-bottom: 1px solid #5bcefa33; background: radial-gradient(ellipse at 83% 20%, #5bcefa17, transparent 45%), radial-gradient(ellipse at 14% 95%, #ff8bcb14, transparent 48%), linear-gradient(180deg, #001a1022, #00110d66); }
+.hero { min-height: 440px; padding: 0 clamp(56px, 8.5vw, 128px) 92px; border-bottom: 1px solid #5bcefa33; background: linear-gradient(90deg, #001a100d, transparent); }
 .hero-title { font-size: clamp(3.6rem, 7.4vw, 6.5rem); line-height: 1; letter-spacing: -.065em; font-weight: 200; text-shadow: 0 0 50px #5bcefa22; }
 .hero-title span { color: var(--mint); }
 .hero-caption p { font-size: .93rem; letter-spacing: .12em; text-transform: uppercase; color: #d0eee1; margin-top: 26px; }

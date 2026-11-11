@@ -6,11 +6,11 @@ Julien's experience and account of why he created TransProxy will be prominent. 
 
 ## Development status
 
-**Waiting-list launch.** The React/TypeScript landing page and dedicated encrypted, adult-only waiting-list API are deployed on **[transproxy.org](https://transproxy.org)** and checked with desktop/mobile production signups. DNS caches may still show the former parking page during propagation. See [deployment notes](docs/DEPLOYMENT.md) for the verification method and hosting state. The complete member platform described below is **planned**, not implemented or available at launch. The first commit established the documentation, AGPL-3.0 license and ignore rules.
+**Waiting-list launch.** The React/TypeScript landing page and dedicated encrypted, adult-only waiting-list API are deployed on **[transproxy.org](https://transproxy.org)** and checked with desktop/mobile production signups. See [deployment notes](docs/DEPLOYMENT.md) for the verification method and hosting state. The complete member platform described below is **planned**, not implemented or available at launch. The first commit established the documentation, AGPL-3.0 license and ignore rules.
 
 The landing-page launch uses a new isolated self-hosted Coolify project with separate frontend, API and private Postgres resources. Existing Cruush and Mount Sinai projects, resources and data are outside this repository's deployment scope. Implementation, deployment and live verification are separate milestones; documentation is not evidence that a feature works.
 
-The site includes a dedicated **Julien’s Story** page and a feature list separating available waiting-list functions from planned member tools. The hospital-parody layout uses a dark Matrix palette, local falling-code/CRT effects and glossy glass panels. Its main signup button bundles `gss-lang` 0.0.6 locally, with a lightweight fallback and reduced-motion support. The library’s Apache-2.0 license is included at `public/licenses/gss-lang.txt`.
+The site includes a dedicated **Julien’s Story** page and a feature list separating available waiting-list functions from planned member tools. The hospital-parody layout uses a dark Matrix palette, the actual [WebGL CRT Neon Matrix effect by Nick Matantsev](https://codepen.io/unframework/pen/pqorjJ) and glossy glass panels. The upstream falling-code routines and CRT shaders are retained, with a native WebGL adapter and local terminal font so no CDN or relaxed security policy is required. Its main signup button bundles `gss-lang` 0.0.6 locally, with a lightweight fallback and reduced-motion support. The library’s Apache-2.0 license is included at `public/licenses/gss-lang.txt`.
 
 ## Commitments
 

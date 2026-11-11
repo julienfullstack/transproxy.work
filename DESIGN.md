@@ -90,3 +90,19 @@ Julien: “Pick out a good matrix , inspired color palette , where it has some g
 Use blackpine#02100d/deepteal#002a2a as foundations; Matrixmint#5dffb4,transcyan#5bcefa,neonpink#ff8bcb andviolet#ad8cff as accents; ice#f4fff9text. Existingsoftpink#f5a9b8canremainintext. Requestedglassbuttonsgetsheenedges/reflectionwithhover/focus/pressedstates while preserving every label, action anddisabledstate.
 
 Julien’s final palette check: “Just make sure the colors of the elements match our theme”. Apply the same palette to every requested surface and effect, including the GSS core; use icy white rather than a separate warm gold accent.
+
+## Website-first Figma handoff —2026-11-10
+
+Julien: “Make a figma thing too but do fhe website first”. Publish and verify the real website before finishing matching editable desktop/mobile launch, story and feature designs. The v2 story design may reproduce Julien’s approved public personal account so it matches the requested website. Future member-product mock data stays fictional; raw private records, correspondence, contacts and medical images remain excluded. Figma’s Matrix/GSS decoration is an editable still; the actual site supplies and verifies the motion.
+
+## Actual CodePen correction —2026-11-10
+
+Julien: “Looks ugly as shit.I hate it.Where's The Matrix shit in the background?I x for”.
+
+Julien: “I want the falling matrix stuff in the background with the TV static. You didn't do that.”.
+
+Julien: “I gave you a codepen for it and use it”.
+
+Julien: “Bruh use the codepena i send thats the point”.
+
+Use the supplied working unframework/pqorjJ falling-code and WebGL CRT/TV effect itself, rather than a newly drawn imitation. Keep the actual locally bundled GSS button reference. Self-host runtime files and retain source/license notices; preserve all current content and controls. Make the requested background clearly visible and finish the website before updating Figma.

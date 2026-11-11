@@ -206,3 +206,30 @@ private keys, contacts and signed capabilities were not printed as evidence.
 Both production builds and15 focused API/database tests passed. Default DNS on
 the verification computer still cached the old parking address, so direct local
 browser navigation remains unverified; public DNS and valid domain TLS passed.
+
+## Verified Matrix glass website —2026-11-10
+
+Frontend source `1e8e5f3712a4a7642e67973374d8361ae1e3fcee` is deployed and healthy.
+The private API remains pinned to `145e838210d6cf1a5385e59c290f97ef20cb6d2f`;
+Postgres, keys, mail settings and all other resources were unchanged. This was a
+frontend-only deployment with no environment-variable changes.
+
+Default DNS now resolves correctly on the verification computer. Direct browser
+navigation to `https://transproxy.org` passed, without a QA transport or lookup
+override. Actual1440px desktop and390px mobile checks covered the Matrix
+background, new story and feature navigation, nine story sections, and the feature
+groups (five available, sixteen planned, one future service). Existing routes,
+controls and waiting-list privacy/eligibility behavior remain intact.
+
+The signup button rendered actual bundled GSS under the unchanged production CSP,
+with a58px height, readable label and no external runtime resources. Matrix and
+GSS reduced-motion checks passed; a real WebGL context-loss check selected the
+local fallback without changing the button action or layout. The package is pinned
+to0.0.6 and its Apache-2.0 license is distributed at `/licenses/gss-lang.txt`.
+
+A direct mobile signup after publication matched the same official simulator
+entry created during the built-site preview. It still produced one encrypted row
+and exactly one delivered welcome, not another message. The direct signed link
+and browser confirmation then completed removal. Only synthetic test data was
+used; no raw medical records, private correspondence or private contacts were
+imported into the site. Temporary local QA servers were stopped.
