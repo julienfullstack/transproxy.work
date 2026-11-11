@@ -42,6 +42,27 @@
 - [x] Configure `transproxy.org` / same-origin private `/api`, HTTPS and allowed origins without touching old resources.
 - [x] Verify live health and actual browser submission/persistence using synthetic data; record any unresolved blocker as unverified.
 
+> “I want a waiting list out as soon as possible.So make the API and the reset and all the bullshit we use for that same thing as crush.I want to do everything stuff hosted possible.Come on , please tell me you're killing me ask for dob”
+
+- [x] Add required DOB with the existing input presentation and preserve neighboring controls.
+- [x] Enforce a real-calendar 18+ check on the API, then discard DOB.
+- [x] Add self-hosted durable welcome-email delivery state, worker and signed removal flow; Resend handles delivery.
+- [x] Verify the TransProxy sending domain while preserving existing inbound mail routing.
+- [x] Pass both production builds, 15 focused API/database tests and separate UI scope review.
+- [x] Verify the deployed DOB form, simulator welcome delivery, duplicate behavior and subscriber removal.
+
+> “Julien's Story”; “Like make a tab for my story”; “Make a feature list”
+>
+> “This matrix shit in the back”; “Do cool gss stuff for the buttons”; “Just make sure the colors of the elements match our theme”
+
+- [x] Write a fuller source-based personal account and brief purpose summary, with independent accuracy/privacy review.
+- [x] Add dedicated story and feature tabs; distinguish available, planned and future features.
+- [x] Retain the hospital parody with Matrix rain, CRT texture, consistent neon colors and glossy glass surfaces.
+- [x] Verify actual GSS rendering, local assets, reduced motion, fallback and desktop/mobile signup.
+- [x] Complete a separate scope review of all UI changes and preserve existing controls/behavior.
+- [ ] Deploy and verify the refined website before completing matching Figma views.
+- [ ] Finish matching editable desktop/mobile launch, story and feature views in Figma.
+
 ## Planned member platform
 
 > “the point of this is to prevent what happened to me a way to record your expectations and your experiences as well report staff, hosptial,  an department. You add pics too.”

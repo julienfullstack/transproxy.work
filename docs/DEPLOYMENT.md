@@ -1,6 +1,6 @@
 # Deployment
 
-This document describes the initial waiting-list deployment. The member platform,
+This document describes the waiting-list deployment and DOB/email update. The member platform,
 records vault, public reports and other roadmap features are not deployed by this
 setup. Deployment status and resource IDs are recorded privately in the release
 session; this document does not itself certify that a release is live.
@@ -50,11 +50,15 @@ Check the saved flags after creation; runtime secrets must never become build AR
 | API | `WAITLIST_ENCRYPTION_KEY` | Unique random 32-byte key encoded as 64 hex characters. |
 | API | `WAITLIST_LOOKUP_KEY` | A different random 32-byte key encoded as 64 hex characters for duplicate lookup/removal. |
 | API | `TRUST_PROXY_HOPS` | Two trusted proxy hops in the described deployment. |
+| API | `RESEND_API_KEY` | Approved delivery credential; runtime only. |
+| API | `WAITLIST_FROM_EMAIL` | Verified TransProxy sender. |
+| API | `SITE_URL` | `https://transproxy.org`, used for signed removal links. |
 
 The API applies the idempotent waiting-list migration at startup. Email addresses
 are encrypted before database storage; duplicate matching uses the separately
-keyed digest. The waiting list has no public read endpoint. Signup does not send
-email, and this deployment needs no email-provider credentials.
+keyed digest. The waiting list has no public read endpoint. New signups queue a
+welcome email when delivery is configured; a local setup with no mail credentials
+keeps delivery disabled. Full date of birth is checked and discarded.
 
 Both application keys are required for recovery and must be preserved when
 redeploying. They live in the API's Coolify configuration, separately from
@@ -102,7 +106,8 @@ The API image includes `node dist/remove.js`, also available as
 `npm run waitlist:remove`. It accepts one email through standard input, calculates
 the private lookup digest and removes the matching active entry. It returns a
 generic completion message; it does not disclose whether the address was present.
-No public removal or decryption endpoint is exposed.
+No public decryption endpoint is exposed. A separate signed removal link in the
+welcome email lets a subscriber remove their own entry without an account.
 
 An authorized operator can run the following in a Bash shell on the server after
 identifying the current **TransProxy API** container. Replace only the container
@@ -176,3 +181,28 @@ or an authenticated email-client one-click request removes the active entry and
 its pending mail. A bounded send that already started may complete before removal;
 no new send starts after the removal transaction commits. Operator removal stays
 available. No bulk delivery or campaign send is part of this release.
+
+### Verified DOB and mail release —2026-11-10
+
+Source `145e838210d6cf1a5385e59c290f97ef20cb6d2f` is deployed. Frontend, API and
+private Postgres are healthy. Existing database connection and both application
+keys were preserved byte-for-byte. The three mail settings are runtime-only;
+build-argument injection, automatic deployments and previews remain disabled.
+The TransProxy sending domain and all four provider-issued records are verified.
+Original PrivateEmail inbound MX/SPF and website DNS were retained.
+
+Actual desktop and390px mobile signup passed through the same unmodified,
+TLS-validating QA transport described above. Missing DOB and under18 dates each
+returned400. One official Resend simulator address produced exactly one encrypted
+row and one welcome delivery, including after duplicate signup. The provider
+reported delivered; this was a simulator check, not a real-person inbox test.
+The database schema has no DOB field and the email contains no submitted DOB.
+
+The signed link opened a nonmutating confirmation page. Clicking its button in
+the actual browser removed the synthetic entry. Matching rows and pending jobs
+then became zero; unrelated rows were unchanged. Temporary deployment tokens
+were zero. API request logging and shared proxy access logging are disabled;
+private keys, contacts and signed capabilities were not printed as evidence.
+Both production builds and15 focused API/database tests passed. Default DNS on
+the verification computer still cached the old parking address, so direct local
+browser navigation remains unverified; public DNS and valid domain TLS passed.

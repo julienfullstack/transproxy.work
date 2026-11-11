@@ -58,3 +58,35 @@ Future incapacity/death delivery and human advocacy must be labelled planned. Th
 ## DOB waiting-list update —2026-11-10
 
 Julien: “I want a waiting list out as soon as possible.So make the API and the reset and all the bullshit we use for that same thing as crush.I want to do everything stuff hosted possible.Come on , please tell me you're killing me ask for dob”. Add a required Date of birth field to the existing waiting list and validate18+ on the API. Preserve all existing unrequested presentation and controls. Exact DOB is used only to check eligibility and discarded; it must not enter storage, logs or email delivery. This supersedes the earlier email-only input wording. The app/API/database remain self-hosted; inspect actual Cruush mail setup rather than inventing a different service.
+
+## Julien’s Story and visual refinement —2026-11-10
+
+Julien: “Julien's Story”; “Like make a tab for my story”; “Make a feature list”. Add a dedicated story/blog surface, fuller source-based personal account, brief purpose summary and explicit available/planned feature list. Preserve the changed-decision immediately-before-surgery chronology; distinguish Julien’s experience/recollection from provider replies and independent findings.
+
+Julien: “Use the figma design skill to make a better looking UI I like that you parody Mount Sinai.Can you give me that Mount Sinai vibe?But dark colors and transgender , so I want the mount sinai parody still but make the colors like dark themed and trans”. He explained: “Mount sinai is evil , but they're light colored , so I 'm gonna be good , but dark colored get it”. The visual direction is an inversion of the light institutional hospital site: keep its recognizable utility header, serif wordmark, navigation, carousel, service columns and footer; refine hierarchy and spacing with dark navy surfaces, trans-blue actions and trans-pink emphasis. These words explain the design concept; do not turn them into a new factual allegation in site copy. Keep all waiting-list functionality and all existing navigation destinations.
+
+## Matrix glass refinement —2026-11-10
+
+Julien: “https://codepen.io/simeydotme/pen/PwwYZO
+
+https://codepen.io/unframework/pen/pqorjJ
+
+This matrix shit in the back.I think I want it to be these matrix colors actually.So I like the dark green and these other like blue and pinks and extra , let's make it matrix themed actually , but these colors in this matrix code ben , I want that matrix thing falling down in the background , and I want glass neon shit for the cards and everything else”.
+
+Julien: “It should be glossy , beautiful glass themed . Something beautiful out of pain, neon , a new future”.
+
+Julien: “Same stick t v effect in the back with the matrix stuff falling down for the background”.
+
+This latest direction supersedes the earlier navy-only surface treatment. Retain the recognizable hospital-parody composition and typography; add a dark green Matrix background with falling code and restrained TV/CRT static/scanlines, neon cyan/pink accents and glossy glass cards. The background is decorative, never captures clicks or obscures copy. Respect reduced motion and pause hidden animation. The first reference currently returns404; the second is the inspected CRT/matrix visual reference. No third-party scripts or paid asset generation are needed.
+
+## Glass buttons and palette —2026-11-10
+
+Julien: “https://codepen.io/editor/LukyVj/pen/01a13f4f-03a2-7912-b810-f80a101db33b
+
+Do cool gss stuff for the buttons”.
+
+Julien: “Pick out a good matrix , inspired color palette , where it has some greens , some blues , some pinks and some other cool colors ,”.
+
+Use blackpine#02100d/deepteal#002a2a as foundations; Matrixmint#5dffb4,transcyan#5bcefa,neonpink#ff8bcb andviolet#ad8cff as accents; ice#f4fff9text. Existingsoftpink#f5a9b8canremainintext. Requestedglassbuttonsgetsheenedges/reflectionwithhover/focus/pressedstates while preserving every label, action anddisabledstate.
+
+Julien’s final palette check: “Just make sure the colors of the elements match our theme”. Apply the same palette to every requested surface and effect, including the GSS core; use icy white rather than a separate warm gold accent.

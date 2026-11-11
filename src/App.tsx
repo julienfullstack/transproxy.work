@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react'
 import { WaitlistForm } from './components/WaitlistForm'
+import { MatrixBackground } from './components/MatrixBackground'
+import { JulienStory } from './views/JulienStory'
+import { Features } from './views/Features'
+import { juliensStory } from './content/juliensStory'
 
 const REPO = 'https://github.com/julienfullstack/transproxy.work'
 
@@ -9,7 +13,7 @@ function Home() {
       <div className="waitlist-meta"><p className="status-label">Invite-only · Worldwide · 18+</p><h1>Join the TransProxy waiting list</h1><p>Membership is in development. Join for invitations and launch updates.</p><p>The waiting list is open. Accounts, records, reports and community features below are planned.</p><a href={REPO}>View the open-source project ›</a></div>
       <WaitlistForm />
     </section>
-    <section className="content-section story" id="story"><h2>My Story</h2><p>Julien Lenaz · Founder</p><blockquote><p>“What I want is accountability.</p><p>I want transgender patients to be able to report what happened to them.</p><p>I want repeated complaints to become visible as patterns rather than disappearing into separate private correspondence.</p><p>I want patients to know whether other people have reported similar experiences.”</p></blockquote><p>From Julien’s account:</p><blockquote><p>“My recollection is that immediately before surgery I specifically sought reassurance that the area would be completely buried and that I would wake up with the appearance I had requested. I have been saying this since shortly after I woke from surgery.”</p></blockquote></section>
+    <section className="content-section story" id="story"><h2>Julien’s Story</h2><p>Julien Lenaz · Founder</p><p>{juliensStory.summary}</p><a className="glass-link" href="#/juliens-story">Read Julien’s story ›</a><blockquote><p>“What I want is accountability.</p><p>I want transgender patients to be able to report what happened to them.</p><p>I want repeated complaints to become visible as patterns rather than disappearing into separate private correspondence.</p><p>I want patients to know whether other people have reported similar experiences.”</p></blockquote><p>From Julien’s account:</p><blockquote><p>“My recollection is that immediately before surgery I specifically sought reassurance that the area would be completely buried and that I would wake up with the appearance I had requested. I have been saying this since shortly after I woke from surgery.”</p></blockquote></section>
     <PlannedFeatures />
     <section className="content-section" id="commitment"><h2>Our commitment</h2><ul><li>Open-source software under AGPL-3.0.</li><li>Self-hosted, with a separate API and private database.</li><li>Private records by default; sharing and publication require an explicit choice.</li><li>Separate patient accounts, documentary evidence, provider responses and verified facts.</li><li>Member control over sharing, export and withdrawal.</li></ul><a href={REPO + '/blob/main/docs/BUILD_PLAN.md'}>Read the build plan ›</a></section>
     <section className="content-section" id="privacy"><h2>Waiting-list privacy</h2><p>We collect your email address, confirmation that you are 18 or older, consent to invitations and launch updates, and the time you join. We ask for your date of birth to check that you are 18 or older, then discard the full date. We use this information to manage invitations and launch updates. Joining does not create an account or guarantee access.</p><p>Your email is encrypted before it is stored in our private database. Authorized project operators can access it to manage the list. It is not public. We use Resend to deliver waiting-list emails and share your email address with that service for delivery; your date of birth is never shared. This launch does not store dates of birth or collect medical records, photos or identity documents, and uses no advertising trackers.</p><p>Contact <a href="https://www.linkedin.com/in/julienlenaz/">Julien Lenaz</a> to withdraw consent or request removal. We retain your address while invitations are being managed, or until you request removal.</p></section>
@@ -24,14 +28,16 @@ const PLANNED = [
   ['Community & support', 'Anonymous Confessional posts, replies and reactions. Member channels, private support groups and volunteer facilitators.'],
   ['Directories & advocacy', 'Providers, surgeons, patient advocates and queer/trans-friendly lawyers. Sourced procedure guides, complaint tools and optional fundraiser links.'],
 ] as const
-function PlannedFeatures() { return <section className="content-section" id="planned"><h2>Planned features</h2><p className="planned-label">In development · Not available yet</p><ul className="plan-list">{PLANNED.map(([title,text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ul><p><a href={REPO + '/blob/main/docs/SCOPE.md'}>Full project scope ›</a></p></section> }
+function PlannedFeatures() { return <section className="content-section" id="planned"><h2>Planned features</h2><p className="planned-label">In development · Not available yet</p><ul className="plan-list">{PLANNED.map(([title,text]) => <li key={title}><h3>{title}</h3><p>{text}</p></li>)}</ul><p><a className="glass-link" href="#/features">View feature list ›</a></p><p><a href={REPO + '/blob/main/docs/SCOPE.md'}>Full project scope ›</a></p></section> }
 function PlannedPage({title, children}: {title: string; children: React.ReactNode}) { return <section><p className="planned-label">Planned · Not available yet</p><h2>{title}</h2>{children}<p><a href="#/my-story">Join waiting list ›</a></p></section> }
 function WallOfShame() {return <PlannedPage title="Wall of Shame"><p>Reports across hospitals, departments and providers, with explicit publication review, response tracking and separate evidence types.</p></PlannedPage>}
 function Emails() {return <PlannedPage title="Emails"><p>Selected correspondence connected to appointments, complaints and responses. Private records stay private unless the author chooses to share.</p></PlannedPage>}
 function RecordsVsEmails() {return <PlannedPage title="Records vs Emails"><p>Compare selected medical records and correspondence on a dated timeline.</p></PlannedPage>}
 function DepartmentOfSludge() {return <PlannedPage title="The Department of Sludge"><p>Patient advocacy, complaint handling and response timelines.</p></PlannedPage>}
 const ROUTES = [
- {path:'my-story', label:'My Story', view:Home},
+ {path:'my-story', label:'Home', view:Home},
+ {path:'juliens-story', label:'Julien’s Story', view:JulienStory},
+ {path:'features', label:'Features', view:Features},
  {path:'wall-of-shame', label:'Wall of Shame', view:WallOfShame},
  {path:'emails', label:'Emails', view:Emails},
  {path:'records-vs-emails', label:'Records vs Emails', view:RecordsVsEmails},
@@ -109,6 +115,7 @@ export default function App() {
 
   return (
     <>
+      <MatrixBackground />
       <header className="site-header">
         <div className="header-inner">
           <a className="wordmark" href="#/my-story">

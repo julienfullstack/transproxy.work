@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
+import { NeonBackdrop } from './NeonBackdrop'
 
 function latestEligibleBirthDate() {
   const today = new Date()
@@ -48,7 +49,7 @@ export function WaitlistForm() {
     <div className="hp-field" aria-hidden="true"><label htmlFor="website">Website</label><input id="website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
     <label className="check"><input type="checkbox" name="adult" required disabled={state === 'sending'} /><span>I am 18 or older.</span></label>
     <label className="check"><input type="checkbox" name="consent" required disabled={state === 'sending'} /><span>I agree to receive TransProxy invitations and launch updates by email. <a href="#privacy">Waiting-list privacy</a></span></label>
-    <button className="submit-button" type="submit" disabled={state === 'sending'}>{state === 'sending' ? 'Joining…' : 'Join waiting list'}</button>
+    <button className="submit-button" type="submit" disabled={state === 'sending'}><NeonBackdrop /><span>{state === 'sending' ? 'Joining…' : 'Join waiting list'}</span></button>
     <p className={`form-result ${state === 'error' ? 'error' : ''}`} role={state === 'error' ? 'alert' : 'status'} aria-live="polite">{message}</p>
   </form>
 }
