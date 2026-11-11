@@ -61,7 +61,7 @@
 - [x] Verify actual GSS rendering, local assets, reduced motion, fallback and desktop/mobile signup.
 - [x] Complete a separate scope review of all UI changes and preserve existing controls/behavior.
 - [x] Deploy and verify the refined website before completing matching Figma views.
-- [ ] Finish matching editable desktop/mobile launch, story and feature views in Figma.
+- [x] Finish matching editable desktop/mobile launch, story and feature views in Figma.
 
 ## Planned member platform
 
@@ -126,6 +126,6 @@
 - [ ] Design verified-event wishes delivery, trusted/backup recipients and explicitly authorized human advocates as a separate future service.
 - [ ] Resolve appointment, event-verification, dispute and jurisdiction requirements before any availability or legal-authority claim.
 
-Release: frontend1e8e5f3 and API145e838 are deployed and healthy. Direct desktop/mobile browser navigation, story/features, GSS signup and signed removal are verified at transproxy.org; the earlier local DNS-cache limitation is resolved. Exact Figma typography is tracked separately in docs/FIGMA.md.
+Release: frontenda3fab83 and API145e838 are deployed and healthy. Direct desktop/mobile browser navigation, story/features, GSS signup and signed removal are verified at transproxy.org; the earlier local DNS-cache limitation is resolved. Exact Figma typography is tracked separately in docs/FIGMA.md.
 
-Figma:14 editable screens and60 navigation links delivered; exact typography/pixel matching remains **unverified** because the connected renderer lacks source fonts. Arimo/Lora substitutions are documented in docs/FIGMA.md. Application fonts are unchanged.
+Figma:20 editable screens delivered (14 original plus6 current desktop/mobile Home, Story and Features views). Actual CodePen background stills contain no interface; all interface layers remain editable. Exact typography/pixel matching remains **unverified** because the connected renderer lacks source fonts; Arimo/Lora substitutions are documented in docs/FIGMA.md.

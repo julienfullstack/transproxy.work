@@ -2,9 +2,33 @@
 
 Created **2026-11-10**: [TransProxy — Launch & Product](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc).
 
-This is an editable design deliverable: two waiting-list launch views and twelve **planned** member-product views. The planned screens use fictional example records, providers, contacts and counts. They do not imply that the member product is implemented. The six member-navigation tabs have 60 inter-screen prototype links, connecting the other five views at the matching desktop/mobile size. Other action buttons are visual specifications, not implemented product flows.
+This is an editable design deliverable with **20 screen views**: the original two waiting-list launch views, twelve **planned** member-product views, and six current Matrix/glass views added on 2026-11-11. The original fourteen views are preserved. The planned screens use fictional example records, providers, contacts and counts. They do not imply that the member product is implemented. The six member-navigation tabs have 60 inter-screen prototype links, connecting the other five views at the matching desktop/mobile size. Other action buttons are visual specifications, not implemented product flows.
 
-## Screens
+## Current website views — Matrix/glass v2
+
+Added **2026-11-11** on [03 · Matrix glass — Home, Story & Features](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-2), matching the published website at frontend source `a3fab83498d5db39478984bf3cad4ef825afea14`.
+
+| View | Desktop | Mobile |
+| --- | --- | --- |
+| Home | [1440 × 4084](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-255) | [390 × 6784](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-689) |
+| Julien’s Story | [1440 × 4723](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-1054) | [390 × 8966](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-1121) |
+| Features | [1440 × 3442](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-1201) | [390 × 6916](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-1268) |
+
+These six views retain the real hospital-parody composition, utility phone and four links, all eight navigation cells including Search, source person/calendar/phone icon order, hero arrows and three dots, three feature cards, email and date-of-birth fields, both required checkboxes, current Resend/privacy wording, commitment list and footer. The Home view includes the approved public-story summary and links to the full story and feature list. The Story views contain the approved public personal narrative: author/date, all nine sections and 24 paragraphs. The Features views contain exactly **5 available, 16 planned and 1 future** items from the website source. The original fourteen screens and their local variables/components were not changed.
+
+The v2 palette uses black/pine, teal, mint, cyan, neon pink and violet with translucent glass panels, luminous hairlines and static glossy action buttons. V2-only local color variables and reusable headers, footers, feature cards, glass actions and links leave the earlier design system intact. Home, Story and Features navigation actions connect the new views at the same viewport size; retained routes point to the live website. Search keeps its magnifier and its source Wall of Shame destination.
+
+**Background and motion:** each new view has one discrete background-only bitmap captured from the actual self-hosted [unframework CodePen effect](https://codepen.io/unframework/pen/pqorjJ), with its original Matrix trails and CRT shader. It contains no interface, fields or private data. This replaces the earlier imitation glyph/scanline layer. All interface text, fields, cards, buttons, vectors and layout remain editable. The long design views repeat the captured canvas still as a background; Figma does not claim running Matrix or GSS animation. Actual WebGL motion, reduced-motion behavior and simultaneous GSS button rendering were checked on the published desktop/mobile website. The MIT CodePen attribution and Inconsolata font license are included with the application.
+
+**V2 verification:** all six complete renders were inspected after correcting paragraph reflow, horizontal row sizing, mobile widths, library button-label sizing, inherited Search icons and active navigation states. Final structural read-back found no horizontal content overflow or auto-layout sibling overlap in any view. Home has **84 editable text layers and 13 component instances** per viewport; Story has **84 and 3**; Features has **97 and 25**. Each view has exactly **one image-filled node**, used only for the effect background. The new page contains 1,312 nodes including its local masters; full node IDs and bounds are saved in the ignored session queue as `figma-v2-nodes.json`.
+
+**Typography remains a limitation:** the connected renderer still lacks the website’s Helvetica/Arial and Georgia families. V2 uses verified Arimo Regular/Bold and Lora Regular/Bold substitutions. Exact typography and pixel-for-pixel matching are unverified; the actual website fonts were not changed. The captured effect bitmap includes its real Inconsolata-rendered glyphs.
+
+The v2 Story content is Julien’s approved **public personal narrative**. No raw private email, private record, contact list, credential, medical image or identity document was imported. The original planned member screens continue to use fictional examples.
+
+Final v2 screenshots in the ignored session queue: `figma-v2-desktop.png`, `figma-v2-mobile.png`, `figma-v2-story-desktop.png`, `figma-v2-story-mobile.png`, `figma-v2-features-desktop.png`, and `figma-v2-features-mobile.png`. V2 Figma work session: `66a124ca-1551-4b6b-ad50-982494ca07a6`.
+
+## Original fourteen screens
 
 | View | Desktop | Mobile |
 | --- | --- | --- |
@@ -20,7 +44,7 @@ Pages: `00 · Components & source theme` (`0:1`), `01 · Waiting-list launch` (`
 
 ## Source and preserved composition
 
-The launch views were built from the actual `src/App.tsx`, `src/index.css` and `src/components/WaitlistForm.tsx`, checked against actual application screenshots. They retain the hospital-parody utility header, four utility links, six navigation cells, captioned striped carousel with arrows and three dots, three-column feature band, source person/calendar/phone SVG order, square buttons, waiting-list/story/plans/privacy content and three-column footer. On mobile, these groups wrap or stack.
+The original launch views were built from the actual `src/App.tsx`, `src/index.css` and `src/components/WaitlistForm.tsx`, checked against actual application screenshots. They retain the hospital-parody utility header, four utility links, six navigation cells, captioned striped carousel with arrows and three dots, three-column feature band, source person/calendar/phone SVG order, square buttons, waiting-list/story/plans/privacy content and three-column footer. On mobile, these groups wrap or stack.
 
 The requested dark palette is bound through twelve local Figma color variables derived from source CSS. Shared desktop/mobile headers and footers and the source feature band use reusable local components. Button and checkbox assets were discovered in the Simple Design System library and reused with source-style overrides. A generic library landing template was inspected and rejected because its image-led composition did not match the real source.
 
@@ -39,11 +63,11 @@ The requested dark palette is bound through twelve local Figma color variables d
 | Selected sharing, encryption choices, reports and separate pattern opt-in | Selected “user choice”, “Invites and links (Recommended)” and “Separate opt-in (Recommended)” |
 | Anonymous results, community, groups, directories, guides and fundraising | Recovered feature requests recorded in `SCOPE.md` and `TODO.md`; these screens remain explicitly planned. |
 
-No private medical record, email, upload, image, identity document, credential or actual provider allegation was imported. Medical-image areas are explicitly labelled fictional placeholders; no real patient pictures appear. The pattern counts are labelled fictional. Incapacity/death delivery remains in the documented future roadmap and is not presented as an available service or legal appointment.
+For the original fourteen views, no private medical record, email, upload, image, identity document, credential or actual provider allegation was imported. The later v2 public-story content is described separately above. Medical-image areas are explicitly labelled fictional placeholders; no real patient pictures appear. The pattern counts are labelled fictional. Incapacity/death delivery remains in the documented future roadmap and is not presented as an available service or legal appointment.
 
 ## Evidence
 
-The final structural read returned:
+The original fourteen-view structural read returned:
 
 - **14 screen frames**, each with editable text and auto-layout hierarchy.
 - **81 text layers per launch view**; **68–83 text layers per planned view**.
@@ -53,7 +77,7 @@ The final structural read returned:
 - No horizontal content overflow on any of the twelve planned screens. The launch stripe SVG includes off-frame decorative paths clipped by its fixed hero frame, matching the CSS background treatment; screenshots retain the intended 1440/390-pixel widths.
 - Rendered font families: Arimo and Lora, with the source-font mismatch explicitly recorded above.
 
-All fourteen final full-view screenshots were captured and visually inspected. The screenshot pass identified and corrected text reflow, library button-label sizing, mobile checkbox wrapping and feature widths. Final desktop/mobile launch views were compared with actual application screenshots, including the restored fourth utility link and original icon order. The views have readable labels and no observed clipping or text overlap after those corrections.
+All fourteen original final full-view screenshots were captured and visually inspected. The screenshot pass identified and corrected text reflow, library button-label sizing, mobile checkbox wrapping and feature widths. Final desktop/mobile launch views were compared with actual application screenshots, including the restored fourth utility link and original icon order. The views have readable labels and no observed clipping or text overlap after those corrections.
 
 Screenshot evidence remains in the ignored session queue, not the public repository: `figma-launch-desktop.png`, `figma-launch-mobile.png`, and corresponding `figma-{care,healing,sharing,reports,community,directory}-{desktop,mobile}.png` files under `/Volumes/good/ai-queues/01a1c822-f16e-7d11-805e-0cd5cabac8da/`.
 

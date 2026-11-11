@@ -233,3 +233,24 @@ and exactly one delivered welcome, not another message. The direct signed link
 and browser confirmation then completed removal. Only synthetic test data was
 used; no raw medical records, private correspondence or private contacts were
 imported into the site. Temporary local QA servers were stopped.
+
+## Actual supplied Matrix/CRT effect —2026-11-10
+
+Frontend `a3fab83498d5db39478984bf3cad4ef825afea14` replaces the initial custom
+Matrix decoration with Nick Matantsev’s supplied CodePen effect. Both CRT shaders
+are byte-identical to the upstream source; its trail/character/color/fade logic is
+retained. A native WebGL texture/draw adapter replaces only ReGL’s runtime code
+generation, preserving the existing CSP. Unrequested demo banners/icons are omitted.
+The Inconsolata terminal font and MIT/OFL notices are served locally.
+
+Direct live desktop1440/mobile390 browser checks confirmed the actual CodePen
+WebGL renderer, local font, clear falling glyphs, scanlines, CRT distortion and
+moving TV-glitch band. Native shader time advanced across browser calls at an
+unchanged drawing-buffer size; the effect is animated. Reduced-motion freezing
+was checked in the built-site preview. The GSS button runs simultaneously, with
+its58px geometry, label, click target and native form validation intact. No
+external runtime resources were requested.
+
+This was another frontend-only deployment with no environment changes. The API
+remains145e838; private Postgres, email delivery, keys and subscriber data were
+unchanged. Deployment finished healthy and temporary token count was zero.
