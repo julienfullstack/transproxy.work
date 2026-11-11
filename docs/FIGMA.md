@@ -2,9 +2,29 @@
 
 Created **2026-11-10**: [TransProxy — Launch & Product](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc).
 
-This is an editable design deliverable with **20 screen views**: the original two waiting-list launch views, twelve **planned** member-product views, and six current Matrix/glass views added on 2026-11-11. The original fourteen views are preserved. The planned screens use fictional example records, providers, contacts and counts. They do not imply that the member product is implemented. The six member-navigation tabs have 60 inter-screen prototype links, connecting the other five views at the matching desktop/mobile size. Other action buttons are visual specifications, not implemented product flows.
+This editable design file contains **26 screen views**: six current signup-first v3 views and twenty retained historic views. The historic set consists of the original two launch views, twelve **planned** member-product views and six v2 Matrix/glass views. The planned screens use fictional example records, providers, contacts and counts. They do not imply that the member product is implemented. The six member-navigation tabs have 60 inter-screen prototype links, connecting the other five views at the matching desktop/mobile size. Other action buttons are visual specifications, not implemented product flows.
 
-## Current website views — Matrix/glass v2
+## Current website views — signup-first v3
+
+Added **2026-11-11** on the [v3 page](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-5). The six current views use the own-brand medical/queer design, Chakra Petch headings and Inter body text, dark navy glass, cyan `#5BCEFA` and soft pink `#F5A9B8`. The brighter preview/note fills follow Julien’s selected 6698 reference; its overlapping layout is corrected.
+
+| View | Desktop · 1440 px | Mobile · 390 px |
+| --- | --- | --- |
+| Home | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-141) | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-142) |
+| Julien’s Story | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-143) | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-144) |
+| Features | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-145) | [Editable view](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-146) |
+
+Home starts with the complete adult waiting-list form and its three unchecked confirmations, followed by the three planned-tool journey scenes. The dedicated Story views preserve all nine approved sections and 24 article paragraphs; Features preserves all 22 entries, distinguished as 5 available, 16 planned and 1 future. No member capability is made available by its design preview.
+
+The six views contain 661 editable text layers and 164 component instances, with no image-filled UI or flattened interface. Actual licensed source SVG icons and reusable controls remain editable. Cross-view navigation and links to the live website are supplied. All twenty historic screen views remain in the file; the v3 work targets a separate page and its local components. Historic IDs, names and bounds were compared with the baseline; no deep before/after content-hash comparison is claimed.
+
+Both current font families are available and loaded in Figma. Complete renders, normal-scale opening details and structural reads were checked for text wrapping, horizontal overflow and overlapping imported layout. The v2 font substitutions described below apply only to historic views.
+
+**Motion limitation:** Matrix glyphs and source butterfly vectors are editable static representations. The live website is authoritative for falling-code, butterfly, GSS, gel-button and scrolling motion, native form behavior and reduced-motion support. These Figma views are not a pixel-for-pixel browser capture or a live application.
+
+The public founder narrative is approved source content. No raw private records, emails, contact lists, credentials, identity documents or medical images were imported. The twelve original planned-member views remain historic concepts rather than a claim that every future flow has been rebuilt in v3.
+
+## Historic website views — Matrix/glass v2
 
 Added **2026-11-11** on [03 · Matrix glass — Home, Story & Features](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=16-2), matching the published website at frontend source `a3fab83498d5db39478984bf3cad4ef825afea14`.
 

@@ -184,3 +184,8 @@ Julien corrected the earlier references: “Aorru wrong onrs”. He then cancell
 Julien supplied https://codepen.io/editor/powen-cs/pen/01a1c63d-0e3b-76e5-9fa6-a1d8dc6fc008: “Maybe some of this cool scrolling down shit for like the features I don't know should serve with the features and then end with a wait list or vice versa”.
 
 Use the actual Animation Timeline reference by Phil Owen for the existing home feature sequence: scroll-filled left rail, restrained hinged product-preview entrances and drawn neon borders. Keep the previously explicit waiting-list-first priority and finish the feature sequence with a button back to that form. Retain View all features. Keep feature text stable and all content available in unsupported/reduced-motion browsers. No blur wipe, original demo hero/year counter, new fonts/background, scroll capture or exaggerated full-screen spacers. Preserve the approved gel buttons, source backgrounds, story/legal content and form behavior.
+
+
+## Preferred palette and overlap correction — 2026-11-11
+
+Julien: “I liked thos color scheme better”, with6698.png. Julien clarified: “I like those colors but fix the overlap”. Keep the reference midnight navy, bright trans cyan `#5BCEFA` and soft trans pink `#F5A9B8`, with cooler steel navy `#161E2D` surfaces and brighter cyan/pink planned-preview and note fills. Use dark ink on those bright fills for readable contrast. Retain the corrected current layout, typography, copy, control geometry and source animations; repair overlapping imported Figma text/containers rather than restoring that screenshot’s layout errors. This is a color preference and overlap correction, not another redesign.
