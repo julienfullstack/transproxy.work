@@ -67,12 +67,13 @@ ${paragraphs}
 </td></tr>
 <tr><td bgcolor="#0f1724" style="padding:20px 24px;background-color:#0f1724;border-top:1px solid #ff3fc844;">
 <p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:14px;line-height:1.6;"><a href="${escapeHtml(unsubscribeUrl)}" style="color:#00e5ff;text-decoration:underline;">Leave the TransProxy waiting list</a></p>
+<p style="margin:16px 0 0;color:#f7f7fc;font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.6;">cruush technologies LLC (Technosovereign)<br>41 State Street, Suite 112, Albany, NY 12207</p>
 </td></tr></table>
 <!--[if mso]></td></tr></table><![endif]-->
 </td></tr></table></body></html>`
   return {
     from: config.from, to: [email], subject: WELCOME_SUBJECT,
-    text: `${WELCOME_TEXT}\n\nLeave the TransProxy waiting list: ${unsubscribeUrl}`,
+    text: `${WELCOME_TEXT}\n\nLeave the TransProxy waiting list: ${unsubscribeUrl}\n\ncruush technologies LLC (Technosovereign)\n41 State Street, Suite 112, Albany, NY 12207`,
     html,
     headers: { 'List-Unsubscribe': `<${unsubscribeUrl}>`, 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
   }

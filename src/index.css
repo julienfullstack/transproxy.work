@@ -692,3 +692,25 @@ main { max-width: 1400px; padding-top: 36px; }
   box-shadow: 0 0 5px var(--button-light), 0 0 15px var(--button-light), 0 0 30px var(--button-light), inset 0 1px #ffffff80;
 }
 .submit-button:active:not(:disabled) > span:not(.neon-backdrop) { text-shadow: none; }
+
+/* Mobile keeps the clear glass press without the legacy multicolor core. */
+@media (max-width: 600px) {
+  .submit-button .neon-backdrop, .glass-link .neon-backdrop { display: none; }
+  .submit-button, .glass-link { border-color: var(--button-light); }
+  .submit-button:is(:hover, :focus-visible):not(:disabled), .glass-link:is(:hover, :focus-visible) {
+    border-color: var(--button-light);
+    box-shadow: inset 0 1px #ffffff40, inset 0 -1px #ffffff26, 0 0 15px color-mix(in srgb, var(--button-light) 25%, transparent);
+  }
+  .submit-button:active:not(:disabled), .glass-link:active {
+    box-shadow: 0 0 5px var(--button-light), 0 0 15px var(--button-light), 0 0 30px var(--button-light), inset 0 1px #ffffff80;
+  }
+}
+@media (max-width: 600px) and (hover: none) {
+  .submit-button:hover:not(:active):not(:focus-visible)::before, .glass-link:hover:not(:active):not(:focus-visible)::before {
+    background-size: 42px 14px;
+    opacity: .85;
+  }
+  .submit-button:hover:not(:active):not(:focus-visible)::after, .glass-link:hover:not(:active):not(:focus-visible)::after {
+    transform: skewX(45deg) translateX(0);
+  }
+}

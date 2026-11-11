@@ -45,7 +45,7 @@ test('Resend request uses official endpoint, stable idempotency, explicit recipi
   assert.equal(sent.headers['List-Unsubscribe-Post'], 'List-Unsubscribe=One-Click')
   assert.ok(sent.headers['List-Unsubscribe'].includes(token))
   assert.ok(!JSON.stringify(sent).includes(body.dateOfBirth))
-  assert.ok(!sent.html.includes('cruush'))
+  assert.ok(!sent.html.replace('cruush technologies LLC (Technosovereign)', '').includes('cruush'))
   assert.ok(!sent.text.includes('first 500'))
   for (const [status, retryable] of [[429, true], [503, true], [403, false], [409, false]] as const) {
     const failed = createResendSender(config, (async () => new Response('PRIVATE PROVIDER BODY', { status })) as typeof fetch)

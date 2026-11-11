@@ -153,6 +153,7 @@ export const matrixFragmentShader = `
         varying vec2 uvPosition;
         uniform sampler2D sprite;
         uniform vec3 bgColor;
+        uniform vec2 uvScale;
 
         #define textureW ${textureW + '.0'}
         #define textureH ${textureH + '.0'}
@@ -161,7 +162,7 @@ export const matrixFragmentShader = `
         #define consolePad ${consolePad + '.0'}
 
         void main() {
-            vec2 sourceUV = (vec2(consolePad) + uvPosition * vec2(bufferW, bufferH))
+            vec2 sourceUV = (vec2(consolePad) + ((uvPosition - 0.5) * uvScale + 0.5) * vec2(bufferW, bufferH))
                 / vec2(textureW, textureH);
             vec4 sourcePixel = texture2D(sprite, sourceUV);
             gl_FragColor = vec4(bgColor + sourcePixel.rgb * sourcePixel.a, 1.0);

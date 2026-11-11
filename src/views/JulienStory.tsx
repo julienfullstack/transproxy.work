@@ -1,18 +1,19 @@
+import { BioFrame } from '../components/BioFrame'
 import { juliensStory } from '../content/juliensStory'
 
 export function JulienStory() {
   return <article className="page story story-page">
-    <header className="story-intro">
+    <header className="story-intro bio-pane"><BioFrame compact />
       <p className="status-label">{juliensStory.author} · Founder · <time dateTime={juliensStory.published}>November 10, 2026</time></p>
       <h2>{juliensStory.title}</h2>
       <p className="story-summary">{juliensStory.summary}</p>
     </header>
     <div className="story-layout">
-      <aside className="story-index" aria-label="Story contents">
+      <aside className="story-index bio-pane" aria-label="Story contents"><BioFrame compact />
         <h3>In this story</h3>
         <ol>{juliensStory.sections.map(section => <li key={section.id}><button type="button" onClick={() => document.getElementById(`story-${section.id}`)?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' })}>{section.heading}</button></li>)}</ol>
       </aside>
-      <div className="story-article">
+      <div className="story-article bio-pane"><BioFrame compact />
         {juliensStory.sections.map(section => <section id={`story-${section.id}`} key={section.id}>
           <h3>{section.heading}</h3>
           {section.paragraphs.map(paragraph => <p key={paragraph}>{paragraph}</p>)}

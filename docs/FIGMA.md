@@ -104,3 +104,24 @@ Screenshot evidence remains in the ignored session queue, not the public reposit
 Figma file key: `02pSNpXxS6TQldcA5jbCWc`. Work session: `ddd14bf9-0483-40c4-bc79-2bad3a4f3ab9`. This document records design evidence only; live deployment and API validation are recorded separately.
 
 The later website glass/button refinements, enlarged/brighter Matrix, regional launch wording and rewritten story are not yet reflected in these Figma views.
+
+## Frosted biotech update — 2026-11-11
+[Current editable Figma page](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-5). Matched to the local website, not a new production release. Thirty-two editable desktop/mobile views cover all sixteen routes. Original snake components are retained; the Matrix is an editable static representation. The running website supplies animated Matrix, live backdrop frosting, and hover/focus/press behavior.
+| Page | Desktop | Mobile |
+| --- | --- | --- |
+| Home | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-141) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-142) |
+| Julien’s Story | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-143) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-144) |
+| Features | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-145) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=29-146) |
+| Reports & patterns | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1288) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1427) |
+| Correspondence | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1561) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1687) |
+| Records & timeline | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1808) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-1969) |
+| Advocacy | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-2125) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-2254) |
+| Website & Waiting-list Terms | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-2654) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-2810) |
+| Privacy Notice | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-2959) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3123) |
+| Consumer Health Data Privacy Policy | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3280) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3439) |
+| Security & Cookies | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3591) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3725) |
+| Medical & Legal Information | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-3900) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4028) |
+| Content Correction & Removal | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4149) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4281) |
+| Planned Community & Publication Rules | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4406) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4534) |
+| Accessibility | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4655) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=60-4778) |
+| Privacy, removal & contact | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=61-3152) | [View](https://www.figma.com/design/02pSNpXxS6TQldcA5jbCWc?node-id=61-3279) |

@@ -1,7 +1,7 @@
 export const LEGAL_VERSION = '2026-11-11-v1'
-// Publication waits for the monitored contact, public postal address and hosting-contract review.
+// Publication waits for the monitored contact and hosting-contract review.
 export const LEGAL_RELEASE_STATUS: 'draft' | 'published' = 'draft'
-export const OPERATOR = { name: 'cruush technologies LLC (Technosovereign)', email: 'hello@transproxy.org', postalAddress: '' }
+export const OPERATOR = { name: 'cruush technologies LLC (Technosovereign)', email: 'hello@transproxy.org', postalAddress: '41 State Street, Suite 112, Albany, NY 12207' }
 export type LegalSection = { heading: string; paragraphs: string[]; items?: string[] }
 export type LegalDocumentData = { path: string; title: string; summary: string; sections: LegalSection[] }
 const contact: LegalSection = { heading: 'Operator and contact', paragraphs: [

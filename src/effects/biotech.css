@@ -1,0 +1,184 @@
+/* Selected biotech composition. Real backdrop frosting; source coating and
+   reflective skin adapted from Simey's NPxaprq and rNdbbVq (local licenses).
+   Scoped to the selected homepage; the original snake mask stays untouched. */
+.bio-frame { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.bio-frost {
+  position: absolute; inset: 0;
+  background: linear-gradient(115deg, #d8f6ff12, #111b2926 40%, #ffbfe00b), #0c172851;
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
+  box-shadow: inset 0 0 22px #c3eeff15, inset 0 14px 18px -18px #fff9, inset 0 -12px 18px -16px #d1efff;
+}
+.bio-edges { position: absolute; inset: 0; overflow: visible; }
+.bio-edge-light { opacity: .65; transition: opacity .22s, filter .22s; }
+.bio-form-pane:focus-within > .bio-frame .bio-edge-light,
+.journey-card:focus-within > .bio-frame .bio-edge-light { opacity: 1; filter: drop-shadow(0 0 3px #00e5ff88); }
+.biotech-header { background: none; border: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; padding: 16px 36px; gap: 18px; border-radius: 0; }
+.biotech-header > :not(.bio-frame) { position: relative; z-index: 1; }
+.biotech-header .wordmark-name { font-family: Inter, Arial, sans-serif; font-size: 36px; font-weight: 500; }
+.biotech-header .wordmark { gap: 14px; }
+.biotech-header .main-nav { gap: 4px; }
+.biotech-header .main-nav > a { padding-inline: 8px; }
+.biotech-header .header-join { font-size: 12px; padding: 8px 12px; }
+.biotech-home { padding: 42px 24px 80px; }
+.biotech-home h1, .biotech-home h2, .biotech-home h3 { font-family: Inter, Arial, sans-serif; }
+.biotech-home .bio-signup { margin: 0; padding: 0; gap: 34px; grid-template-columns: minmax(0, .58fr) minmax(0, 1fr); align-items: center; }
+.biotech-home .waitlist-meta { padding: 12px 0 12px 34px; }
+.biotech-home .waitlist-meta::before { width: 7px; top: 14px; bottom: 14px; }
+.biotech-home .waitlist-meta h1 { font-size: clamp(38px, 4.5vw, 64px); font-weight: 550; line-height: 1.02; letter-spacing: -.055em; max-width: 12ch; margin-bottom: 24px; }
+.biotech-home .waitlist-meta p { font-size: 16px; line-height: 1.55; }
+.biotech-home .waitlist-meta .opening-purpose { margin-bottom: 22px; }
+.biotech-home .waitlist-meta .encryption-label { margin-top: 22px; }
+.bio-form-pane { position: relative; padding: 56px 42px 44px; min-width: 0; }
+.biotech-home .waitlist-form { position: relative; z-index: 1; border: 0; padding: 0; }
+.biotech-home .waitlist-fields { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.biotech-home .waitlist-form input[type=email], .biotech-home .waitlist-form input[type=date] {
+  height: 52px; background: #d6f2ff08; border-color: #cadde199;
+  box-shadow: inset 0 1px 1px #fff9, inset 0 -1px 1px #d1f0ff70, inset 0 0 14px #a1dfff12;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+}
+.biotech-home .waitlist-form .check { font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+.biotech-home .data-promise { margin-top: 16px; }
+.biotech-home .submit-button {
+  --button-light: #ff3fc8; margin: 26px 0 0 auto; width: 76%; border-radius: 6px;
+  border: 1px solid #e1b3d9; background: #a3317b21;
+  font-family: Inter, Arial, sans-serif; font-size: 21px; font-weight: 550;
+  box-shadow: inset 0 2px 2px #fff9, inset 0 -2px 2px #ff3fc8a6, inset 4px 0 8px #ffffff18, 0 0 12px #ff3fc82a;
+  -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+}
+.biotech-home .submit-button .neon-backdrop { display: none; }
+.biotech-home .submit-button::before { background-image: radial-gradient(ellipse, #ff3fc8 0%, transparent 72%); background-size: 80% 10px; background-position: center bottom; opacity: .65; }
+.biotech-home .submit-button::after { background: linear-gradient(110deg, transparent, #ffffff25, transparent); width: 32%; transform: skewX(-25deg) translateX(-120%); }
+.biotech-home .submit-button:focus-visible { outline: 2px solid #ffd7f2; outline-offset: 5px; box-shadow: 0 0 18px #ff3fc878, inset 0 1px #fff9; }
+.biotech-home .submit-button:active:not(:disabled) { background: #ff3fc8; color: #08121f; box-shadow: 0 0 8px #ff3fc8, 0 0 24px #ff3fc8a0, inset 0 2px 5px #452039; }
+.biotech-home .feature-journey { margin-top: 36px; border-top: 1px solid #c4efff55; padding-top: 24px; }
+.biotech-home .feature-journey > .page-heading { display: flex; align-items: center; gap: 24px; margin-bottom: 28px; padding-left: 24px; }
+.biotech-home .feature-journey > .page-heading h2 { font-size: 34px; font-weight: 550; letter-spacing: -.035em; margin: 0; }
+.biotech-home .feature-journey > .page-heading p { font-size: 14px; padding-left: 24px; border-left: 1px solid #ffffff60; }
+.biotech-home .journey-chapters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; position: relative; isolation: auto; }
+.biotech-home .journey-chapters::after { display: none; }
+.biotech-home .journey-step { display: flex; flex-direction: column; align-items: stretch; gap: 0; position: relative; padding: 48px 28px 30px; margin: 0; min-width: 0; }
+.biotech-home .journey-number { position: absolute; top: 8px; left: 40px; padding: 0; width: auto; height: auto; border: 0; background: none; box-shadow: none; color: var(--sky); font-size: 12px; z-index: 1; }
+.biotech-home .during-recovery .journey-number { color: var(--magenta); }
+.biotech-home .journey-copy { position: relative; z-index: 1; padding: 0; }
+.biotech-home .journey-copy h3 { font-size: 28px; letter-spacing: -.03em; font-weight: 550; margin: 0 0 16px; }
+.biotech-home .journey-copy p { font-size: 15px; line-height: 1.6; margin: 0 0 16px; }
+.biotech-home .journey-copy a { font-size: 14px; line-height: 1.5; margin: 8px 0; }
+.biotech-home .product-preview { position: relative; z-index: 1; margin: 28px 0 0; width: 100%; min-width: 0; animation: none; transform: none; opacity: 1; }
+.biotech-home .preview-window { backdrop-filter: none; -webkit-backdrop-filter: none; background: #0b172a80; }
+.biotech-home .journey-actions { margin: 24px 0 0; }
+@media (hover: hover) {
+  .bio-form-pane:hover > .bio-frame .bio-edge-light, .biotech-home .journey-card:hover > .bio-frame .bio-edge-light { opacity: 1; filter: drop-shadow(0 0 3px #76ebff88); }
+  .biotech-home .submit-button:hover:not(:disabled) { color: #fff; border-color: #ffe1f6; background: #b323782e; box-shadow: inset 0 2px 2px #fff9, inset 0 -2px 2px #ff3fc8, 0 0 7px #ff3fc8a0, 0 0 24px #ff3fc860; }
+  .biotech-home .submit-button:hover:not(:disabled)::after { transform: skewX(-25deg) translateX(450%); }
+  .biotech-home .submit-button:active:not(:disabled) { background: #ff3fc8; color: #08121f; }
+}
+@media (max-width: 1100px) {
+  .biotech-header { flex-wrap: wrap; gap: 12px; }
+  .biotech-header .main-nav { order: 3; width: 100%; justify-content: space-between; }
+  .biotech-header .header-join { margin-left: auto; }
+  .biotech-home .bio-signup { grid-template-columns: minmax(0, .7fr) minmax(0, 1fr); gap: 24px; }
+  .bio-form-pane { padding: 44px 28px 38px; }
+  .biotech-home .waitlist-fields { grid-template-columns: 1fr; gap: 16px; }
+  .biotech-home .journey-chapters { gap: 16px; }
+  .biotech-home .journey-step { padding: 42px 22px 28px; }
+  .biotech-home .journey-copy h3 { font-size: 24px; }
+  .biotech-home .feature-journey > .page-heading { flex-wrap: wrap; gap: 12px; }
+}
+@media (max-width: 720px) {
+  .biotech-header { margin: 14px 14px 0; padding: 16px 24px; }
+  .biotech-header .wordmark-name { font-size: 26px; }
+  .biotech-header .wordmark { gap: 9px; }
+  .biotech-header .wordmark > .ui-icon { width: 18px; height: 18px; }
+  .biotech-header .header-join { font-size: 11px; padding: 7px 10px; }
+  .biotech-header .main-nav > a, .biotech-header .more-nav > summary { font-size: 11px; padding-inline: 3px; }
+  .biotech-home { padding: 28px 18px 60px; }
+  .biotech-home .bio-signup { grid-template-columns: 1fr; gap: 24px; }
+  .biotech-home .waitlist-meta { padding: 8px 0 8px 22px; }
+  .biotech-home .waitlist-meta h1 { font-size: 44px; max-width: 12ch; margin-bottom: 20px; }
+  .biotech-home .waitlist-meta p { font-size: 15px; }
+  .bio-form-pane { padding: 48px 24px 36px; }
+  .biotech-home .waitlist-form { padding: 0; border: 0; }
+  .biotech-home .submit-button { width: 100%; font-size: 18px; }
+  .biotech-home .journey-chapters { grid-template-columns: 1fr; gap: 24px; }
+  .biotech-home .journey-step { padding: 48px 28px 30px; }
+  .biotech-home .feature-journey > .page-heading { display: block; }
+  .biotech-home .feature-journey > .page-heading h2 { font-size: 28px; }
+  .biotech-home .feature-journey > .page-heading p { border: 0; padding: 0; margin-top: 10px; font-size: 13px; }
+}
+@media (prefers-reduced-motion: reduce) { .bio-edge-light { transition: none; } }
+
+/* Keep the intro outside the pane, as in the selected reference. */
+.biotech-home .bio-signup { border: 0; border-radius: 0; box-shadow: none; background: none; }
+.biotech-home .journey-step { border: 0; color: var(--text); }
+.biotech-home .journey-card > .bio-frame { color: var(--sky); }
+.biotech-home .during-recovery .journey-card > .bio-frame { color: var(--magenta); }
+.biotech-home .submit-button { padding-inline: 34px; border: 0; border-radius: 0; background: none; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; overflow: visible; }
+.biotech-home .submit-button > .bio-frame { transition: filter .2s; }
+.biotech-home .submit-button .bio-frost { background-color: #8e285a30; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.biotech-home .submit-button::before, .biotech-home .submit-button::after { display: none; }
+.biotech-home .submit-button:active:not(:disabled) { background: none; box-shadow: none; }
+.biotech-home .submit-button:active:not(:disabled) .bio-frost { background-color: var(--magenta); }
+.biotech-home .submit-button:focus-visible > .bio-frame { filter: drop-shadow(0 0 5px #ff3fc8a0); }
+@media (hover: hover) {
+  .biotech-home .submit-button:hover:not(:disabled) { background: none; box-shadow: none; }
+  .biotech-home .submit-button:hover:not(:disabled) > .bio-frame { filter: drop-shadow(0 0 5px #ff3fc8a0); }
+  .biotech-home .submit-button:hover:not(:disabled) .bio-edge-light { opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) { .biotech-home .submit-button > .bio-frame { transition: none; } }
+/* Optical weight and inset light matched to the chosen desktop reference. */
+@media (min-width: 1101px) {
+  .biotech-header .wordmark-name { font-size: 44px; }
+  .biotech-home { padding-top: 28px; }
+  .biotech-home .waitlist-meta p { font-size: 18px; }
+  .biotech-home .waitlist-form label { font-size: 18px; }
+  .biotech-home .waitlist-form .check { font-size: 16px; }
+  .biotech-home .data-promise { font-size: 15px; }
+  .biotech-home .feature-journey > .page-heading h2 { font-size: 40px; }
+  .biotech-home .journey-copy h3 { font-size: 32px; }
+  .biotech-home .journey-copy p, .biotech-home .journey-copy a { font-size: 17px; }
+}
+.bio-frost { background-image: radial-gradient(ellipse at 25% 110%, #a6ebff15, transparent 65%), linear-gradient(115deg, #d8f6ff18, #111b2912 40%, #ffbfe010); }
+.bio-edge-light { opacity: .9; }
+
+.biotech-home .submit-button > .bio-frame { position: absolute; z-index: 0; }
+
+/* Preserve the detailed previews beneath the three selected feature panes. */
+.biotech-home .journey-step { padding: 0; }
+.biotech-home .journey-card { position: relative; padding: 48px 28px 30px; min-height: 310px; }
+@media (min-width: 721px) { .biotech-home .journey-card { flex: 1; } }
+@media (min-width: 721px) and (max-width: 1100px) { .biotech-home .journey-card { padding: 44px 22px 28px; } }
+.biotech-home .journey-chapters { align-items: start; }
+.biotech-home .journey-card { flex: none; min-height: 320px; }
+
+/* Shared approved material for the existing story, feature, resource and legal pages.
+   Panels keep their content layout; their independent backdrop layers frost the Matrix. */
+.biotech-page h1, .biotech-page h2, .biotech-page h3, .biotech-page h4 { font-family: Inter, Arial, sans-serif; }
+.biotech-page .bio-pane { position: relative; background: none; border-color: transparent; border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; }
+.biotech-page .bio-pane > :not(.bio-frame) { position: relative; z-index: 1; }
+.biotech-page .bio-pane > .bio-frame { position: absolute; color: var(--sky); }
+.biotech-page .story-index { position: sticky; }
+.biotech-page .feature-group.planned .bio-pane > .bio-frame { color: var(--magenta); }
+.biotech-page .bio-pane:focus-within > .bio-frame .bio-edge-light { opacity: 1; filter: drop-shadow(0 0 3px #00e5ff88); }
+.biotech-page .legal-request-form input, .biotech-page .legal-request-form select, .biotech-page .legal-request-form textarea {
+  background: #d6f2ff08; border-color: #cadde199;
+  box-shadow: inset 0 1px 1px #fff9, inset 0 -1px 1px #d1f0ff70, inset 0 0 14px #a1dfff12;
+  backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+}
+.biotech-page .legal-request-form select option { background: #0c1728; }
+.biotech-page .bio-action { --button-light: #ff3fc8; background: none; border-color: transparent; border-radius: 0; box-shadow: none; backdrop-filter: none; -webkit-backdrop-filter: none; overflow: visible; }
+.biotech-page .bio-action::before, .biotech-page .bio-action::after { display: none; }
+.biotech-page .bio-action > .bio-frame { position: absolute; z-index: 0; }
+.biotech-page .bio-action .bio-frost { background-color: #8e285a30; backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
+.biotech-page .bio-action:active:not(:disabled) { color: #08121f; background: none; }
+.biotech-page .bio-action:active:not(:disabled) .bio-frost { background-color: var(--magenta); }
+.biotech-page .bio-action:focus-visible { outline: 2px solid #ffd7f2; outline-offset: 5px; }
+@media (hover: hover) {
+  .biotech-page .bio-pane:hover > .bio-frame .bio-edge-light { opacity: 1; filter: drop-shadow(0 0 3px #76ebff88); }
+  .biotech-page .bio-action:hover:not(:disabled) { background: none; box-shadow: none; }
+  .biotech-page .bio-action:hover:not(:disabled) > .bio-frame { filter: drop-shadow(0 0 5px #ff3fc8a0); }
+}
+@media (max-width: 900px) { .biotech-page .story-index { position: relative; top: auto; } }
+/* Keep the narrow reading-index text clear of decorative fasteners. */
+.biotech-page .bio-pane > .bio-frame .bio-edges circle { r: 5px; }
+.biotech-page .bio-pane > .bio-frame .bio-edges g path { transform: scale(.65); }

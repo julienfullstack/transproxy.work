@@ -66,6 +66,8 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false)
     gl.pixelStorei(gl.UNPACK_PREMULTIPLY_ALPHA_WEBGL, false)
     gl.uniform1i(gl.getUniformLocation(program, 'sprite'), 0)
+    const uvScale = gl.getUniformLocation(program, 'uvScale')
+    gl.uniform2f(uvScale, 1, 1)
     gl.uniform3fv(gl.getUniformLocation(program, 'bgColor'), new Float32Array([0, 0, 0]))
     gl.disable(gl.DEPTH_TEST)
     gl.disable(gl.BLEND)
@@ -87,6 +89,11 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
         if (destroyed) return
         const nextWidth = Math.max(1, Math.floor(width))
         const nextHeight = Math.max(1, Math.floor(height))
+        // Crop by aspect ratio at every width, not a phone-only breakpoint.
+        // Keep the source's vertical scale while showing fewer columns on narrow screens.
+        const sourceAspect = matrixDimensions.bufferW / matrixDimensions.bufferH
+        const visibleColumns = Math.min(1, (nextWidth / nextHeight) / sourceAspect)
+        gl.uniform2f(uvScale, visibleColumns, 1)
         if (canvas.width !== nextWidth || canvas.height !== nextHeight) {
           canvas.width = nextWidth
           canvas.height = nextHeight

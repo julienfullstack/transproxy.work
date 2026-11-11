@@ -2,13 +2,13 @@
 
 Research and implementation record, **November 11, 2026**. This is not a legal opinion or a guarantee of compliance, immunity or protection from claims.
 
-This release includes the policy set as clearly labelled **draft documents, not yet in effect**. Their presence on the website does not resolve the missing contact/postal/hosting facts below or establish legal completeness. Do not replace unresolved facts with assumptions.
+This release includes the policy set as clearly labelled **draft documents, not yet in effect**. Their presence on the website does not resolve the missing contact/hosting facts below or establish legal completeness. Do not replace unresolved facts with assumptions.
 
 ## Operator and contact
 
 Julien confirmed: “technosovereign aka cruush technologies llc”. The operator is identified as **cruush technologies LLC (Technosovereign)**, without claiming a registered DBA.
 
-Julien requested a new **hello@transproxy.org** address through Namecheap. The current Namecheap session is at a password prompt and has been handed to Julien. The address is not yet established as a usable, monitored inbox. No private home, billing or domain-registration address is authorized for publication; a public business/postal address is still needed.
+Julien requested a new **hello@transproxy.org** address through Namecheap. The current Namecheap session is at a password prompt and has been handed to Julien. The address is not yet established as a usable, monitored inbox. No private home, billing or domain-registration address is authorized for publication; Julien instructed use of the same address as Cruush on November 11: **41 State Street, Suite 112, Albany, NY 12207**, copied from its existing email footer. This address is now included in the policy contact sections and welcome-email HTML/text footer.
 
 The existing Resend sending identity is verified. Sending authorization does not establish an inbound mailbox or monitoring process.
 
@@ -72,7 +72,7 @@ The reusable part is the labelled form/state pattern and subject-specific polici
 Before treating the draft documents as finalized policies:
 
 1. Establish and verify the requested contact mailbox/alias and monitored destination. Preserve existing Private Email MX and Resend sending DNS.
-2. Obtain the actual public business/postal address; do not infer a home or billing address. Finalize the email footer and related legal classification with accurate facts.
+2. Public postal address and email footer populated using the Cruush address selected by Julien on November 11. Final email classification review remains outstanding.
 3. Check the actual Hetzner DPA/account record and applicable transfer/representative obligations. Do not manufacture evidence or a compliance badge.
 4. Finish policy wording with those facts; remove draft status only after the content matches the actual service and verified operator facts. Show new wording before publishing finalized notices.
 5. Verify actual desktop/mobile signup, privacy/request flow, printable policies and native validation. Run a simulator-only live signup after deployment and verify encryption, email delivery and signed removal; delete only synthetic QA data.

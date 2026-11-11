@@ -1,3 +1,4 @@
+import { BioFrame } from './components/BioFrame'
 import { GlassMaterial } from './components/GlassMaterial'
 import { useEffect, useState } from 'react'
 import { WaitlistForm } from './components/WaitlistForm'
@@ -26,9 +27,9 @@ function ReportNotes({ full = false }: { full?: boolean }) {
 
 function Home() {
   return <>
-    <section className="waitlist-layout glass-panel signup-first" id="waitlist-section" aria-labelledby="waitlist-title">
+    <section className="waitlist-layout signup-first bio-signup" id="waitlist-section" aria-labelledby="waitlist-title">
       <div className="waitlist-meta"><h1 id="waitlist-title">Join the TransProxy waiting list</h1><p className="opening-purpose">For transgender patients to record what they want before care, document their experiences afterward, and choose what to share.</p><p>Invite-only · NYC tri-state first · USA expansion planned · 18+</p><p className="encryption-label"><UiIcon name="lock" />Encrypted email storage</p></div>
-      <WaitlistForm />
+      <div className="bio-form-pane"><BioFrame /><WaitlistForm biotech /></div>
     </section>
     <FeatureJourney />
     <section className="content-section home-story" id="story"><div className="section-bar"><UiIcon name="butterfly" /><span>Julien’s Story</span></div><h2>Why I made TransProxy</h2><p>{juliensStory.summary}</p><a className="glass-link" href="#/juliens-story">Read Julien’s story <UiIcon name="arrow-up-right" /></a></section>
@@ -40,9 +41,9 @@ function FeatureJourney() {
   return <section className="feature-journey" id="planned" aria-labelledby="planned-title">
     <header className="page-heading"><h2 id="planned-title">Planned member tools</h2><p>In development · Not available yet</p></header>
     <div className="journey-chapters">
-      <section className="journey-step before-care"><span className="journey-number" aria-hidden="true">01</span><div className="journey-copy"><h3>Before care</h3><p>Record goals, boundaries, questions, agreements and refusals in dated versions.</p><a href="#/features">Wishes, appointments & records <UiIcon name="arrow-up-right" /></a><a href="#/features">Private sharing <UiIcon name="arrow-up-right" /></a></div><BeforeCarePreview /></section>
-      <section className="journey-step during-recovery"><span className="journey-number" aria-hidden="true">02</span><div className="journey-copy"><h3>During recovery</h3><p>Keep recovery notes, selected photos and drain measurements together.</p><a href="#/features">Healing journal <UiIcon name="arrow-up-right" /></a><a href="#/features">Surgery results gallery <UiIcon name="arrow-up-right" /></a></div><RecoveryPreview /></section>
-      <section className="journey-step answers-support"><span className="journey-number" aria-hidden="true">03</span><div className="journey-copy"><h3>Reports & support</h3><p>Choose records to share, prepare a report and track responses.</p><a href="#/features"><UiIcon name="users" />Shared Experiences <UiIcon name="arrow-up-right" /></a><a href="#/department-of-sludge"><UiIcon name="shield-plus" />Directories & advocacy <UiIcon name="arrow-up-right" /></a></div><ReportsPreview /></section>
+      <section className="journey-step before-care"><div className="journey-card"><span className="journey-number" aria-hidden="true">01</span><BioFrame card /><div className="journey-copy"><h3>Before care</h3><p>Record goals, boundaries, questions, agreements and refusals in dated versions.</p><a href="#/features">Wishes, appointments & records <UiIcon name="arrow-up-right" /></a><a href="#/features">Private sharing <UiIcon name="arrow-up-right" /></a></div></div><BeforeCarePreview /></section>
+      <section className="journey-step during-recovery"><div className="journey-card"><span className="journey-number" aria-hidden="true">02</span><BioFrame card /><div className="journey-copy"><h3>During recovery</h3><p>Keep recovery notes, selected photos and drain measurements together.</p><a href="#/features">Healing journal <UiIcon name="arrow-up-right" /></a><a href="#/features">Surgery results gallery <UiIcon name="arrow-up-right" /></a></div></div><RecoveryPreview /></section>
+      <section className="journey-step answers-support"><div className="journey-card"><span className="journey-number" aria-hidden="true">03</span><BioFrame card /><div className="journey-copy"><h3>Reports & support</h3><p>Choose records to share, prepare a report and track responses.</p><a href="#/features"><UiIcon name="users" />Shared Experiences <UiIcon name="arrow-up-right" /></a><a href="#/department-of-sludge"><UiIcon name="shield-plus" />Directories & advocacy <UiIcon name="arrow-up-right" /></a></div></div><ReportsPreview /></section>
     </div><div className="journey-actions"><a className="all-features-link" href="#/features">View all features <UiIcon name="arrow-up-right" /></a><a className="glass-link" href="#waitlist">Join waiting list <UiIcon name="arrow-up-right" /></a></div>
   </section>
 }
@@ -55,7 +56,7 @@ function PreservedHomeSections() {
 }
 
 function PlannedPage({ title, children }: { title: string; children: React.ReactNode }) {
-  return <section className="planned-page glass-panel"><p className="planned-label">Planned · Not available yet</p><h2>{title}</h2>{children}<a className="glass-link" href="#waitlist">Join waiting list <UiIcon name="arrow-up-right" /></a></section>
+  return <section className="planned-page glass-panel bio-pane"><BioFrame compact /><p className="planned-label">Planned · Not available yet</p><h2>{title}</h2>{children}<a className="glass-link" href="#waitlist">Join waiting list <UiIcon name="arrow-up-right" /></a></section>
 }
 function Reports() { return <PlannedPage title="Reports & patterns"><p>Reports across hospitals, departments and providers, with explicit publication review, response tracking and separate evidence types.</p><ReportNotes full /><PlannedToolContent page="reports" /></PlannedPage> }
 function Correspondence() { return <PlannedPage title="Correspondence"><p>Selected correspondence connected to appointments, complaints and responses. Private records stay private unless the author chooses to share.</p><PlannedToolContent page="correspondence" /></PlannedPage> }
@@ -101,7 +102,8 @@ export default function App() {
   return <>
     <GlassMaterial />
     <MatrixBackground />
-    <header className="site-header">
+    <header className="site-header biotech-header">
+      <BioFrame compact />
       <a className="wordmark" href="#/my-story"><span className="medical-staff" aria-hidden="true" /><span className="wordmark-name">TransProxy</span><UiIcon name="butterfly" /></a>
       <nav className="main-nav" aria-label="Main navigation">
         {ROUTES.slice(0, 4).map(item => <a key={item.path} href={`#/${item.path}`} aria-current={item.path === route?.path ? 'page' : undefined} aria-label={item.label}>{item.path === 'wall-of-shame' ? <><span className="nav-label-full">{item.label}</span><span className="nav-label-short" aria-hidden="true">Reports</span></> : item.label}</a>)}
@@ -112,7 +114,7 @@ export default function App() {
       </nav>
       <a className="header-join glass-link" href="#waitlist">Join waiting list</a>
     </header>
-    <main>{route?.path !== 'my-story' && <header className="page-heading route-heading"><h1>{pageTitle}</h1></header>}{legalDocument ? <LegalDocument document={legalDocument} /> : isLegalRequest ? <LegalRequests /> : View ? <View /> : null}</main>
+    <main className={route?.path === 'my-story' ? 'biotech-home' : 'biotech-page'}>{route?.path !== 'my-story' && <header className="page-heading route-heading"><h1>{pageTitle}</h1></header>}{legalDocument ? <LegalDocument document={legalDocument} /> : isLegalRequest ? <LegalRequests /> : View ? <View /> : null}</main>
     <footer className="site-footer">
       <div className="footer-brand"><a className="wordmark" href="#/my-story"><span className="medical-staff" aria-hidden="true" /><span className="wordmark-name">TransProxy</span></a><a href={REPO}><UiIcon name="brand-github" />Open source · AGPL-3.0</a></div>
       <div className="footer-columns">{FOOTER_COLUMNS.map(column => <div key={column.title}><h3>{column.title}</h3><ul>{column.links.map(item => <li key={item}><a href={`#/${item}`}>{labelFor(item)}</a></li>)}</ul></div>)}</div>

@@ -1,3 +1,4 @@
+import { BioFrame } from './BioFrame'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 
@@ -38,14 +39,14 @@ export function LegalRequestForm() {
     }
   }
   const sending = state === 'sending'
-  return <form className="legal-request-form glass-panel" aria-label="Privacy, removal and contact request" onSubmit={submit}>
+  return <form className="legal-request-form glass-panel bio-pane" aria-label="Privacy, removal and contact request" onSubmit={submit}><BioFrame compact />
     <div className="field"><label htmlFor="legal-category">Request type</label><select id="legal-category" name="category" required disabled={sending} defaultValue=""><option value="" disabled>Select a request type</option>{CATEGORIES.map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></div>
     <div className="field"><label htmlFor="legal-email">Reply email</label><input id="legal-email" name="email" type="email" autoComplete="email" maxLength={254} required disabled={sending} /></div>
     <div className="field"><label htmlFor="legal-url">Content URL <span className="optional-label">Optional · HTTPS</span></label><input id="legal-url" name="url" type="url" inputMode="url" maxLength={2048} pattern="https://.*" disabled={sending} /></div>
     <div className="field"><label htmlFor="legal-description">Your request</label><textarea id="legal-description" name="description" minLength={10} maxLength={4000} rows={6} required disabled={sending} aria-describedby="legal-form-privacy" /></div>
     <div className="hp-field" aria-hidden="true"><label htmlFor="legal-website">Website</label><input id="legal-website" name="website" type="text" tabIndex={-1} autoComplete="off" /></div>
     <p className="form-processing-notice" id="legal-form-privacy">Do not include medical records, identity documents, passwords or payment details. No attachments are accepted. We use your reply address and request to handle this submission, as explained in our <a href="#/privacy">Privacy Notice</a> and <a href="#/health-privacy">Consumer Health Privacy Policy</a>.</p>
-    <button className="submit-button" type="submit" disabled={sending}><span>{sending ? 'Sending…' : 'Send request'}</span></button>
+    <button className="submit-button bio-action" type="submit" disabled={sending}><BioFrame compact /><span>{sending ? 'Sending…' : 'Send request'}</span></button>
     <p className={`form-result ${state === 'error' ? 'error' : ''}`} role={state === 'error' ? 'alert' : 'status'} aria-live="polite">{message}</p>
   </form>
 }

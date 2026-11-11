@@ -249,3 +249,11 @@ Julien: “Not work wide uodate github tristste nyc then usa”. Confirmed: “Y
 ## Personal story voice — 2026-11-11
 
 Julien: “Please make my story on trans proxy  like an actual story.And not like a request of my asks, and don't quote things directly like that.It sounds like AI make it sound.Human make it sound like me”. Tell the existing factual story in natural first person, with lived chronology and why TransProxy grew from it. Avoid request-list framing, quoted dialogue and references to Julien’s prompts. Preserve uncertainty, dated facts and the distinction between recollection and provider explanations.
+
+
+## Shared frosted biotech pages — 2026-11-11
+Julien: “cool update to figma make the other pages match”. Carry the approved frosted biotech homepage material and shared header to existing story, features, resources and legal routes. Keep the original snake, content, controls, status labels and responsive content layouts. Figma should remain editable and match the current local website.
+
+
+## Responsive Matrix proportions — 2026-11-11
+Julien: “make the matrix effect not squishes on thinner screens/mobile”. Crop the falling-code source horizontally according to viewport aspect ratio, rather than compressing all columns into narrow screens or switching at a phone-only breakpoint. Preserve vertical scale, enlargement, colors, opacity, timing and all foreground presentation.
