@@ -257,3 +257,57 @@ Julien: “cool update to figma make the other pages match”. Carry the approve
 
 ## Responsive Matrix proportions — 2026-11-11
 Julien: “make the matrix effect not squishes on thinner screens/mobile”. Crop the falling-code source horizontally according to viewport aspect ratio, rather than compressing all columns into narrow screens or switching at a phone-only breakpoint. Preserve vertical scale, enlargement, colors, opacity, timing and all foreground presentation.
+
+
+## Story voice and date-free narrative — 2026-11-11
+Julien: “make it sound like me and don't reference actual dates”; “you can include more details of my story like you have my case.I want to be a sympathetic and shocking as possible”. Use direct, personal first-person prose and concrete details from the existing case account. Remove calendar dates from the narrative and byline; retain meaningful durations and sequence. Preserve attribution, uncertainty, first-name-only identity and existing page design. Do not invent dialogue, motives or clinical/legal findings.
+
+
+## Thicker bolt-free glass panels — 2026-11-11
+Julien: “Not the bolts being glass i meant the panels”; “Ok and remove bolts, make glass panels more thicc”. Remove decorative bolts. Give the panel material a deeper translucent bevel and layered edge highlights while keeping the existing shapes, layout, neon palette, frosting, snake and Matrix.
+
+
+## Prismatic panel glass — 2026-11-11
+Julien: “Can you give the glass panels a prism or refractive effect”. Apply subtle cyan/pink/violet dispersion to the thick panel rims and backdrop-only refraction. Keep text and controls sharp, existing shapes and layout unchanged, and bolts removed. Retain the colored rim as the fallback where SVG backdrop refraction is unavailable.
+
+
+## Distinctive techno typography — 2026-11-11
+Julien: “Can we pick a less generic font that still has a techno vibe for the main theme.” Use locally hosted Oxanium for the wordmark, headings, navigation, buttons and short display labels. Keep Inter for long-form reading. Preserve existing type sizes, weights, spacing and all other presentation. Oxanium is supplied with its SIL Open Font License.
+
+
+## Saturated neon accents — 2026-11-11
+Julien: “And make the neon colors more saturated”. Use richer hot pink and violet, and more colorful cyan/pink glass-edge reflections. Preserve dark surfaces, white reading text, existing opacity/glow sizes, layout and motion.
+
+
+## More expressive display font — 2026-11-11
+Julien: “It looks to be basically almost the same font.Can we do something a little bit more distinct and creative”. Replace Oxanium in headings and wordmarks with locally hosted Audiowide, retaining Oxanium for compact UI and Inter for reading. Preserve sizes, spacing, layout and other presentation.
+
+
+## High-intensity neon — 2026-11-11
+Julien: “I think the neon colors are still not really popping Che enough.I want them to punch me in the face”. Intensify cyan/pink edge light and glow, prism rim opacity and reflected color. This supersedes the earlier restrained glow. Preserve dark glass centers, legible white text, layout, typography and motion.
+
+
+## Frosted feature numbers — 2026-11-11
+Julien: “The 01 02 etc are too thin make them frosted glass”. Give the homepage feature numbers heavier glyphs and translucent frosted backing with inset highlights, within their existing tabs. Preserve position, type size and card layout.
+
+
+## Glass/neon balance — 2026-11-11
+Julien: “I need a balance.I need a really saturated part of it” and “I can't even tell it's glass”. Keep saturated cyan/pink in a thin luminous edge; soften broad halo and rim fill so the transparent bevel and frosted center remain visible. This supersedes the high-intensity flood of neon.
+
+
+## Shaped CodePen displacement — 2026-11-11
+Julien supplied https://codepen.io/jh3y/pen/EajLxJV: “Need some of this, especially the displacement.But make the prism effect match the colors of the app”. Adapt its shaped red/blue displacement image and separate channel passes to the existing panel polygons. Keep neutral centers, sharp foreground, cyan/pink fringes, and the balanced glass/neon treatment. No demo dock or dependencies.
+
+
+## Frosted flag correction — 2026-11-11
+Julien: “I didnt mean literally the 01 02 i mean the flag shapes”. Supersedes the frosted feature numbers interpretation: frost the full existing flag shapes and add bevel depth within their unchanged silhouettes. Remove the mistaken number boxes and restore original numeral styling.
+
+Mistake corrected — 2026-11-11: Interpreted “01 02” as numeral styling instead of their flag shapes; removed number plaques and applied the frosted bevel to the flags.
+
+## Full flag frosting — 2026-11-11
+Julien: “No I wanted the entire flag to just be frosted , so I can”. Use one evenly frosted face across the entire existing flag silhouette; remove added internal bevel lines. Preserve shape, size, position and numerals.
+
+Mistake corrected — 2026-11-11: Added inner bevel decoration when Julien wanted the entire flag simply frosted; replaced it with a continuous frosted face.
+
+## Flag glass tint — 2026-11-11
+Julien: “I want the frosted glass to be the color of the border which you seem to just make the color of the border”. The entire frosted flag face takes the same cyan/pink hue as its existing border; retain translucency, blur and silhouette.

@@ -4,7 +4,7 @@ import { juliensStory } from '../content/juliensStory'
 export function JulienStory() {
   return <article className="page story story-page">
     <header className="story-intro bio-pane"><BioFrame compact />
-      <p className="status-label">{juliensStory.author} · Founder · <time dateTime={juliensStory.published}>November 10, 2026</time></p>
+      <p className="status-label">{juliensStory.author} · Founder</p>
       <h2>{juliensStory.title}</h2>
       <p className="story-summary">{juliensStory.summary}</p>
     </header>
