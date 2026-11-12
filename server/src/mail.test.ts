@@ -1,3 +1,4 @@
+import { inject } from './captcha-fixture.test.js'
 import assert from 'node:assert/strict'
 import { randomBytes, randomUUID } from 'node:crypto'
 import { readFile } from 'node:fs/promises'
@@ -66,40 +67,40 @@ test('unsubscribe GET does not remove; explicit originless form or signed one-cl
   }
   const app = createApp({ store, encryptionKey, lookupKey, allowedOrigins: [origin] })
   t.after(() => app.close())
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   const saved = [...entries.values()][0]!
   const token = createUnsubscribeToken(saved.id, new Date(Date.now() + 86_400_000), lookupKey)
   const url = `/api/waitlist/unsubscribe?token=${token}`
-  const confirmation = await app.inject({ url })
+  const confirmation = await inject(app, { url })
   assert.equal(confirmation.statusCode, 200)
   assert.ok(confirmation.body.includes('method="post"'))
   assert.ok(!confirmation.body.includes(body.email))
   assert.equal(entries.size, 1)
-  assert.equal((await app.inject({ url: '/api/waitlist/unsubscribe?token=invalid' })).statusCode, 400)
-  const unconfirmed = await app.inject({ method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=other' })
+  assert.equal((await inject(app, { url: '/api/waitlist/unsubscribe?token=invalid' })).statusCode, 400)
+  const unconfirmed = await inject(app, { method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=other' })
   assert.equal(unconfirmed.statusCode, 400)
   assert.equal(entries.size, 1)
-  const foreignForm = await app.inject({ method: 'POST', url, headers: { origin: 'https://foreign.example.invalid', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
+  const foreignForm = await inject(app, { method: 'POST', url, headers: { origin: 'https://foreign.example.invalid', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
   assert.equal(foreignForm.statusCode, 400)
   assert.equal(entries.size, 1)
-  const removed = await app.inject({ method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
+  const removed = await inject(app, { method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
   assert.equal(removed.statusCode, 200)
   assert.equal(entries.size, 0)
   // A token for a deleted record cannot remove a later explicit re-signup.
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
-  await app.inject({ method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'List-Unsubscribe=One-Click' })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
+  await inject(app, { method: 'POST', url, headers: { 'content-type': 'application/x-www-form-urlencoded' }, payload: 'List-Unsubscribe=One-Click' })
   assert.equal(entries.size, 1)
   const fresh = [...entries.values()][0]!
   const freshToken = createUnsubscribeToken(fresh.id, new Date(Date.now() + 86_400_000), lookupKey)
   // Chrome sends literal Origin:null for the actual no-referrer confirmation
   // navigation; this differs from both missing and foreign-site Origin.
-  const nullOriginForm = await app.inject({ method: 'POST', url: `/api/waitlist/unsubscribe?token=${freshToken}`, headers: { origin: 'null', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
+  const nullOriginForm = await inject(app, { method: 'POST', url: `/api/waitlist/unsubscribe?token=${freshToken}`, headers: { origin: 'null', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'confirm=remove' })
   assert.equal(nullOriginForm.statusCode, 200)
   assert.equal(entries.size, 0)
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   const next = [...entries.values()][0]!
   const nextToken = createUnsubscribeToken(next.id, new Date(Date.now() + 86_400_000), lookupKey)
-  const oneClick = await app.inject({ method: 'POST', url: `/api/waitlist/unsubscribe?token=${nextToken}`, headers: { origin: 'https://mail.example.invalid', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'List-Unsubscribe=One-Click' })
+  const oneClick = await inject(app, { method: 'POST', url: `/api/waitlist/unsubscribe?token=${nextToken}`, headers: { origin: 'https://mail.example.invalid', 'content-type': 'application/x-www-form-urlencoded' }, payload: 'List-Unsubscribe=One-Click' })
   assert.equal(oneClick.statusCode, 200)
   assert.deepEqual(oneClick.json(), { ok: true })
   assert.equal(entries.size, 0)
@@ -124,9 +125,9 @@ test('Postgres mail migration preserves old rows, deduplicates concurrent signup
   await migrate(pool)
   const app = createApp({ store: postgresStore(pool), encryptionKey, lookupKey, allowedOrigins: [origin], queueWelcome: true, rateLimit: 30 })
   t.after(() => app.close())
-  const responses = await Promise.all(Array.from({ length: 10 }, () => app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })))
+  const responses = await Promise.all(Array.from({ length: 10 }, () => inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })))
   assert.ok(responses.every(response => response.statusCode === 200))
-  assert.equal((await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'legacy@example.invalid' } })).statusCode, 200)
+  assert.equal((await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'legacy@example.invalid' } })).statusCode, 200)
   assert.equal((await pool.query('SELECT welcome_status FROM waitlist_entries WHERE id=$1', [legacyId])).rows[0].welcome_status, 'none')
   const sent: { payload: WelcomeEmail; key: string }[] = []
   const sender: MailSender = async (payload, key) => { sent.push({ payload, key }); return { ok: true } }
@@ -147,7 +148,7 @@ test('Postgres retry is durable with stable payload/idempotency and stops before
   await migrate(pool)
   const app = createApp({ store: postgresStore(pool), encryptionKey, lookupKey, allowedOrigins: [origin], queueWelcome: true })
   t.after(() => app.close())
-  const signup = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  const signup = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   assert.equal(signup.statusCode, 200)
   const calls: { payload: WelcomeEmail; key: string }[] = []
   const sender: MailSender = async (payload, key) => { calls.push({ payload, key }); return calls.length === 1 ? { ok: false, retryable: true } : { ok: true } }
@@ -159,7 +160,7 @@ test('Postgres retry is durable with stable payload/idempotency and stops before
   assert.equal(calls.length, 2)
   assert.deepEqual(calls[0], calls[1])
   assert.equal((await pool.query('SELECT welcome_status,welcome_attempts FROM waitlist_entries')).rows[0].welcome_status, 'sent')
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'expired@example.invalid' } })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'expired@example.invalid' } })
   await pool.query("UPDATE waitlist_entries SET welcome_status='sending',welcome_lease_until=now()-interval '1 second',welcome_first_attempt_at=now()-interval '24 hours' WHERE welcome_status='pending'")
   await createMailWorker({ pool, encryptionKey, lookupKey, config, sender }).runOnce()
   assert.equal(calls.length, 2)
@@ -172,7 +173,7 @@ test('removal cancels pending mail and serializes with bounded in-flight send, p
   const store = postgresStore(pool)
   const app = createApp({ store, encryptionKey, lookupKey, allowedOrigins: [origin], queueWelcome: true })
   t.after(() => app.close())
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   let release!: () => void
   let announce!: () => void
   const gate = new Promise<void>(resolve => { release = resolve })
@@ -193,7 +194,7 @@ test('removal cancels pending mail and serializes with bounded in-flight send, p
   assert.equal((await pool.query('SELECT count(*)::int AS count FROM waitlist_entries')).rows[0].count, 0)
   await worker.runOnce()
   assert.equal(sends, 1)
-  await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'cancel-before-send@example.invalid' } })
+  await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'cancel-before-send@example.invalid' } })
   const pendingId = (await pool.query('SELECT id FROM waitlist_entries')).rows[0].id
   await store.removeById(pendingId)
   await worker.runOnce()

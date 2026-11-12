@@ -78,8 +78,14 @@ export function createCodepenMatrix(canvas: HTMLCanvasElement): CodepenMatrixRen
     return {
       frame(delta, _time) {
         if (destroyed || gl.isContextLost()) return
-        world.updateWorld(delta)
-        world.renderWorld(delta)
+        // Keep the existing trail sampling when slow composites reduce draw cadence.
+        let remaining = delta
+        do {
+          const step = Math.min(1 / 30, remaining)
+          world.updateWorld(step)
+          world.renderWorld(step)
+          remaining -= step
+        } while (remaining > 0.00001)
         gl.bindTexture(gl.TEXTURE_2D, texture)
         gl.texSubImage2D(gl.TEXTURE_2D, 0, matrixDimensions.consolePad, matrixDimensions.consolePad, gl.RGBA, gl.UNSIGNED_BYTE, world.bufferCanvas)
         // The source buffer retains its trails; output has no CRT accumulation.

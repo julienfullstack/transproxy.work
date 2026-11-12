@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Captcha } from './Captcha'
 import type { FormEvent } from 'react'
 import { BioFrame } from './BioFrame'
 import { NeonBackdrop } from './NeonBackdrop'
@@ -25,7 +26,7 @@ export function WaitlistForm({ biotech = false }: { biotech?: boolean }) {
     try {
       const response = await fetch(`${window.__API_BASE__ ?? ''}/api/waitlist`, {
         method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({email: data.get('email'), dateOfBirth: data.get('dateOfBirth'), adult: data.get('adult') === 'on', consent: data.get('consent') === 'on', termsAccepted: data.get('termsAccepted') === 'on', website: data.get('website') || ''}),
+        body: JSON.stringify({email: data.get('email'), dateOfBirth: data.get('dateOfBirth'), adult: data.get('adult') === 'on', consent: data.get('consent') === 'on', termsAccepted: data.get('termsAccepted') === 'on', website: data.get('website') || '', altcha: data.get('altcha') || ''}),
         signal: AbortSignal.timeout(15000),
       })
       const result: unknown = await response.json().catch(() => null)
@@ -40,6 +41,8 @@ export function WaitlistForm({ biotech = false }: { biotech?: boolean }) {
     } catch (error) {
       setState('error')
       setMessage(error instanceof Error && !['TimeoutError', 'TypeError'].includes(error.name) ? error.message : 'Could not connect. Please try again.')
+    } finally {
+      form.querySelector('altcha-widget')?.reset()
     }
   }
   return <form id="waitlist" className="waitlist-form" onSubmit={submit} aria-label="Join waiting list">
@@ -54,6 +57,7 @@ export function WaitlistForm({ biotech = false }: { biotech?: boolean }) {
     <label className="check"><input type="checkbox" name="consent" required disabled={state === 'sending'} /><span>I explicitly consent to TransProxy using my email and interest in this health-related project for waiting-list administration, invitations and launch updates. <a href="#/privacy">Privacy</a> · <a href="#/health-privacy">Health data privacy</a></span></label>
     <label className="check"><input type="checkbox" name="termsAccepted" required disabled={state === 'sending'} /><span>I agree to the <a href="#/terms">Website &amp; Waiting-list Terms</a>.</span></label>
     <p className="data-promise">We will never sell your data or use it to train AI models.</p>
+    <Captcha />
     <button className="submit-button" type="submit" disabled={state === 'sending'}>{biotech ? <BioFrame compact /> : <NeonBackdrop />}<span>{state === 'sending' ? 'Joining…' : 'Join waiting list'}</span></button>
     <p className={`form-result ${state === 'error' ? 'error' : ''}`} role={state === 'error' ? 'alert' : 'status'} aria-live="polite">{message}</p>
   </form>

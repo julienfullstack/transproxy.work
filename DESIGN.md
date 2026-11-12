@@ -311,3 +311,7 @@ Mistake corrected — 2026-11-11: Added inner bevel decoration when Julien wante
 
 ## Flag glass tint — 2026-11-11
 Julien: “I want the frosted glass to be the color of the border which you seem to just make the color of the border”. The entire frosted flag face takes the same cyan/pink hue as its existing border; retain translucency, blur and silhouette.
+
+
+## Matrix rendering budget — November 12, 2026
+Julien: “trans prox is so slow af rn fix it”; “lower the canvas backing resolution ... and if needed a lower draw rate ... stop drawing when the canvas is offscreen or covered”; “Keep the glass blur look, colors and layout unchanged.” Optimize only the committed Matrix backing buffer and draw scheduling. Preserve its source glyphs, palette, framing, transparency and all glass/layout styling. Hidden tabs, offscreen canvas and a different fullscreen element suspend drawing; translucent glass does not count as covering the Matrix.

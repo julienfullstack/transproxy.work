@@ -1,3 +1,4 @@
+import { inject } from './captcha-fixture.test.js'
 import assert from 'node:assert/strict'
 import { randomBytes, randomUUID } from 'node:crypto'
 import { spawn } from 'node:child_process'
@@ -50,8 +51,8 @@ test('encryption uses distinct random nonces, authenticates ID and rejects tampe
 test('signup stores only encrypted normalized contact, keyed digest and consent version; duplicate response is identical', async (t) => {
   const { app, entries } = fixture()
   t.after(() => app.close())
-  const first = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: ' Test@Example.Invalid ' } })
-  const duplicate = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  const first = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: ' Test@Example.Invalid ' } })
+  const duplicate = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   assert.equal(first.statusCode, 200)
   assert.equal(first.body, duplicate.body)
   assert.equal(entries.size, 1)
@@ -75,7 +76,7 @@ test('age, email consent and separate terms acceptance must be literal true and 
     { ...body, email: 'a@b.invalid\nheader' }, { ...body, email: 'a'.repeat(255) },
     { ...body, medicalRecord: 'must not accept unrelated fields' },
   ]) {
-    const result = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload })
+    const result = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload })
     assert.equal(result.statusCode, 400)
   }
   assert.equal(entries.size, 0)
@@ -90,10 +91,10 @@ test('old pages missing terms acceptance receive a reload notice without attempt
   } })
   t.after(() => app.close())
   const { termsAccepted: _terms, ...oldPageBody } = body
-  const oldPage = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: oldPageBody })
+  const oldPage = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: oldPageBody })
   assert.equal(oldPage.statusCode, 400)
   assert.deepEqual(oldPage.json(), { ok: false, message: 'This page has been updated. Reload it and review the current terms before joining.' })
-  const declined = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, termsAccepted: false } })
+  const declined = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, termsAccepted: false } })
   assert.equal(declined.statusCode, 400)
   assert.deepEqual(declined.json(), { ok: false, message: 'Enter a valid email and date of birth, confirm your age and email consent, and accept the terms.' })
   assert.equal(inserts, 0)
@@ -104,11 +105,11 @@ test('DOB checks real UTC birthdays and rejects incomplete, future and impossibl
   t.after(() => app.close())
   const { dateOfBirth: _date, ...missing } = body
   for (const payload of [missing, ...['', '2008-11-11', '2027-01-01', '2008-02-30', '2007-02-29', '2000-13-01', '2000-00-10', '2000-01-00', '2000-1-01', '1905-11-09'].map(dateOfBirth => ({ ...body, dateOfBirth }))]) {
-    const response = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload })
+    const response = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload })
     assert.equal(response.statusCode, 400)
   }
   assert.equal(entries.size, 0)
-  const exact = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, dateOfBirth: '2008-11-10' } })
+  const exact = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, dateOfBirth: '2008-11-10' } })
   assert.equal(exact.statusCode, 200)
   assert.ok(!JSON.stringify([...entries.values()]).includes('2008-11-10'))
   assert.equal(ageFromDateOfBirth('2008-02-29', new Date('2026-02-28T23:59:59Z')), 17)
@@ -119,17 +120,17 @@ test('DOB checks real UTC birthdays and rejects incomplete, future and impossibl
 test('CORS preflight allows only configured origins and JSON is mandatory', async (t) => {
   const { app, entries } = fixture()
   t.after(() => app.close())
-  const preflight = await app.inject({ method: 'OPTIONS', url: '/api/waitlist', headers: { origin, 'access-control-request-method': 'POST' } })
+  const preflight = await inject(app, { method: 'OPTIONS', url: '/api/waitlist', headers: { origin, 'access-control-request-method': 'POST' } })
   assert.equal(preflight.statusCode, 204)
   assert.equal(preflight.headers['access-control-allow-origin'], origin)
   for (const badOrigin of [undefined, 'https://malicious.invalid', 'https://transproxy.org.malicious.invalid']) {
-    const result = await app.inject({ method: 'POST', url: '/api/waitlist', headers: { 'content-type': 'application/json', ...(badOrigin ? { origin: badOrigin } : {}) }, payload: body })
+    const result = await inject(app, { method: 'POST', url: '/api/waitlist', headers: { 'content-type': 'application/json', ...(badOrigin ? { origin: badOrigin } : {}) }, payload: body })
     assert.equal(result.statusCode, 403)
     assert.equal(result.headers['access-control-allow-origin'], undefined)
   }
-  const nonJson = await app.inject({ method: 'POST', url: '/api/waitlist', headers: { origin, 'content-type': 'text/plain' }, payload: JSON.stringify(body) })
+  const nonJson = await inject(app, { method: 'POST', url: '/api/waitlist', headers: { origin, 'content-type': 'text/plain' }, payload: JSON.stringify(body) })
   assert.equal(nonJson.statusCode, 415)
-  const oversize = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'a'.repeat(3000) } })
+  const oversize = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: 'a'.repeat(3000) } })
   assert.equal(oversize.statusCode, 413)
   assert.equal(entries.size, 0)
 })
@@ -138,20 +139,20 @@ test('rate limiting has expiry and ignores untrusted forwarding headers', async 
   let time = Date.UTC(2026, 10, 10)
   const { app } = fixture({ rateLimit: 1, clock: () => time })
   t.after(() => app.close())
-  const first = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  const first = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   assert.equal(first.statusCode, 200)
-  const limited = await app.inject({ method: 'POST', url: '/api/waitlist', headers: { ...headers, 'x-forwarded-for': '203.0.113.10' }, payload: body })
+  const limited = await inject(app, { method: 'POST', url: '/api/waitlist', headers: { ...headers, 'x-forwarded-for': '203.0.113.10' }, payload: body })
   assert.equal(limited.statusCode, 429)
   assert.equal(limited.headers['retry-after'], '60')
   time += 60_001
-  const next = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  const next = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   assert.equal(next.statusCode, 200)
 })
 
 test('two-hop trusted ingress separates real clients and ignores spoofed earlier addresses', async (t) => {
   const { app } = fixture({ rateLimit: 1, trustProxy: 2 })
   t.after(() => app.close())
-  const signup = (forwarded: string) => app.inject({
+  const signup = (forwarded: string) => inject(app, {
     method: 'POST', url: '/api/waitlist', remoteAddress: '172.18.0.5',
     headers: { ...headers, 'x-forwarded-for': forwarded }, payload: body,
   })
@@ -163,7 +164,7 @@ test('two-hop trusted ingress separates real clients and ignores spoofed earlier
 test('honeypot is accepted generically without saving; database failures reveal no details', async (t) => {
   const { app, entries } = fixture()
   t.after(() => app.close())
-  const bot = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, website: 'bot.invalid' } })
+  const bot = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, website: 'bot.invalid' } })
   assert.equal(bot.statusCode, 200)
   assert.equal(entries.size, 0)
   const failing = createApp({
@@ -171,13 +172,13 @@ test('honeypot is accepted generically without saving; database failures reveal 
     encryptionKey, lookupKey, allowedOrigins: [origin],
   })
   t.after(() => failing.close())
-  const health = await failing.inject({ url: '/api/health' })
-  const signup = await failing.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })
+  const health = await inject(failing, { url: '/api/health' })
+  const signup = await inject(failing, { method: 'POST', url: '/api/waitlist', headers, payload: body })
   assert.equal(health.statusCode, 503)
   assert.equal(signup.statusCode, 503)
   assert.ok(!signup.body.includes('PRIVATE'))
   assert.ok(!signup.body.includes(body.email))
-  assert.equal((await app.inject({ url: '/api/waitlist' })).statusCode, 404)
+  assert.equal((await inject(app, { url: '/api/waitlist' })).statusCode, 404)
 })
 
 test('Postgres migration, concurrent deduplication and encrypted persistence', { skip: !process.env.TEST_DATABASE_URL }, async (t) => {
@@ -190,7 +191,7 @@ test('Postgres migration, concurrent deduplication and encrypted persistence', {
   await migrate(scoped)
   const app = createApp({ store: postgresStore(scoped), encryptionKey, lookupKey, allowedOrigins: [origin], rateLimit: 30 })
   t.after(() => app.close())
-  const results = await Promise.all(Array.from({ length: 10 }, () => app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: body })))
+  const results = await Promise.all(Array.from({ length: 10 }, () => inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: body })))
   assert.ok(results.every((result) => result.statusCode === 200 && result.body === results[0]!.body))
   const stored = await scoped.query('SELECT * FROM waitlist_entries')
   assert.equal(stored.rowCount, 1)
@@ -198,9 +199,9 @@ test('Postgres migration, concurrent deduplication and encrypted persistence', {
   assert.equal(decryptEmail(row.encrypted_email, row.id, encryptionKey), body.email)
   assert.ok(!JSON.stringify(row).includes(body.email))
   assert.equal(row.consent_version, CONSENT_VERSION)
-  assert.equal((await app.inject({ url: '/api/health' })).statusCode, 200)
+  assert.equal((await inject(app, { url: '/api/health' })).statusCode, 200)
   const otherEmail = 'other@example.invalid'
-  const second = await app.inject({ method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: otherEmail } })
+  const second = await inject(app, { method: 'POST', url: '/api/waitlist', headers, payload: { ...body, email: otherEmail } })
   assert.equal(second.statusCode, 200)
   const removal = await new Promise<{ code: number | null; output: string }>((resolve, reject) => {
     const child = spawn(process.execPath, [new URL('../dist/remove.js', import.meta.url).pathname], {

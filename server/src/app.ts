@@ -1,4 +1,5 @@
 import { randomUUID } from 'node:crypto'
+import { createCaptcha } from './captcha.js'
 import Fastify from 'fastify'
 import type { Pool } from 'pg'
 import { emailDigest, encryptEmail } from './crypto.js'
@@ -53,7 +54,7 @@ type AppOptions = {
   legalRequestRateWindowMs?: number
 }
 
-type SignupBody = { email: string; dateOfBirth: string; adult: boolean; consent: boolean; termsAccepted: boolean; website?: string }
+type SignupBody = { email: string; dateOfBirth: string; adult: boolean; consent: boolean; termsAccepted: boolean; website?: string; altcha?: string }
 
 export function createApp(options: AppOptions) {
   if (options.encryptionKey.length !== 32 || options.lookupKey.length !== 32) throw new Error('Waitlist keys must be 32 bytes')
@@ -68,6 +69,7 @@ export function createApp(options: AppOptions) {
     ajv: { customOptions: { coerceTypes: false, removeAdditional: false } },
   })
   const origins = new Set(options.allowedOrigins)
+  const captcha = createCaptcha()
   const windows = new Map<string, { count: number; reset: number }>()
   const now = options.clock ?? Date.now
   const limit = options.rateLimit ?? 10
@@ -89,7 +91,7 @@ export function createApp(options: AppOptions) {
     reply.header('Referrer-Policy', 'no-referrer')
     reply.header('Content-Security-Policy', "default-src 'none'; frame-ancestors 'none'")
     const route = request.url.split('?')[0]
-    if (route !== '/api/waitlist' && route !== '/api/waitlist/unsubscribe') return
+    if (route !== '/api/waitlist' && route !== '/api/waitlist/unsubscribe' && route !== '/api/captcha/challenge') return
 
     const origin = request.headers.origin
     if (route === '/api/waitlist' && origin && !origins.has(origin)) {
@@ -102,7 +104,7 @@ export function createApp(options: AppOptions) {
       reply.header('Access-Control-Allow-Headers', 'Content-Type')
     }
     if (request.method === 'OPTIONS') return
-    if (request.method !== 'POST') return
+    if (request.method !== 'POST' && route !== '/api/captcha/challenge') return
     // Browser signups must carry an approved Origin. JSON-only requests prevent
     // simple cross-origin forms; an Origin is not an anti-bot credential.
     if (route === '/api/waitlist' && !origin) return reply.code(403).send({ ok: false, message: 'This request is not allowed.' })
@@ -130,6 +132,7 @@ export function createApp(options: AppOptions) {
     // Do not return validation values, database details, request bodies or errors
     // to logs. Only fixed text leaves this boundary.
     const failure = error as { statusCode?: number; validation?: { keyword?: string; params?: { missingProperty?: string } }[] }
+    if (failure.statusCode === 403) return reply.code(403).send({ ok: false, message: 'Complete verification and try again.' })
     if (failure.statusCode === 413) return reply.code(413).send({ ok: false, message: 'This request is too large.' })
     if (failure.statusCode === 415) return reply.code(415).send({ ok: false, message: 'Send this request as JSON.' })
     if (request.routeOptions.url === '/api/waitlist' && failure.validation?.some((issue) => issue.keyword === 'required' && issue.params?.missingProperty === 'termsAccepted')) {
@@ -144,9 +147,11 @@ export function createApp(options: AppOptions) {
     catch { return reply.code(503).send({ ok: false }) }
   })
 
+  app.get('/api/captcha/challenge', captcha.challengeHandler)
   app.options('/api/waitlist', async (_request, reply) => reply.code(204).send())
 
   app.post<{ Body: SignupBody }>('/api/waitlist', {
+    preHandler: captcha.middleware(),
     schema: {
       body: {
         type: 'object', additionalProperties: false,
@@ -158,6 +163,7 @@ export function createApp(options: AppOptions) {
           consent: { type: 'boolean', const: true },
           termsAccepted: { type: 'boolean', const: true },
           website: { type: 'string', maxLength: 512 },
+          altcha: { type: 'string', maxLength: 8192 },
         },
       },
     },

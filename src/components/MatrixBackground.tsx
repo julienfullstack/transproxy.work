@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { createCodepenMatrix, loadCodepenMatrixFont, type CodepenMatrixRenderer } from '../effects/codepenMatrix'
 
-const FRAME_INTERVAL = 1000 / 30
-const MAX_PIXELS = 1_800_000
+const FRAME_INTERVAL = 1000 / 10
+const MAX_PIXELS = 450_000
 
 /** Nick Matantsev's actual falling-code logic, with flat blue/pink rendering. */
 export function MatrixBackground() {
@@ -16,38 +16,53 @@ export function MatrixBackground() {
     let effect: CodepenMatrixRenderer | undefined
     let disposed = false
     let frame: number | undefined
-    let lastDraw = 0
+    let timer: ReturnType<typeof setTimeout> | undefined
     let lastStep = 0
     let elapsed = 0
+    let intersects = true
+
+    function visible() {
+      const fullscreen = document.fullscreenElement
+      return !document.hidden && intersects && (!fullscreen || fullscreen.contains(canvas!))
+    }
 
     function pause() {
       if (frame !== undefined) cancelAnimationFrame(frame)
       frame = undefined
+      if (timer !== undefined) clearTimeout(timer)
+      timer = undefined
     }
 
     function animate(timestamp: number) {
       frame = undefined
-      if (disposed || !effect || document.hidden || reducedMotion.matches) return
-      if (timestamp - lastDraw >= FRAME_INTERVAL) {
-        const delta = Math.min(0.05, Math.max(0, (timestamp - lastStep) / 1000))
-        elapsed += delta
-        lastStep = timestamp
-        lastDraw = timestamp - ((timestamp - lastDraw) % FRAME_INTERVAL)
-        effect.frame(delta, elapsed)
-      }
-      frame = requestAnimationFrame(animate)
+      if (disposed || !effect || !visible() || reducedMotion.matches) return
+      const delta = Math.min(0.25, Math.max(0, (timestamp - lastStep) / 1000))
+      elapsed += delta
+      lastStep = timestamp
+      effect.frame(delta, elapsed)
+      // Let the new canvas/glass composite present before starting the idle gap.
+      // A slow composite must not immediately trigger another expensive redraw.
+      frame = requestAnimationFrame(() => {
+        frame = undefined
+        if (disposed || !visible() || reducedMotion.matches) return
+        timer = setTimeout(() => {
+          timer = undefined
+          frame = requestAnimationFrame(animate)
+        }, FRAME_INTERVAL)
+      })
     }
 
     function syncMotion() {
       pause()
-      if (disposed || !effect || document.hidden || reducedMotion.matches) return
-      lastDraw = performance.now()
-      lastStep = lastDraw
+      if (disposed || !effect || !visible()) return
+      drawFrozen()
+      if (reducedMotion.matches) return
+      lastStep = performance.now()
       frame = requestAnimationFrame(animate)
     }
 
     function drawFrozen() {
-      if (!effect || disposed) return
+      if (!effect || disposed || !visible()) return
       // Render the existing glyphs without advancing their source simulation.
       effect.frame(0, elapsed)
     }
@@ -57,9 +72,8 @@ export function MatrixBackground() {
       const box = canvas!.getBoundingClientRect()
       const width = Math.max(1, Math.round(box.width || window.innerWidth))
       const height = Math.max(1, Math.round(box.height || window.innerHeight))
-      const density = Math.min(1.5, window.devicePixelRatio || 1, Math.sqrt(MAX_PIXELS / (width * height)))
+      const density = Math.min(0.75, window.devicePixelRatio || 1, Math.sqrt(MAX_PIXELS / (width * height)))
       effect.resize(width * density, height * density)
-      drawFrozen()
       syncMotion()
     }
 
@@ -71,11 +85,17 @@ export function MatrixBackground() {
       if (!disposed) setRenderer('unavailable')
     }
 
+    const intersection = new IntersectionObserver(entries => {
+      intersects = entries.some(entry => entry.isIntersecting)
+      syncMotion()
+    })
+    intersection.observe(canvas)
     canvas.addEventListener('webglcontextlost', lost)
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : undefined
     observer?.observe(canvas)
     window.addEventListener('resize', resize, { passive: true })
     document.addEventListener('visibilitychange', syncMotion)
+    document.addEventListener('fullscreenchange', syncMotion)
     reducedMotion.addEventListener('change', syncMotion)
 
     void (async () => {
@@ -83,7 +103,6 @@ export function MatrixBackground() {
         await loadCodepenMatrixFont()
         if (disposed) return
         effect = createCodepenMatrix(canvas)
-        effect.frame(1 / 60, elapsed)
         resize()
         setRenderer('webgl')
       } catch {
@@ -97,8 +116,10 @@ export function MatrixBackground() {
       disposed = true
       pause()
       observer?.disconnect()
+      intersection.disconnect()
       window.removeEventListener('resize', resize)
       document.removeEventListener('visibilitychange', syncMotion)
+      document.removeEventListener('fullscreenchange', syncMotion)
       reducedMotion.removeEventListener('change', syncMotion)
       canvas.removeEventListener('webglcontextlost', lost)
       effect?.destroy()
