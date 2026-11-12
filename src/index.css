@@ -629,7 +629,7 @@ main { max-width: 1400px; padding-top: 36px; }
 @supports (backdrop-filter: url("#transproxy-glass")) {
   .site-header, .glass-panel, .content-section, .story-intro, .story-index,
   .story-article, .feature-list > li, .feature-tile, .preview-window {
-    backdrop-filter: url("#transproxy-glass") blur(1px) saturate(130%);
+    backdrop-filter: var(--scroll-refraction, url("#transproxy-glass")) blur(1px) saturate(130%);
   }
 }
 .data-promise { margin: 4px 0 14px; color: var(--text); font-size: 13px; line-height: 1.6; }

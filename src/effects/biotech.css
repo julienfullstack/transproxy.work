@@ -267,6 +267,10 @@
 .journey-card > .bio-frame > .bio-frost,
 .bio-pane > .bio-frame > .bio-frost,
 .biotech-header > .bio-frame > .bio-frost {
-  -webkit-backdrop-filter: blur(14px) var(--panel-lens) saturate(125%);
-  backdrop-filter: blur(14px) var(--panel-lens) saturate(125%);
+  -webkit-backdrop-filter: blur(14px) saturate(125%);
+  backdrop-filter: blur(14px) saturate(125%);
 }
+
+/* Keep frosted glass and its luminous bevel during motion. SVG displacement
+   resumes after scrolling settles, avoiding full-panel refraction each frame. */
+:root[data-scrolling='true'] { --scroll-refraction: blur(0px); }

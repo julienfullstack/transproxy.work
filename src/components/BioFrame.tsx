@@ -6,6 +6,7 @@ import { panelDisplacement } from '../effects/panelDisplacement'
  * while the frame and foreground remain sharp. No raster mockup is overlaid. */
 export function BioFrame({ compact = false, card = false }: { compact?: boolean; card?: boolean }) {
   const ref = useRef<HTMLSpanElement>(null)
+  const [visible, setVisible] = useState(true)
   const [size, setSize] = useState({ w: 800, h: 440 })
   const id = useId().replace(/:/g, '')
   useEffect(() => {
@@ -15,7 +16,11 @@ export function BioFrame({ compact = false, card = false }: { compact?: boolean;
       if (entry) setSize({ w: entry.contentRect.width, h: entry.contentRect.height })
     })
     observer.observe(element)
-    return () => observer.disconnect()
+    const visibility = new IntersectionObserver(([entry]) => {
+      setVisible(entry?.isIntersecting ?? true)
+    }, { rootMargin: '200px' })
+    visibility.observe(element)
+    return () => { observer.disconnect(); visibility.disconnect() }
   }, [])
   const { w, h } = size
   const cut = compact ? 12 : 24
@@ -36,8 +41,8 @@ export function BioFrame({ compact = false, card = false }: { compact?: boolean;
   const bevelPath = `M${points.map(p => p.join(' ')).join('L')}Z M${insetPoints.map(p => p.join(' ')).join('L')}Z`
   const rimClip = `polygon(evenodd, ${[...points, points[0], ...insetPoints, insetPoints[0], points[0]].map(([x, y]) => `${x}px ${y}px`).join(',')})`
   const displacement = panelDisplacement(w, h, points)
-  const lens = `url("#${id}-lens")`
-  return <span ref={ref} style={{ '--panel-lens': lens } as CSSProperties} className={`bio-frame${compact ? ' bio-frame-compact' : ''}`} aria-hidden="true">
+  const lens = `var(--scroll-refraction, url("#${id}-lens"))`
+  return <span ref={ref} style={{ '--panel-lens': lens, visibility: visible ? 'visible' : 'hidden' } as CSSProperties} className={`bio-frame${compact ? ' bio-frame-compact' : ''}`} aria-hidden="true">
     <span className="bio-frost" style={{ clipPath: clip }} />
     <span className="bio-glass-rim" style={{ clipPath: rimClip, backdropFilter: `${lens} blur(.5px) saturate(140%)`, WebkitBackdropFilter: `${lens} blur(.5px) saturate(140%)` }} />
     <svg className="bio-edges" width="100%" height="100%" viewBox={`0 0 ${w} ${h}`}>

@@ -20,6 +20,8 @@ export function MatrixBackground() {
     let lastStep = 0
     let elapsed = 0
     let intersects = true
+    let scrolling = false
+    let scrollTimer: ReturnType<typeof setTimeout> | undefined
 
     function visible() {
       const fullscreen = document.fullscreenElement
@@ -35,7 +37,7 @@ export function MatrixBackground() {
 
     function animate(timestamp: number) {
       frame = undefined
-      if (disposed || !effect || !visible() || reducedMotion.matches) return
+      if (disposed || !effect || !visible() || scrolling || reducedMotion.matches) return
       const delta = Math.min(0.25, Math.max(0, (timestamp - lastStep) / 1000))
       elapsed += delta
       lastStep = timestamp
@@ -44,7 +46,7 @@ export function MatrixBackground() {
       // A slow composite must not immediately trigger another expensive redraw.
       frame = requestAnimationFrame(() => {
         frame = undefined
-        if (disposed || !visible() || reducedMotion.matches) return
+        if (disposed || !visible() || scrolling || reducedMotion.matches) return
         timer = setTimeout(() => {
           timer = undefined
           frame = requestAnimationFrame(animate)
@@ -54,7 +56,7 @@ export function MatrixBackground() {
 
     function syncMotion() {
       pause()
-      if (disposed || !effect || !visible()) return
+      if (disposed || !effect || !visible() || scrolling) return
       drawFrozen()
       if (reducedMotion.matches) return
       lastStep = performance.now()
@@ -62,7 +64,7 @@ export function MatrixBackground() {
     }
 
     function drawFrozen() {
-      if (!effect || disposed || !visible()) return
+      if (!effect || disposed || !visible() || scrolling) return
       // Render the existing glyphs without advancing their source simulation.
       effect.frame(0, elapsed)
     }
@@ -85,6 +87,21 @@ export function MatrixBackground() {
       if (!disposed) setRenderer('unavailable')
     }
 
+    function onScroll() {
+      if (!scrolling) {
+        scrolling = true
+        document.documentElement.dataset.scrolling = 'true'
+        pause()
+      }
+      if (scrollTimer !== undefined) clearTimeout(scrollTimer)
+      scrollTimer = setTimeout(() => {
+        scrollTimer = undefined
+        scrolling = false
+        delete document.documentElement.dataset.scrolling
+        syncMotion()
+      }, 180)
+    }
+
     const intersection = new IntersectionObserver(entries => {
       intersects = entries.some(entry => entry.isIntersecting)
       syncMotion()
@@ -94,6 +111,9 @@ export function MatrixBackground() {
     const observer = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(resize) : undefined
     observer?.observe(canvas)
     window.addEventListener('resize', resize, { passive: true })
+    window.addEventListener('scroll', onScroll, { passive: true })
+    window.addEventListener('wheel', onScroll, { passive: true })
+    window.addEventListener('touchmove', onScroll, { passive: true })
     document.addEventListener('visibilitychange', syncMotion)
     document.addEventListener('fullscreenchange', syncMotion)
     reducedMotion.addEventListener('change', syncMotion)
@@ -115,9 +135,14 @@ export function MatrixBackground() {
     return () => {
       disposed = true
       pause()
+      if (scrollTimer !== undefined) clearTimeout(scrollTimer)
+      delete document.documentElement.dataset.scrolling
       observer?.disconnect()
       intersection.disconnect()
       window.removeEventListener('resize', resize)
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('wheel', onScroll)
+      window.removeEventListener('touchmove', onScroll)
       document.removeEventListener('visibilitychange', syncMotion)
       document.removeEventListener('fullscreenchange', syncMotion)
       reducedMotion.removeEventListener('change', syncMotion)

@@ -315,3 +315,7 @@ Julien: “I want the frosted glass to be the color of the border which you seem
 
 ## Matrix rendering budget — November 12, 2026
 Julien: “trans prox is so slow af rn fix it”; “lower the canvas backing resolution ... and if needed a lower draw rate ... stop drawing when the canvas is offscreen or covered”; “Keep the glass blur look, colors and layout unchanged.” Optimize only the committed Matrix backing buffer and draw scheduling. Preserve its source glyphs, palette, framing, transparency and all glass/layout styling. Hidden tabs, offscreen canvas and a different fullscreen element suspend drawing; translucent glass does not count as covering the Matrix.
+
+
+## Remaining rendering lag — November 12, 2026
+Julien: “Just fix it idc”, following the remaining desktop and scroll lag after the Matrix budget release. Suspend offscreen decorative frames with a 200px pre-entry margin. Keep the existing 14px frosted centers and separate prismatic rims; avoid the additional full-center SVG displacement pass. During scrolling, pause Matrix redraws and temporarily bypass SVG backdrop displacement while retaining all blur, saturation, translucent surfaces and luminous edges; restore refraction and Matrix motion after 180ms idle. Preserve layout, colors, typography, controls and CAPTCHA.
