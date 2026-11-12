@@ -22,7 +22,7 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px soli
 
 /* Actual source effects: Matrix behind butterflies, with all UI above both. */
 .matrix-background { position: fixed; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; background: #080d19; }
-.matrix-rain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .85; pointer-events: none; transform: scale(1.5); }
+.matrix-rain { position: absolute; inset: 0; width: 100%; height: 100%; opacity: .85; pointer-events: none; transform: scale(1.5); object-fit: cover; }
 .healing-butterflies { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; opacity: .5; font-size: 10px; }
 .healing-butterflies .spot { box-shadow: none; }
 .healing-butterflies .spot::before, .healing-butterflies .spot::after { filter: drop-shadow(0 0 5px #00e5ff55); }

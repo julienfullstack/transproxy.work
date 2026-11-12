@@ -319,3 +319,5 @@ Julien: “trans prox is so slow af rn fix it”; “lower the canvas backing re
 
 ## Remaining rendering lag — November 12, 2026
 Julien: “Just fix it idc”, following the remaining desktop and scroll lag after the Matrix budget release. Suspend offscreen decorative frames with a 200px pre-entry margin. Keep the existing 14px frosted centers and separate prismatic rims; avoid the additional full-center SVG displacement pass. During scrolling, pause Matrix redraws and temporarily bypass SVG backdrop displacement while retaining all blur, saturation, translucent surfaces and luminous edges; restore refraction and Matrix motion after 180ms idle. Preserve layout, colors, typography, controls and CAPTCHA.
+
+2026-11-12 — User: “Can I just be a video” / “WAHTEVER MAKES IT WORK IDC”. The Matrix background plays a seamless 20-second, 30 fps recording of the same falling-code renderer (`public/media/matrix-rain.mp4`) instead of a live WebGL canvas. Framing (full height, centered), opacity, scale, colors and the glass layers stay unchanged; the video pauses while scrolling, offscreen, in hidden tabs and for reduced motion.
