@@ -104,7 +104,7 @@ export default function App() {
     <MatrixBackground />
     <header className="site-header biotech-header">
       <BioFrame compact />
-      <a className="wordmark" href="#/my-story"><span className="medical-staff" aria-hidden="true" /><span className="wordmark-name">TransProxy</span><UiIcon name="butterfly" /></a>
+      <a className="wordmark" href="#/my-story"><span className="medical-staff" aria-hidden="true" /><span className="wordmark-name">TransProxy</span></a>
       <nav className="main-nav" aria-label="Main navigation">
         {ROUTES.slice(0, 4).map(item => <a key={item.path} href={`#/${item.path}`} aria-current={item.path === route?.path ? 'page' : undefined} aria-label={item.label}>{item.path === 'wall-of-shame' ? <><span className="nav-label-full">{item.label}</span><span className="nav-label-short" aria-hidden="true">Reports</span></> : item.label}</a>)}
         <details className="more-nav" onKeyDown={event => { if (event.key === 'Escape') event.currentTarget.removeAttribute('open') }}>

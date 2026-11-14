@@ -125,6 +125,12 @@
   .biotech-home .submit-button:hover:not(:disabled) > .bio-frame { filter: drop-shadow(0 0 5px #ff00c8a0); }
   .biotech-home .submit-button:hover:not(:disabled) .bio-edge-light { opacity: 1; }
 }
+/* Narrow phones: shrink the wordmark and Join button together so they share one row. */
+@media (max-width: 480px) {
+  .biotech-header .wordmark-name { font-size: min(26px, calc((100vw - 101px) * .09253)); }
+  .biotech-header .medical-staff { width: min(19px, calc((100vw - 101px) * .06762)); height: min(32px, calc((100vw - 101px) * .11388)); }
+  .biotech-header .header-join { font-size: min(11px, calc((100vw - 101px) * .03915)); padding: min(7px, calc((100vw - 101px) * .02491)) min(10px, calc((100vw - 101px) * .03559)); }
+}
 @media (prefers-reduced-motion: reduce) { .biotech-home .submit-button > .bio-frame { transition: none; } }
 /* Optical weight and inset light matched to the chosen desktop reference. */
 @media (min-width: 1101px) {
